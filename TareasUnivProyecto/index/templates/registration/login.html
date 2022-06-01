@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Inicio de sesion</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="usuario">
+            <input type="text" name="username">
+        </label>
+        <label for="pass">
+            <input type="password" name="password">
+        </label>
+        <button type="submit">Iniciar sesion</button>
+    </form>
+    <a href="{% url 'registro' %}">Registrarse</a>
+</body>
+</html>
