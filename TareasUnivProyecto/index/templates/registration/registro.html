@@ -1,3 +1,5 @@
+{% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,19 +7,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'index/style.css' %}">
 </head>
-<body>
-    <h2>Registrarse</h2>
-
-
+<body style="display: flex; justify-content: center; background-color: #79B4B7">
     {% if error %}
-    {{error}}
+    <div class="notif">
+        <div>
+            {% for mensaje in error %}
+            {{mensaje.as_text}}
+            {% endfor %}
+        </div>
+        
+        
+        
+        
+    </div>
     {% endif %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Registrarse</button>
-    </form>
-    <a href="/">Iniciar sesion</a>
+
+    <div class="ventana ventana-regist" style="height:620px; margin-top:5vh; width: 500px;">
+        <h2 style="margin-bottom: 26px; margin-top: 10px;">Registrarse</h2>
+        <form method="post" style="display:flex; flex-direction: column; align-items: center;">
+            {% csrf_token %}
+            <div class="div-campo">
+                <span style="margin-bottom:8px ;">Nombre de usuario</span>{% render_field form.username  class="entrada" %}
+                <span style="margin-top: 5px; font-size: 15px; color: #a5a5a5; margin-bottom: 5px;">El nombre de usuario no debe contener espacios o carácteres especiales.</span>
+
+            </div>
+            <div class="div-campo">
+                <span style="margin-bottom:8px ;">Contraseña</span>{% render_field form.password1 class="entrada" %}
+                <span style="margin-top: 5px; font-size: 15px; color: #a5a5a5; margin-bottom: 5px;">La contraseña:</span>
+                <span style="margin-top: 5px; font-size: 15px; color: #a5a5a5; margin-bottom: 5px;">
+                    <ul style="margin-left:25px ;">
+                        <li>No puede ser similar a otro de los campos</li>
+                        <li>Debe contener al menos 8 carácteres</li>
+                        <li>No debe ser una contraseña común</li>
+                        <li>No debe ser enteramente numérica</li>
+                    </ul>
+                </span>
+            </div>
+            <div class="div-campo">
+                <span style="margin-bottom:8px ;">Confirmar contraseña</span>{% render_field form.password2  class="entrada" %}
+            </div>
+            <div class="div-campo" style="margin-bottom:10px ;">
+                <span style="margin-bottom:8px ;">Correo electrónico</span>{% render_field form.email  class="entrada" %}
+            </div>
+            
+            <button type="submit" class="boton" style="width:50px; height: 50px; border-radius: 50%; margin-top: 30px; margin-bottom: 24px; font-size: 30px; border: none; background-color: #79B4B7; color: #FEFBF3; ">></button>
+        </form>
+        <a href="/" style="color: #629092;">¿Ya tienes una cuenta?</a>
+    </div>
 </body>
 </html>

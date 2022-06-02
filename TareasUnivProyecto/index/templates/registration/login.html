@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,19 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'index/style.css' %}">
 </head>
-<body>
-    <h2>Inicio de sesion</h2>
-    <form method="post">
-        {% csrf_token %}
-        <label for="usuario">
-            <input type="text" name="username">
-        </label>
-        <label for="pass">
-            <input type="password" name="password">
-        </label>
-        <button type="submit">Iniciar sesion</button>
-    </form>
-    <a href="{% url 'registro' %}">Registrarse</a>
+<body style="display: flex; justify-content: center; background-color: #79B4B7">
+    {% if form.errors %}
+    <div class="notif">
+        <span>*Usuario o contraseña incorrecto</span>
+    </div>
+    {% endif %}
+    <div class="ventana">    
+        <form method="post" style="display:flex; flex-direction: column; align-items: center;">
+            <h2 style="margin-bottom: 26px; margin-top: 10px;">Inicio de sesión</h2>
+            {% csrf_token %}
+            <label for="usuario" style="margin-bottom: 15px;">
+                <p style="margin-bottom: 8px;">Nombre de usuario:</p>
+                <input type="text" name="username" class="entrada">
+            </label>
+            <label for="pass" style="margin: 10px 0px; ">
+                <p style="margin-bottom: 8px; ">Contraseña</p>
+                <input type="password" name="password" class="entrada">
+            </label>
+            <button type="submit" class="boton" style="width:50px; height: 50px; border-radius: 50%; margin-top: 30px; margin-bottom: 24px; font-size: 30px; border: none; background-color: #79B4B7; color: #FEFBF3; ">></button>
+        </form>
+        <a href="{% url 'registro' %}" style="color: #629092;"> ¿No tienes una cuenta?</a>
+    </div>
+    
 </body>
 </html>

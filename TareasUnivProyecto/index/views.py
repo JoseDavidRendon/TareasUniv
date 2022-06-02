@@ -1,4 +1,6 @@
 from pyexpat.errors import messages
+from xml.dom import ValidationErr
+from django.forms import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators  import login_required
@@ -24,7 +26,9 @@ def registro(request):
             messages.success(request, 'Profile details updated.')
             return redirect(to="/")
         else:
-            error=True
+            #error=formulario.errors.as_data
+            error = formulario.errors.values
+            
     data={
         'form':UserRegisterForm(),
         'error':error
