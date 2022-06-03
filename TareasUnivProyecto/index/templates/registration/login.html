@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'index/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login-register.css' %}">
 </head>
 <body style="display: flex; justify-content: center; background-color: #79B4B7">
     {% if form.errors %}
@@ -16,7 +16,7 @@
     {% endif %}
     <div class="ventana">    
         <form method="post" style="display:flex; flex-direction: column; align-items: center;">
-            <h2 style="margin-bottom: 26px; margin-top: 10px;">Inicio de sesión</h2>
+            <h2 style="margin-bottom: 26px; margin-top: 10px;">Ingresar</h2>
             {% csrf_token %}
             <label for="usuario" style="margin-bottom: 15px;">
                 <p style="margin-bottom: 8px;">Nombre de usuario:</p>
