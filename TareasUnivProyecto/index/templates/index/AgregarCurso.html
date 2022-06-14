@@ -22,84 +22,102 @@
 
         {% csrf_token %}
 
+        <div style="display:flex; flex-direction: column;">
 
-        <!-- Campo de curso -->
-        <div>
-            <div style="height: 1px;">
-
-                <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Curso:</p>
-
+            <div>
+                <!-- Campo de curso -->
+                <div style="height: 1px;">
+    
+                    <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Curso:</p>
+    
+                </div>
+                
+                <label for="curso"></label>
+    
+                <input list="browsers" name="curso" id="browser" class="campo campo-noForm" style="width: 100%;" required>
+                
+                <datalist id="browsers">
+    
+                  <option value="Edge">
+    
+                  <option value="Firefox">
+    
+                  <option value="Chrome">
+    
+                  <option value="Opera">
+    
+                  <option value="Safari">
+    
+                </datalist>
+    
             </div>
             
-            <label for="curso"></label>
-
-            <input list="browsers" name="curso" id="browser" class="campo campo-noForm" style="width: 100%;" required>
+    
+            <!-- Campo de nombre de la tarea -->
+            <div>
+    
+                <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Nombre de la tarea:</p>
             
-            <datalist id="browsers">
-
-              <option value="Edge">
-
-              <option value="Firefox">
-
-              <option value="Chrome">
-
-              <option value="Opera">
-
-              <option value="Safari">
-
-            </datalist>
-
-        </div>
-        
-
-        <!-- Campo de nombre de la tarea -->
-        <div>
-
-            <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Nombre de la tarea:</p>
-        
-            {% render_field form.tarea class="form-control campo"%}
-
-        </div>
-
-
-        <!-- Campo de la calificacion máxima -->
-        <div>
-
-            <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Calificación máxima:</p>
-
-            {% render_field form.valor class="form-control campo"%}
-
-        </div>
-        
-
-        <!-- Campo de selección del estado de la tarea -->
-        <div>
+                {% render_field form.tarea class="form-control campo"%}
+    
+            </div>
+    
+    
+            <!-- Campo de la calificacion máxima -->
+            <div>
+    
+                <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Calificación máxima:</p>
+    
+                {% render_field form.valor class="form-control campo"%}
+    
+            </div>
             
-            <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Estado de la tarea:</p>
-
-            <select class="form-select campo" for=" {{ form.estado }}  ">
     
-                <option selected disabled style="font-size: 0px;"></option>
+            <!-- Campo de selección del estado de la tarea -->
+            <div>
+                
+                <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Estado de la tarea:</p>
     
-                <option value="espera">No comenzada</option>
-    
-                <option value="proceso">En proceso</option>
-    
-                <option value="terminada">Terminada</option>
-    
-    
-            </select>
-
-        </div>
-
+                <select class="form-select campo" for=" {{ form.estado }}  ">
         
-        <!-- Boton para agregar la tarea -->
-        <button type="submit" style="border: none; background-color: none;"><img src="{% static 'icons/icon-continuar.png' %}" alt=""></button>
+                    <option selected disabled style="font-size: 0px;"></option>
+        
+                    <option value="espera">No comenzada</option>
+        
+                    <option value="proceso">En proceso</option>
+        
+                    <option value="terminada">Terminada</option>
+        
+        
+                </select>
+    
+            </div>
 
+            <!-- Boton para agregar la tarea -->
+            <button type="submit" style="border: none; background-color: rgba(0, 0, 0, 0);"><img style="width:60px; height: 60px;" src="{% static 'icons/icon-continuar.png' %}" alt=""></button>
+
+            <div style="width: 100%; display: flex; justify-content: center;"><a style="text-align: center; margin-top: 10px;" href="{% url 'inicio' %}"><p>Cancelar</p></a></div>
+            
+
+        </div>            
+        
     </form>
 
-    
+    <div style="text-align: center; color: #8a8a8a; margin-top: 20px; font-size:14px ;">
 
+        <p>
+
+            Los cursos inexistentes no estarán disponibles en el dashboard del curso. <br>
+            En caso de ingresar un curso que no aparezca en las sugerencias, se notificará
+            automaticamente a un administrador para corroborar si se trata de un curso existente,
+            de ser así, se registrará en la base de datos y estará disponible en el dashboard del curso.
+            En caso de ser haber escrito mal el nombre del curso, será corregido por un administrador.
+            Si el curso ingresado no existe, estará disponible para ver el progreso personal, sin embargo
+            no se contará con información en el dashboard y estará disponible únicamente para usted.
+        
+        </p>
+
+    </div>
 
 
 </div>
