@@ -6,13 +6,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators  import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import UserRegisterForm
-
-
+from .forms import UserRegisterForm, formAgregarCurso
 # Create your views here.
 
 @login_required
 def inicio(request):
+    
+    
     return render(request, 'index/index.html')
 
 def registro(request):
@@ -38,3 +38,18 @@ def registro(request):
 def salir(request):
     logout()
     return redirect(to="/")
+
+def agregarCurso(request):
+    if request.method == 'POST':
+        formulario = formAgregarCurso(request.POST)
+        if formulario.is_valid():
+            mensaje = formulario.cleaned_data['curso']
+            return HttpResponse(mensaje) 
+        else:
+            return HttpResponse("invalido") 
+
+def nuevoCurso(request):
+    data={
+        'form':formAgregarCurso()
+    }
+    return render(request, 'index/AgregarCurso.html', data)

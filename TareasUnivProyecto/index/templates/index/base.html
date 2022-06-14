@@ -11,7 +11,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 <body >
-    <header>
+    <header id="aber">
         <div class="menu" style="position: fixed;">
             <input type="checkbox" id="checkbox_toggle">
             <label for="checkbox_toggle" class="button-menu" style="margin-left: 12px; margin-top: 40px; position: fixed; z-index: 100;">
@@ -56,9 +56,9 @@
            </div>
         </div>
         <div style="display:flex; flex-direction: row; align-items: center; font-size: 28px; margin-left: 10px;">
-            <div>
+            <div style="color: rgb(92, 92, 92);">
                 <img style="width: 40px;" src="{% static 'icons/icon-user.png' %}" alt="">
-                {{user}} |  
+                {{user}}
             </div>
             
             
@@ -76,7 +76,6 @@
 
     <div style="display:flex; justify-content: center; padding-top: 90px; min-height: 100vh;">
         <div class="contenido container-sm" style=" margin-bottom: 20px;">
-            <iframe src="https://colorhunt.co/palette/79b4b7fefbf3f8f0df9d9d9d" width="900" height="3700" allow="fullscreen" style="margin-top: 20px; "></iframe>
             {% block content %}
             {% endblock %}
         </div>

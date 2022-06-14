@@ -13,3 +13,11 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
         help_texts = {k:" ff" for k in fields}
+
+class formAgregarCurso(forms.Form):
+    
+    curso = forms.CharField( max_length=100)
+    tarea = forms.CharField( max_length=100)
+    valor = forms.IntegerField( max_value=500)
+    estado = forms.CharField()
+

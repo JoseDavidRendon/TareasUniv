@@ -1,0 +1,109 @@
+{% extends 'index/base.html' %}
+{% block content %}
+{% load static %}
+{% load widget_tweaks %}
+
+<link rel="stylesheet" href="{% static 'css/NuevoCurso.css' %}">
+
+
+
+<div class="contenedor-cursos" style="margin-top:60px; color: #525252;" id="agregarNuevoCursos">
+
+
+    <!-- Titulo-->
+    <div style="width:100%; text-align: center; color: #3f3f3f;">
+
+        <p style="font-size:20px ; margin-bottom: 40px;"><strong>Agregar tarea</strong></p>
+
+    </div>
+
+
+    <form action="/agregarCurso/" method="POST">
+
+        {% csrf_token %}
+
+
+        <!-- Campo de curso -->
+        <div>
+            <div style="height: 1px;">
+
+                <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Curso:</p>
+
+            </div>
+            
+            <label for="curso"></label>
+
+            <input list="browsers" name="curso" id="browser" class="campo campo-noForm" style="width: 100%;" required>
+            
+            <datalist id="browsers">
+
+              <option value="Edge">
+
+              <option value="Firefox">
+
+              <option value="Chrome">
+
+              <option value="Opera">
+
+              <option value="Safari">
+
+            </datalist>
+
+        </div>
+        
+
+        <!-- Campo de nombre de la tarea -->
+        <div>
+
+            <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Nombre de la tarea:</p>
+        
+            {% render_field form.tarea class="form-control campo"%}
+
+        </div>
+
+
+        <!-- Campo de la calificacion máxima -->
+        <div>
+
+            <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Calificación máxima:</p>
+
+            {% render_field form.valor class="form-control campo"%}
+
+        </div>
+        
+
+        <!-- Campo de selección del estado de la tarea -->
+        <div>
+            
+            <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Estado de la tarea:</p>
+
+            <select class="form-select campo" for=" {{ form.estado }}  ">
+    
+                <option selected disabled style="font-size: 0px;"></option>
+    
+                <option value="espera">No comenzada</option>
+    
+                <option value="proceso">En proceso</option>
+    
+                <option value="terminada">Terminada</option>
+    
+    
+            </select>
+
+        </div>
+
+        
+        <!-- Boton para agregar la tarea -->
+        <button type="submit" style="border: none; background-color: none;"><img src="{% static 'icons/icon-continuar.png' %}" alt=""></button>
+
+    </form>
+
+    
+
+
+
+</div>
+
+
+
+{% endblock content %}

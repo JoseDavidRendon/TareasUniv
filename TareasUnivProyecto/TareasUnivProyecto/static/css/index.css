@@ -1,0 +1,37 @@
+#boton-agregar-nuevo-curso{
+    margin-top: 20px;
+}
+
+.boton-agregar-curso{
+    display: flex;
+    flex-direction: row;
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.089);
+    height: 21px;
+    width: 85px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+#icon-agregar{
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(0, 0, 0, 0.281);
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+#icon-agregar p{
+    bottom: 5px;
+    color: white;
+    margin-top: -5px;
+}
+
+#texto-agregar p{
+    margin-top: 15px;
+    margin-left: 3px;
+    color: rgba(0, 0, 0, 0.747);
+}

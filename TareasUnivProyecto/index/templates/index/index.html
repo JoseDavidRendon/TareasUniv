@@ -1,5 +1,34 @@
 {% extends 'index/base.html' %}
-
 {% block content %}
+{% load static %}
+{% load widget_tweaks %}
+
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+<div id="boton-agregar-nuevo-curso">
+
+    <a href="{% url 'nuevoCurso' %}" style="text-decoration: none;">
+    
+        <div class="boton-agregar-curso">
+            <div id="icon-agregar">
+
+                <p> + </p>
+
+            </div>
+
+            <div id="texto-agregar">
+
+                <p>Agregar</p>
+
+            </div>
+            
+    
+        </div>
+    
+    </a>
+
+</div>
+
+
 
 {% endblock content %}
