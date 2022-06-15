@@ -103,7 +103,7 @@ input[type=checkbox]:checked ~ label #imagen-menu {
 
 .contenido{
     max-width: 1000px;
-    background-color: #FEFBF3;
+    background-color: #fffdf9;
     border-radius: 10px;
     display: flex;
     justify-content: center;

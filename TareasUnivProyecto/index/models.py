@@ -1,5 +1,12 @@
 from django.db import models
 
 # Create your models here.
-class materias (models.Model):
-    Curso = models.CharField(max_length=100, null=False, blank=False)
+class CursosYTareas(models.Model):
+    curso = models.CharField(max_length=100)
+    tarea = models.CharField(max_length=100)
+    valor = models.IntegerField()
+    estado = models.CharField(max_length=100)
+
+class EstadoDelCurso(models.Model):
+    curso = models.CharField(max_length=100)
+    verificacion = models.CharField(max_length=30, default="pendiente")

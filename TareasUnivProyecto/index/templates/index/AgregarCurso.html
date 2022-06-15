@@ -17,7 +17,26 @@
 
     </div>
 
+    {% if error %}
 
+    <div class="contenedor-notificacion">
+
+        <div class="notificacion" style="background-color: rgb(252, 23, 23);color: white; "><p>Se ha producido un error</p></div>
+
+    </div>
+
+    {% endif %}
+
+    {% if error == False %}
+    
+    <div class="contenedor-notificacion">
+
+        <div class="notificacion" style="background-color: rgb(41, 233, 41); color: color: rgb(48, 48, 48);"><p>Se ha agregado la tarea con éxito</p></div>        
+
+    </div>
+
+    {% endif %}
+    
     <form action="/agregarCurso/" method="POST">
 
         {% csrf_token %}

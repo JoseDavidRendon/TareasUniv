@@ -21,3 +21,5 @@ class formAgregarCurso(forms.Form):
     valor = forms.IntegerField( max_value=500)
     estado = forms.CharField()
 
+
+

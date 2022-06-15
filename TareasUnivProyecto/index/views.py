@@ -7,6 +7,7 @@ from django.contrib.auth.decorators  import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import UserRegisterForm, formAgregarCurso
+from .models import CursosYTareas
 # Create your views here.
 
 @login_required
@@ -43,13 +44,27 @@ def agregarCurso(request):
     if request.method == 'POST':
         formulario = formAgregarCurso(request.POST)
         if formulario.is_valid():
-            mensaje = formulario.cleaned_data['curso']
-            return HttpResponse(mensaje) 
+            form=CursosYTareas()
+            form.curso = formulario.cleaned_data['curso']
+            form.estado = formulario.cleaned_data['estado']
+            form.tarea = formulario.cleaned_data['tarea']
+            form.valor = formulario.cleaned_data['valor']
+            form.save()
+            data={
+                'form':formAgregarCurso(),
+                'error':False,
+            }
+            return render(request, 'index/AgregarCurso.html', data)
         else:
-            return HttpResponse("invalido") 
+            data={
+                'form':formAgregarCurso(),
+                'error':True,
+            }
+            return render(request, 'index/AgregarCurso.html', data)
 
 def nuevoCurso(request):
     data={
         'form':formAgregarCurso()
+        
     }
-    return render(request, 'index/AgregarCurso.html', data)
+    return render(request, 'index/AgregarCurso.html', data, )
