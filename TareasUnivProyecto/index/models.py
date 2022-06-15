@@ -12,4 +12,9 @@ class CursosYTareas(models.Model):
 
 class EstadoDelCurso(models.Model):
     curso = models.CharField(max_length=100)
-    verificacion = models.CharField(max_length=30, default="pendiente")
+    estados=(
+        ('1','pendiente'),
+        ('2','verificado'),
+        ('3','inexistente')
+    )
+    verificacion = models.CharField(max_length=30, default="pendiente", choices=estados)

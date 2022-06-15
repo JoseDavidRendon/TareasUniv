@@ -50,6 +50,8 @@ def agregarCurso(request):
             form.tarea = formulario.cleaned_data['tarea']
             form.valor = formulario.cleaned_data['valor']
             form.entrega = formulario.cleaned_data['entrega']
+            #form.usuario = formulario.cleaned_data['usuario']
+            form.usuario = request.user
             form.save()
             formEstadoDelCurso=EstadoDelCurso()
             Existencia = EstadoDelCurso.objects.filter(curso=formulario.cleaned_data['curso']).count()
