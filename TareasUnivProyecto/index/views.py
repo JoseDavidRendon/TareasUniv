@@ -7,7 +7,7 @@ from django.contrib.auth.decorators  import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import UserRegisterForm, formAgregarCurso
-from .models import CursosYTareas
+from .models import CursosYTareas, EstadoDelCurso
 # Create your views here.
 
 @login_required
@@ -49,22 +49,31 @@ def agregarCurso(request):
             form.estado = formulario.cleaned_data['estado']
             form.tarea = formulario.cleaned_data['tarea']
             form.valor = formulario.cleaned_data['valor']
+            form.entrega = formulario.cleaned_data['entrega']
             form.save()
+            formEstadoDelCurso=EstadoDelCurso()
+            Existencia = EstadoDelCurso.objects.filter(curso=formulario.cleaned_data['curso']).count()
+            if Existencia == 0:
+                formEstadoDelCurso.curso=formulario.cleaned_data['curso']
+                formEstadoDelCurso.save()
             data={
                 'form':formAgregarCurso(),
+                'cursosVerificados': EstadoDelCurso.objects.filter(verificacion='verificado'),
                 'error':False,
             }
             return render(request, 'index/AgregarCurso.html', data)
         else:
             data={
                 'form':formAgregarCurso(),
+                'cursosVerificados': EstadoDelCurso.objects.filter(verificacion='verificado'),
                 'error':True,
+                
             }
             return render(request, 'index/AgregarCurso.html', data)
 
 def nuevoCurso(request):
     data={
-        'form':formAgregarCurso()
-        
+        'form':formAgregarCurso(),
+        'cursosVerificados': EstadoDelCurso.objects.filter(verificacion='verificado')
     }
     return render(request, 'index/AgregarCurso.html', data, )

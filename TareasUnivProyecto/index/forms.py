@@ -20,6 +20,7 @@ class formAgregarCurso(forms.Form):
     tarea = forms.CharField( max_length=100)
     valor = forms.IntegerField( max_value=500)
     estado = forms.CharField()
+    entrega = forms.DateField(widget=forms.SelectDateWidget())
 
 
 

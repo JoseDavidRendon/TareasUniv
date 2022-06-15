@@ -31,7 +31,7 @@
     
     <div class="contenedor-notificacion">
 
-        <div class="notificacion" style="background-color: rgb(41, 233, 41); color: color: rgb(48, 48, 48);"><p>Se ha agregado la tarea con éxito</p></div>        
+        <div class="notificacion" style="background-color: rgb(41, 233, 41); color: rgb(48, 48, 48);"><p>Se ha agregado la tarea con éxito</p></div>        
 
     </div>
 
@@ -56,16 +56,12 @@
                 <input list="browsers" name="curso" id="browser" class="campo campo-noForm" style="width: 100%;" required>
                 
                 <datalist id="browsers">
-    
-                  <option value="Edge">
-    
-                  <option value="Firefox">
-    
-                  <option value="Chrome">
-    
-                  <option value="Opera">
-    
-                  <option value="Safari">
+                    
+                    {% for curso in cursosVerificados %}
+
+                        <option value="{{ curso.curso }}">
+                    
+                    {% endfor %}
     
                 </datalist>
     
@@ -98,7 +94,7 @@
                 <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Estado de la tarea:</p>
     
                 <select class="form-select campo" for=" {{ form.estado }}  ">
-        
+       
                     <option selected disabled style="font-size: 0px;"></option>
         
                     <option value="espera">No comenzada</option>
@@ -112,8 +108,25 @@
     
             </div>
 
+            <div>
+
+                <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Fecha de entrega:</p>
+
+                <div style="display: flex; flex-direction: row; justify-content: center;">
+
+                    {% render_field form.entrega class="form-control datepicker campo fecha"%}
+
+                </div>
+                
+
+            </div>
+
             <!-- Boton para agregar la tarea -->
-            <button type="submit" style="border: none; background-color: rgba(0, 0, 0, 0);"><img style="width:60px; height: 60px;" src="{% static 'icons/icon-continuar.png' %}" alt=""></button>
+            <div style="display: flex; justify-content: center;">
+
+                <button type="submit" style="border: none; background-color: rgba(0, 0, 0, 0);"><img style="width:60px; height: 60px;" src="{% static 'icons/icon-continuar.png' %}" alt=""></button>
+
+            </div>
 
             <div style="width: 100%; display: flex; justify-content: center;"><a style="text-align: center; margin-top: 10px;" href="{% url 'inicio' %}"><p>Cancelar</p></a></div>
             
