@@ -6,6 +6,6 @@ urlpatterns = [
     path('registrarse/', registro, name="registro"),
     path('salir/', salir, name='logout'),
     path('agregarCurso/', agregarCurso, name="agregarCurso"),
-    path('nuevoCurso/', nuevoCurso, name="nuevoCurso"),
+    path('agregarTarea/', nuevoCurso, name="agregarTarea"),
 ]
  

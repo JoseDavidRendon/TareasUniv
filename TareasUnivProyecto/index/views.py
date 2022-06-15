@@ -11,10 +11,12 @@ from .models import CursosYTareas, EstadoDelCurso
 # Create your views here.
 
 @login_required
-def inicio(request):
-    
-    
+
+
+def inicio(request):    
     return render(request, 'index/index.html')
+
+
 
 def registro(request):
     error= False
@@ -29,16 +31,19 @@ def registro(request):
         else:
             #error=formulario.errors.as_data
             error = formulario.errors.values
-            
     data={
         'form':UserRegisterForm(),
         'error':error
         }       
     return render(request, 'registration/registro.html', data)
 
+
+
 def salir(request):
     logout()
     return redirect(to="/")
+
+
 
 def agregarCurso(request):
     if request.method == 'POST':
@@ -69,9 +74,10 @@ def agregarCurso(request):
                 'form':formAgregarCurso(),
                 'cursosVerificados': EstadoDelCurso.objects.filter(verificacion='verificado'),
                 'error':True,
-                
             }
             return render(request, 'index/AgregarCurso.html', data)
+
+
 
 def nuevoCurso(request):
     data={
