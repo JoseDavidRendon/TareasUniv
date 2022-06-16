@@ -23,6 +23,8 @@ def inicio(request):
 
 
 
+
+
 def registro(request):
     error= False
     if request.method =='POST':
