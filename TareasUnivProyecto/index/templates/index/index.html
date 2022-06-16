@@ -5,20 +5,29 @@
 
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 
+<div style="display: flex; flex-direction: column; align-items: center;">
 
+    <div style=" margin-top: 20px;">
 
-<div>
+            {% for tarea in formTareasPendientes %}
 
-    <div>
+            <div class="contenedor-tarea">
 
-        {% for tarea in formTareasPendientes %}
-        <p>Curso: {{tarea.curso}}</p>
-        <p>Tarea: {{tarea.tarea}}</p>
-        <p>Valor: {{tarea.valor}} puntos</p>
-        <p>Fecha de entrega: {{tarea.entrega}}</p> 
-        <div><a href="{%  url 'editarTarea' tarea.id %}"><img style="width: 25px;" title="Editar" src="{% static 'icons/icon-edit.png' %}" alt=""></a></div><br> <br>
+                <p>Curso: {{tarea.curso}}</p>
+    
+                <p>Tarea: {{tarea.tarea}}</p>
+    
+                <p>Valor: {{tarea.valor}} puntos</p>
+    
+                <p>Fecha de entrega: {{tarea.entrega}}</p> 
+    
+                <div><a href="{%  url 'editarTarea' tarea.id %}"><img style="width: 25px;" title="Editar" src="{% static 'icons/icon-edit.png' %}" alt=""></a></div><br> <br>
+    
+                <div><a href="{%  url 'borrarCurso' tarea.id %}"><img style="width: 25px;" title="Editar" src="{% static 'icons/icon-borrar.png' %}" alt=""></a></div><br> <br>
 
-        {% endfor %}
+            </div>
+
+            {% endfor %}        
 
     </div>
 

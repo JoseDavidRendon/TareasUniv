@@ -15,7 +15,7 @@ from .models import CursosYTareas, EstadoDelCurso
 
 
 def inicio(request):    
-    formTareasPendientes = CursosYTareas.objects.filter(estado="espera")
+    formTareasPendientes = CursosYTareas.objects.filter(estado="espera", usuario = request.user.username)
     data={
         'formTareasPendientes':formTareasPendientes
     }
@@ -96,6 +96,9 @@ def nuevoCurso(request):
     #cursos= EstadoDelCurso()
     #return HttpResponse(cursos)
     return render(request, 'index/AgregarCurso.html', data, )
+
+
+
 @login_required
 def editarTarea(request, id):
     usuario = request.user.username
@@ -103,8 +106,41 @@ def editarTarea(request, id):
     if usuario == formInfo.usuario:
         data={
             'form':formAgregarCurso(instance=formInfo),
-            'cursosVerificados': EstadoDelCurso.objects.filter(verificacion='verificado')
+            'cursosVerificados': EstadoDelCurso.objects.filter(verificacion='verificado'),
+            'id':id
         }
         return render(request, 'index/editarTarea.html', data)
     else:
         return HttpResponse("Error")
+
+
+def actualizarCurso(request):
+    if request.method == 'POST':
+        id = int(request.POST['id'])
+        formulario = formAgregarCurso(request.POST)
+        if formulario.is_valid():
+            form = CursosYTareas.objects.filter(id=id)
+            if id==form[0].id:
+                form.update(
+                    curso=formulario.cleaned_data['curso'],
+                    tarea=formulario.cleaned_data['tarea'],
+                    valor=formulario.cleaned_data['valor'],
+                    estado=formulario.cleaned_data['estado'],
+                    entrega=formulario.cleaned_data['entrega']
+                    )
+                for object in form:
+                    object.save()
+                return inicio(request)
+    
+    return HttpResponse("Error")
+
+
+def borrarCurso(request, id):
+    username=request.user.username
+    form = CursosYTareas.objects.get(pk=id)
+    if form.usuario == username:
+    #if request.method == 'GET':
+        tarea = CursosYTareas.objects.filter(id=id)
+        tarea.delete()
+        return inicio(request)
+    return HttpResponse("No puede eliminar un curso que no le pertenece.")

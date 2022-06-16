@@ -37,9 +37,11 @@
 
     {% endif %}
     
-    <form action="/agregarCurso/" method="POST">
+    <form action="/actualizarCurso/" method="POST">
 
         {% csrf_token %}
+
+        <input type="hidden" name="id" id="id" value="{{id}}">
 
         <div style="display:flex; flex-direction: column;">
 
