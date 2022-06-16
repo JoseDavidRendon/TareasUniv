@@ -1,3 +1,4 @@
+
 from pyexpat.errors import messages
 from xml.dom import ValidationErr
 from django.forms import ValidationError
@@ -11,10 +12,16 @@ from .models import CursosYTareas, EstadoDelCurso
 # Create your views here.
 
 @login_required
-def inicio(request):
-    
-    
-    return render(request, 'index/index.html')
+
+
+def inicio(request):    
+    formTareasPendientes = CursosYTareas.objects.filter(estado="espera")
+    data={
+        'formTareasPendientes':formTareasPendientes
+    }
+    return render(request, 'index/index.html', data)
+
+
 
 def registro(request):
     error= False
@@ -29,16 +36,19 @@ def registro(request):
         else:
             #error=formulario.errors.as_data
             error = formulario.errors.values
-            
     data={
         'form':UserRegisterForm(),
         'error':error
         }       
     return render(request, 'registration/registro.html', data)
 
+
+
 def salir(request):
     logout()
     return redirect(to="/")
+
+
 
 def agregarCurso(request):
     if request.method == 'POST':
@@ -58,6 +68,7 @@ def agregarCurso(request):
             if Existencia == 0:
                 formEstadoDelCurso.curso=formulario.cleaned_data['curso']
                 formEstadoDelCurso.save()
+                
             data={
                 'form':formAgregarCurso(),
                 'cursosVerificados': EstadoDelCurso.objects.filter(verificacion='verificado'),
@@ -65,17 +76,33 @@ def agregarCurso(request):
             }
             return render(request, 'index/AgregarCurso.html', data)
         else:
+            
             data={
                 'form':formAgregarCurso(),
                 'cursosVerificados': EstadoDelCurso.objects.filter(verificacion='verificado'),
                 'error':True,
-                
             }
             return render(request, 'index/AgregarCurso.html', data)
+
+
 
 def nuevoCurso(request):
     data={
         'form':formAgregarCurso(),
         'cursosVerificados': EstadoDelCurso.objects.filter(verificacion='verificado')
     }
+    #cursos= EstadoDelCurso()
+    #return HttpResponse(cursos)
     return render(request, 'index/AgregarCurso.html', data, )
+@login_required
+def editarTarea(request, id):
+    usuario = request.user.username
+    formInfo = CursosYTareas.objects.get(pk = id)
+    if usuario == formInfo.usuario:
+        data={
+            'form':formAgregarCurso(instance=formInfo),
+            'cursosVerificados': EstadoDelCurso.objects.filter(verificacion='verificado')
+        }
+        return render(request, 'index/editarTarea.html', data)
+    else:
+        return HttpResponse("Error")

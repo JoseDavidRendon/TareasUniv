@@ -20,7 +20,7 @@
 }
 
 .fecha{
-    max-width: 100px;
+    max-width: 105px;
     margin-bottom: 30px;
 }
 
@@ -28,7 +28,7 @@
     display: none;
 }
 #id_entrega_day{
-    margin-right: 10px;
+    margin-right: 5px;
     width: 60px;
 }
 
@@ -103,4 +103,25 @@ header{
     left: 0px;
     border-radius: 50px;
     
+}
+
+.contenedor-calificacion-estado-fecha{
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: inherit;
+    width: 100%;
+    gap: 5px;
+}
+
+.campo-cef-E{
+    flex-grow: 1;
+}
+
+.campo-cef{
+    flex-grow: 1;
+}
+
+.campo-cef-F{
+    flex-grow: 1;
 }

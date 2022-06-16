@@ -52,14 +52,14 @@
                 </div>
                 
                 <label for="curso"></label>
-    
-                <input list="browsers" name="curso" id="browser" class="campo campo-noForm" style="width: 100%;" required>
                 
-                <datalist id="browsers">
-                    
+                {% render_field form.curso list="cursos" class="form-control campo"%}
+                                
+                <datalist id="cursos">
+
                     {% for curso in cursosVerificados %}
 
-                        <option value="{{ curso.curso }}">
+                    <option value="{{ curso.curso }}"></option>
                     
                     {% endfor %}
     
@@ -78,8 +78,11 @@
             </div>
     
     
+        <div class="contenedor-calificacion-estado-fecha">
+            
+
             <!-- Campo de la calificacion máxima -->
-            <div>
+            <div class="campo-cef">
     
                 <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Calificación máxima:</p>
     
@@ -89,13 +92,13 @@
             
     
             <!-- Campo de selección del estado de la tarea -->
-            <div>
+            <div class="campo-cef-E">
                 
                 <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Estado de la tarea:</p>
     
                 <select class="form-select campo" for=" {{ form.estado }}  ">
        
-                    <option selected disabled style="font-size: 0px;"></option>
+                    <option selected disabled style="font-size: 0px; display:none;"></option>
         
                     <option value="espera">No comenzada</option>
         
@@ -108,11 +111,11 @@
     
             </div>
 
-            <div>
+            <div class="campo-cef">
 
                 <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Fecha de entrega:</p>
 
-                <div style="display: flex; flex-direction: row; justify-content: center;">
+                <div style="display: flex; flex-direction: row; justify-content: center; width: 100%;">
 
                     {% render_field form.entrega class="form-control datepicker campo fecha"%}
 
@@ -121,16 +124,23 @@
 
             </div>
 
+
+        </div>
+
+
+
             <!-- Boton para agregar la tarea -->
-            <div style="display: flex; justify-content: center;">
 
-                <button type="submit" style="border: none; background-color: rgba(0, 0, 0, 0);"><img style="width:60px; height: 60px;" src="{% static 'icons/icon-continuar.png' %}" alt=""></button>
-
-            </div>
-
-            <div style="width: 100%; display: flex; justify-content: center;"><a style="text-align: center; margin-top: 10px;" href="{% url 'inicio' %}"><p>Cancelar</p></a></div>
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+    
+            <button type="submit" style="border: none; background-color: rgba(0, 0, 0, 0);"><img style="width:60px; height: 60px;" src="{% static 'icons/icon-ok.png' %}" alt=""></button>
+    
+    
+            <div style=" display: flex; justify-content: center;"><a style="text-align: center; margin-top: 10px;" href="{% url 'inicio' %}"><p><img style="width:50px; height: 50px; margin-top:5px;" src="{% static 'icons/icon-cancel.png' %}" alt=""></p></a></div>
          
         </div>            
+    </div>
+
         
     </form>
 

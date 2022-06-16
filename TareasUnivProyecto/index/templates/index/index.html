@@ -5,29 +5,49 @@
 
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 
-<div id="boton-agregar-nuevo-curso">
 
-    <a href="{% url 'nuevoCurso' %}" style="text-decoration: none;">
+
+<div>
+
+    <div>
+
+        {% for tarea in formTareasPendientes %}
+        <p>Curso: {{tarea.curso}}</p>
+        <p>Tarea: {{tarea.tarea}}</p>
+        <p>Valor: {{tarea.valor}} puntos</p>
+        <p>Fecha de entrega: {{tarea.entrega}}</p> 
+        <div><a href="{%  url 'editarTarea' tarea.id %}"><img style="width: 25px;" title="Editar" src="{% static 'icons/icon-edit.png' %}" alt=""></a></div><br> <br>
+
+        {% endfor %}
+
+    </div>
+
+    <div id="boton-agregar-nuevo-curso">
+
+        <a href="{% url 'agregarTarea' %}" style="text-decoration: none;">
+        
+            <div class="boton-agregar-curso">
+                <div id="icon-agregar">
     
-        <div class="boton-agregar-curso">
-            <div id="icon-agregar">
-
-                <p> + </p>
-
+                    <p> + </p>
+    
+                </div>
+    
+                <div id="texto-agregar">
+    
+                    <p>Agregar</p>
+    
+                </div>
+                
+        
             </div>
-
-            <div id="texto-agregar">
-
-                <p>Agregar</p>
-
-            </div>
-            
+        
+        </a>
     
-        </div>
-    
-    </a>
+    </div>
 
 </div>
+
 
 
 

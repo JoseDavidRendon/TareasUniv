@@ -1,0 +1,158 @@
+{% extends 'index/base.html' %}
+{% block content %}
+{% load static %}
+{% load widget_tweaks %}
+
+<link rel="stylesheet" href="{% static 'css/NuevoCurso.css' %}">
+
+
+
+<div class="contenedor-cursos" style="margin-top:60px; color: #525252;" id="agregarNuevoCursos">
+
+
+    <!-- Titulo-->
+    <div style="width:100%; text-align: center; color: #3f3f3f;">
+
+        <p style="font-size:20px ; margin-bottom: 40px;"><strong>Editar tarea</strong></p>
+
+    </div>
+
+    {% if error %}
+
+    <div class="contenedor-notificacion">
+
+        <div class="notificacion" style="background-color: rgb(252, 23, 23);color: white; "><p>Se ha producido un error</p></div>
+
+    </div>
+
+    {% endif %}
+
+    {% if error == False %}
+    
+    <div class="contenedor-notificacion">
+
+        <div class="notificacion" style="background-color: rgb(41, 233, 41); color: rgb(48, 48, 48);"><p>Se ha agregado la tarea con éxito</p></div>        
+
+    </div>
+
+    {% endif %}
+    
+    <form action="/agregarCurso/" method="POST">
+
+        {% csrf_token %}
+
+        <div style="display:flex; flex-direction: column;">
+
+            <div>
+                <!-- Campo de curso -->
+                <div style="height: 1px;">
+    
+                    <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Curso:</p>
+    
+                </div>
+                
+                <label for="curso"></label>
+                
+                {% render_field form.curso list="cursos" class="form-control campo"%}
+                                
+                <datalist id="cursos">
+
+                    {% for curso in cursosVerificados %}
+
+                    <option value="{{ curso.curso }}"></option>
+                    
+                    {% endfor %}
+    
+                </datalist>
+    
+            </div>
+            
+    
+            <!-- Campo de nombre de la tarea -->
+            <div>
+    
+                <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Nombre de la tarea:</p>
+            
+                {% render_field form.tarea class="form-control campo"%}
+    
+            </div>
+    
+    
+            <div class="contenedor-calificacion-estado-fecha">
+            
+
+                <!-- Campo de la calificacion máxima -->
+                <div class="campo-cef">
+        
+                    <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Calificación máxima:</p>
+        
+                    {% render_field form.valor class="form-control campo"%}
+        
+                </div>
+                
+        
+                <!-- Campo de selección del estado de la tarea -->
+                <div class="campo-cef-E">
+                    
+                    <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Estado de la tarea:</p>
+        
+                    <select class="form-select campo" for=" {{ form.estado }}  ">
+           
+                        <option selected disabled style="font-size: 0px; display:none;"></option>
+            
+                        <option value="espera">No comenzada</option>
+            
+                        <option value="proceso">En proceso</option>
+            
+                        <option value="terminada">Terminada</option>
+            
+            
+                    </select>
+        
+                </div>
+    
+                <div class="campo-cef">
+    
+                    <p style="font-weight: bold ;margin-bottom: 0px; color: rgb(85, 85, 85);"> Fecha de entrega:</p>
+    
+                    <div style="display: flex; flex-direction: row; justify-content: center; width: 100%;">
+    
+                        {% render_field form.entrega class="form-control datepicker campo fecha"%}
+    
+                    </div>
+                    
+    
+                </div>
+    
+    
+            </div>
+
+            <!-- Boton para agregar la tarea -->
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+    
+                <button type="submit" style="border: none; background-color: rgba(0, 0, 0, 0);"><img style="width:60px; height: 60px;" src="{% static 'icons/icon-ok.png' %}" alt=""></button>
+        
+        
+                <div style=" display: flex; justify-content: center;"><a style="text-align: center; margin-top: 10px;" href="{% url 'inicio' %}"><p><img style="width:50px; height: 50px; margin-top:5px;" src="{% static 'icons/icon-cancel.png' %}" alt=""></p></a></div>
+             
+            </div>  
+         
+        </div>            
+        
+    </form>
+
+    <div style="text-align: center; color: #8a8a8a; margin-top: 20px; font-size:14px ;">
+
+        <p>
+
+            La información suministrada en este formulario reemplazará la información actual de la tarea.
+        
+        </p>
+
+    </div>
+
+</div>
+
+
+
+{% endblock content %}

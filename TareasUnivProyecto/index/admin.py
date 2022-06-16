@@ -7,7 +7,7 @@ from index.models import CursosYTareas, EstadoDelCurso
 
 
 class ModelCursosYtareas(admin.ModelAdmin):
-    list_display=('usuario','curso', 'tarea', 'estado')
+    list_display=('usuario','curso', 'tarea', 'estado', 'id')
     list_filter = ('usuario', 'curso', 'estado')
 
 class ModelEstadodelCurso(admin.ModelAdmin):
