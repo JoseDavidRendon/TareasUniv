@@ -5,25 +5,43 @@
 
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 
-<div style="display: flex; flex-direction: column; align-items: center;">
+<div style="display: flex; flex-direction: column; align-items: center; width: 100%;color:#4b4b4b ; ">
 
-    <div style=" margin-top: 20px;">
-
+    <!-- Contenedor para tareas que no se han comenzado -->
+    <div class="contenedor-contenedores">
+            <h2 style=""><strong>Tareas sin comenzar</strong></h2> <br>
             {% for tarea in formTareasPendientes %}
 
             <div class="contenedor-tarea">
+                <div class="contenedor-curso-tarea">
 
-                <p>Curso: {{tarea.curso}}</p>
-    
-                <p>Tarea: {{tarea.tarea}}</p>
-    
-                <p>Valor: {{tarea.valor}} puntos</p>
-    
-                <p>Fecha de entrega: {{tarea.entrega}}</p> 
-    
-                <div><a href="{%  url 'editarTarea' tarea.id %}"><img style="width: 25px;" title="Editar" src="{% static 'icons/icon-edit.png' %}" alt=""></a></div><br> <br>
-    
-                <div><a href="{%  url 'borrarCurso' tarea.id %}"><img style="width: 25px;" title="Editar" src="{% static 'icons/icon-borrar.png' %}" alt=""></a></div><br> <br>
+                    <p  class="separacion"><strong>{{ tarea.curso }} - {{ tarea.tarea }}</strong></p>
+
+                </div>
+
+                <div>
+                    
+                    <p >Valor: {{tarea.valor}} puntos</p>
+        
+                    <p class="separacion">Fecha de entrega: {{tarea.entrega}}</p> 
+
+                    <div class="contenedor-dias-botones">
+
+                        <p>5 Dias restantes</p>
+
+                        <div class="botones">
+
+                            <div style="margin-right: 10px;"><a href="{%  url 'editarTarea' tarea.id %}"><img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-edit.png' %}" alt=""></a></div><br> <br>
+                
+                            <div><a href="{%  url 'borrarCurso' tarea.id %}"><img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-borrar.png' %}" alt=""></a></div><br> <br>
+        
+                        </div>
+            
+                    </div>
+
+                </div>
+                
+                
 
             </div>
 

@@ -130,7 +130,7 @@ def actualizarCurso(request):
                     )
                 for object in form:
                     object.save()
-                return inicio(request)
+                return redirect(to=inicio)
     
     return HttpResponse("Error")
 
@@ -142,5 +142,5 @@ def borrarCurso(request, id):
     #if request.method == 'GET':
         tarea = CursosYTareas.objects.filter(id=id)
         tarea.delete()
-        return inicio(request)
+        return redirect(to=inicio)
     return HttpResponse("No puede eliminar un curso que no le pertenece.")
