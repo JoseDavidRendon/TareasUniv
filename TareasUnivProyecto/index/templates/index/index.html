@@ -8,9 +8,93 @@
 <div style="display: flex; flex-direction: column; align-items: center; width: 100%;color:#4b4b4b ; ">
 
     <!-- Contenedor para tareas que no se han comenzado -->
+    <br><h2><strong>Tareas sin comenzar</strong></h2> 
+
     <div class="contenedor-contenedores">
-            <h2 style=""><strong>Tareas sin comenzar</strong></h2> <br>
+        
             {% for tarea in formTareasPendientes %}
+
+
+            <div class="contenedor-tarea">
+                <div class="contenedor-curso-tarea">
+
+                    <p  class="separacion"><strong>{{ tarea.curso }} - {{ tarea.tarea }}</strong></p>
+
+                </div>
+
+                <div>
+                                        
+                    <p >Valor: {{tarea.valor}} puntos</p>
+        
+                    <p class="separacion">Fecha de entrega: {{tarea.entrega}}</p> 
+
+                    <div class="contenedor-dias-botones">
+
+                        {% for dias in diasRestantes %}
+
+                            {% if dias.0 == tarea.id %}
+                            
+                                {% if dias.1 < 0 %}
+
+                                    <p>Plazo finalizado</p>
+                                
+                                {% endif %}
+
+                                {% if dias.1 >= 0 %}
+
+                                    <p>{{ dias.1 }} Dias restantes</p>
+                                
+                                {% endif %}
+
+                            {% endif %}
+
+                        {% endfor %}
+
+
+
+                        <div class="botones">
+                            
+                            <div style="margin-right:15px ;"><a class="" data-bs-toggle="collapse" href="#expandir-{{tarea.id}}" aria-expanded="false"><img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-topic.png' %}" alt=""></a></div>
+
+                            <div style="margin-right: 10px;"><a href="{%  url 'editarTarea' tarea.id %}"><img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-edit.png' %}" alt=""></a></div><br> <br>
+                
+                            <div><a href="{%  url 'borrarCurso' tarea.id %}"><img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-borrar.png' %}" alt=""></a></div><br> <br>
+                            
+
+                            
+                        </div>
+
+                        <div class="collapse collapse1 " id="expandir-{{tarea.id}}">
+    
+                            <div class="contenedor-contenido-anotacion">
+                                <p>{{tarea.anotacion}}</p>
+                              </div>
+    
+    
+    
+    
+                        </div>
+                        
+                        
+                    </div>
+                    
+
+                </div>
+                
+                
+
+            </div>
+
+            {% endfor %}        
+
+    </div>
+
+    <br><h2><strong>Tareas en proceso</strong></h2> 
+
+    <div class="contenedor-contenedores">
+        
+            {% for tarea in formTareasProceso %}
+            
 
             <div class="contenedor-tarea">
                 <div class="contenedor-curso-tarea">
@@ -27,7 +111,25 @@
 
                     <div class="contenedor-dias-botones">
 
-                        <p>5 Dias restantes</p>
+                        {% for dias in diasRestantesProceso %}
+
+                            {% if dias.0 == tarea.id %}
+                            
+                                {% if dias.1 < 0 %}
+
+                                    <p>Plazo finalizado</p>
+                                
+                                {% endif %}
+
+                                {% if dias.1 >= 0 %}
+
+                                    <p>{{ dias.1 }} Dias restantes</p>
+                                
+                                {% endif %}
+
+                            {% endif %}
+
+                        {% endfor %}
 
                         <div class="botones">
 

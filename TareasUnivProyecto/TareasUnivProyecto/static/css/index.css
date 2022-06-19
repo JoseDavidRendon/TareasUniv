@@ -1,3 +1,8 @@
+:root {
+    --colorSuficienteTiempo: #b5dfb9;
+    --colorContenedores: #f3f3f3;
+  }
+
 #boton-agregar-nuevo-curso{
     margin-top: 20px;
 }
@@ -37,7 +42,7 @@
 }
 
 .contenedor-tarea{
-    box-shadow:  0px 0px 13px 1px rgba(82, 82, 82, 0.151);
+    box-shadow:  0px 0px 3px 1px rgba(82, 82, 82, 0.192);
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
@@ -45,9 +50,10 @@
     width: 87%;
     padding: 10px;
     border-radius: 8px;
-    background-color: #fdf8ee00;
+    background-color: var(--colorSuficienteTiempo);
     line-height: 10px;
 }
+
 .separacion{
     line-height: 20px;
 }
@@ -72,9 +78,21 @@
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    background-color: #9d9d9d00; 
+    background-color: var(--colorContenedores); 
     max-width: 1000px;
 }
+
+.contenedor-contenedores::-webkit-scrollbar {
+    width:10px;
+}
+ 
+.contenedor-contenedores::-webkit-scrollbar-thumb {
+    background: #969696;
+    
+    border-radius: 20px;
+    
+}
+
 
 .botones{
     display: flex;
@@ -88,4 +106,50 @@
     flex-direction: row;
     flex-wrap: wrap;
     height: 20px;
+}
+
+/*{% csrf_token %}
+{% render_field formAnotaciones.anotacion class="form-control" default="skjds"%}*/
+
+.boton-topic{
+
+    
+    bottom: 20px;  
+    left: 80%;
+
+}
+
+.contenedor-anotacion{
+    width: 100%;
+    height: 0px;
+    
+}
+
+.contenedor-anotacion:target{
+    height: 100px;
+}
+
+.collapse1:target ~ .contenedor-tarea .contenedor-curso-tarea{
+    background-color: red !important;
+}
+
+.collapse1{
+    position: relative !important;
+    top: 8px;
+    min-width: 100%;
+}
+
+
+.collapsing{
+    box-shadow:  0px 0px 3px 1px rgba(82, 82, 82, 0.192);
+}
+
+
+.contenedor-contenido-anotacion{
+    box-shadow:  0px 0px 3px 1px rgba(82, 82, 82, 0.192);
+    width: 100% !important;
+    background-color: white;
+    
+    padding: 10px;
+    line-height: 20px;
 }

@@ -1,4 +1,6 @@
 from dataclasses import fields
+import datetime
+from tkinter import Widget
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -24,12 +26,20 @@ class UserRegisterForm(UserCreationForm):
 #    entrega = forms.DateField(widget=forms.SelectDateWidget())
 
 class formAgregarCurso(forms.ModelForm):
+    
+
     class Meta:
         model = CursosYTareas
-        fields=['curso', 'tarea', 'valor', 'estado', 'entrega']
+        fields=['curso', 'tarea', 'valor', 'estado', 'entrega', 'anotacion']
         widgets = {
-            'entrega':forms.SelectDateWidget
+            'entrega':forms.SelectDateWidget(),
         }
+    def __init__(self, *args, **kwargs):
+        super(self.__class__, self).__init__(*args, **kwargs)
+        
+        self.fields['anotacion'].required = False
+        
 
 
-
+class formAnotaciones(forms.Form):
+    anotacion = forms.CharField(widget=forms.Textarea)

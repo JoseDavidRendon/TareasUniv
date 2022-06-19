@@ -1,28 +1,42 @@
 
+import datetime
 from pyexpat.errors import messages
-from xml.dom import ValidationErr
-from django.forms import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators  import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import UserRegisterForm, formAgregarCurso
+from .forms import UserRegisterForm, formAgregarCurso, formAnotaciones
 from .models import CursosYTareas, EstadoDelCurso
 # Create your views here.
 
 @login_required
 
 
-def inicio(request):    
-    formTareasPendientes = CursosYTareas.objects.filter(estado="espera", usuario = request.user.username)
+def inicio(request):
+    usuario = request.user.username
+    formTareasPendientes = CursosYTareas.objects.filter(estado="espera", usuario = usuario)
+    formTareasProceso = CursosYTareas.objects.filter(estado="proceso", usuario = usuario)
+    diasRestantes = []
+    for tarea in formTareasPendientes:
+        diaRestante= tarea.entrega - datetime.date.today()
+        diasRestantes.append((tarea.id, diaRestante.days))
+    diasRestantesProceso = []
+    for tarea in formTareasProceso:
+        diaRestante= tarea.entrega - datetime.date.today()
+        diasRestantesProceso.append((tarea.id, diaRestante.days))
     data={
-        'formTareasPendientes':formTareasPendientes
-    }
+        'formTareasPendientes':formTareasPendientes,
+        'formTareasProceso':formTareasProceso,
+        'diasRestantes':diasRestantes,
+        'diasRestantesProceso':diasRestantesProceso,
+        'formAnotaciones': formAnotaciones()
+    }  
     return render(request, 'index/index.html', data)
 
 
-
+def enviarAnotacion(request):
+    return redirect(to=inicio)
 
 
 def registro(request):
