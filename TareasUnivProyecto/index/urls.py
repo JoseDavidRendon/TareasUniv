@@ -1,6 +1,6 @@
 from django.urls import path
 from index.views import inicio, registro, salir, agregarCurso, nuevoCurso, editarTarea, actualizarCurso, borrarCurso, \
-    enviarAnotacion
+    enviarAnotacion, actualizarAnotacion
 
 
 
@@ -15,6 +15,7 @@ urlpatterns = [
     path('borrarCurso/<id>/', borrarCurso, name="borrarCurso"),
     path('borrarCurso/<id>/', borrarCurso, name="borrarCurso"),
     path('enviarAnotacion/', enviarAnotacion, name="enviarAnotacion"),
+    path('actualizarAnotacion/', actualizarAnotacion, name="actualizarAnotacion"),
 
 ]
  

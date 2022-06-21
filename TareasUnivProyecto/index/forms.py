@@ -41,5 +41,27 @@ class formAgregarCurso(forms.ModelForm):
         
 
 
-class formAnotaciones(forms.Form):
-    anotacion = forms.CharField(widget=forms.Textarea)
+#class formAnotaciones(forms.Form):
+#    anotacion = forms.CharField(widget=forms.Textarea())
+
+class formAnotaciones(forms.ModelForm):
+    
+
+    class Meta:
+        model = CursosYTareas
+        fields=['curso', 'tarea', 'valor', 'estado', 'entrega', 'anotacion']
+        widgets = {
+            'anotacion':forms.Textarea(),
+          
+        }
+    def __init__(self, *args, **kwargs):
+        super(self.__class__, self).__init__(*args, **kwargs)
+        
+        self.fields['curso'].required = False
+        self.fields['tarea'].required = False
+        self.fields['valor'].required = False
+        self.fields['estado'].required = False
+        self.fields['entrega'].required = False
+        
+
+    

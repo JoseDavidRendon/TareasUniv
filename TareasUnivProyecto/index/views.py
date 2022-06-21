@@ -1,7 +1,7 @@
 
 import datetime
 from pyexpat.errors import messages
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators  import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -17,6 +17,7 @@ def inicio(request):
     usuario = request.user.username
     formTareasPendientes = CursosYTareas.objects.filter(estado="espera", usuario = usuario)
     formTareasProceso = CursosYTareas.objects.filter(estado="proceso", usuario = usuario)
+    formTareasTerminadas = CursosYTareas.objects.filter(estado="terminada", usuario = usuario)
     diasRestantes = []
     for tarea in formTareasPendientes:
         diaRestante= tarea.entrega - datetime.date.today()
@@ -28,10 +29,12 @@ def inicio(request):
     data={
         'formTareasPendientes':formTareasPendientes,
         'formTareasProceso':formTareasProceso,
+        'formTareasTerminadas':formTareasTerminadas,
         'diasRestantes':diasRestantes,
         'diasRestantesProceso':diasRestantesProceso,
         'formAnotaciones': formAnotaciones()
     }  
+    print(diasRestantes[0])
     return render(request, 'index/index.html', data)
 
 
@@ -158,3 +161,15 @@ def borrarCurso(request, id):
         tarea.delete()
         return redirect(to=inicio)
     return HttpResponse("No puede eliminar un curso que no le pertenece.")
+
+def actualizarAnotacion(request):
+    usuario=request.user.username
+    id=int((request.POST['id']))
+    anotacion = request.POST['anotacion']
+    form = CursosYTareas.objects.get(pk=id)
+    if form.usuario == usuario:
+        form.anotacion = anotacion
+        form.save()
+        return redirect(to=inicio)   
+
+    return HttpResponse("no funciona")
