@@ -6,41 +6,51 @@
   }
 
 #boton-agregar-nuevo-curso{
-    margin-top: 20px;
+    position: fixed;
+    right: 6%;
+    bottom: 100px;
+    transition: 0.3s;
+    width: 50px;
+    overflow: hidden;
 }
 
-.boton-agregar-curso{
-    display: flex;
-    flex-direction: row;
-    height: 10px;
-    background-color: rgba(0, 0, 0, 0.089);
-    height: 21px;
-    width: 85px;
-    border-radius: 10px;
-    align-items: center;
+#boton-agregar-nuevo-curso:hover{
+    width: 140px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.247);
+    border-radius: 30px;
 }
 
 #icon-agregar{
-    font-size: 20px;
+    font-size: 40px;
     display: flex;
     flex-direction: row;
     background-color: rgba(0, 0, 0, 0.281);
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 #icon-agregar p{
-    bottom: 5px;
+    bottom: px;
     color: white;
     margin-top: -5px;
+    flex-shrink: 1;
 }
 
-#texto-agregar p{
-    margin-top: 15px;
-    margin-left: 3px;
-    color: rgba(0, 0, 0, 0.747);
+#agregar-texto{
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#agregar-texto p{
+    color: white;
+    border: 1px solid green;
 }
 
 .contenedor-tarea{
@@ -141,6 +151,7 @@
     min-width: 100%;
     border-radius: 13px;
     overflow: hidden;
+    z-index: 100;
     
 }
 
@@ -187,4 +198,41 @@
 
 .titulo:hover{
     color: #79B4B7;
+}
+
+.titulo-icon{
+    width: 10px; 
+    height: 10px; 
+    opacity: 50%;
+    transform: rotate(180deg);
+    transition: 0.3s;
+}
+
+.animacion-aparecer{
+    animation-name: aparecer;
+    animation-duration: 0.1s;
+    transform-origin: 0px 0px;
+}
+
+.animacion-desaparecer{
+    
+    animation-name: aparecer;
+    animation-direction: reverse;
+    animation-duration: 1s;
+    transform-origin: 0px 0px;
+    display: none;
+    
+
+}
+
+@keyframes aparecer {
+    0%{
+        display: flex !important;
+        transform:scaleY(0);
+    }
+    100%{
+        display: flex !important;
+        transform:scaleY(1);
+
+    }
 }

@@ -9,9 +9,9 @@
 <div style="display: flex; flex-direction: column; align-items: center; width: 100%;color:#4b4b4b ; ">
 
     <!-- Contenedor para tareas que no se han comenzado -->
-    <br><h2><strong onclick="colapsarContenedorTarea('Contenedor-Comenzar', 'titulo-comenzar-tarea')" class="titulo" id="titulo-comenzar-tarea" >Tareas sin comenzar</strong></h2>
+    <br><h2><strong onclick="colapsarContenedorTarea('Contenedor-Comenzar', 'titulo-comenzar-tarea', 'titulo-icon-comenzar')" class="titulo" id="titulo-comenzar-tarea" >Tareas sin comenzar <img class="titulo-icon" id="titulo-icon-comenzar" src="{%  static 'icons/icon-dropdown.png'  %}" alt=""></strong></h2>
 
-    <div class="contenedor-contenedores" id="Contenedor-Comenzar">
+    <div class="contenedor-contenedores " id="Contenedor-Comenzar">
             
         
             {% for tarea in formTareasPendientes %}
@@ -161,7 +161,7 @@
 
     </div>
 
-    <br><h2><strong class="titulo" onclick="colapsarContenedorTarea('Contenedor-Proceso', 'titulo-proceso-tarea')" id="titulo-proceso-tarea">Tareas en proceso</strong></h2> 
+    <br><h2><strong class="titulo" onclick="colapsarContenedorTarea('Contenedor-Proceso', 'titulo-proceso-tarea', 'titulo-icon-proceso')" id="titulo-proceso-tarea">Tareas en proceso <img class="titulo-icon" id="titulo-icon-proceso" src="{%  static 'icons/icon-dropdown.png'  %}" alt=""></strong></h2> 
 
 
 
@@ -328,7 +328,7 @@
 
     </div>
 
-    <br><h2><strong onclick="colapsarContenedorTarea('Contenedor-Terminado', 'titulo-terminado-tarea')" id="titulo-terminado-tarea" class="titulo">Tareas terminadas</strong></h2> 
+    <br><h2><strong onclick="colapsarContenedorTarea('Contenedor-Terminado', 'titulo-terminado-tarea', 'titulo-icon-terminado')" id="titulo-terminado-tarea" class="titulo">Tareas terminadas <img class="titulo-icon" id="titulo-icon-terminado" src="{%  static 'icons/icon-dropdown.png'  %}" alt=""></strong></h2> 
 
 
 
@@ -337,7 +337,7 @@
    
    
    
-       <div class="contenedor-contenedores" id="Contenedor-Terminado">
+       <div class="contenedor-contenedores" id="Contenedor-Terminado" style="margin-bottom: 30px;">
            
                {% for tarea in formTareasTerminadas %}
                
@@ -445,23 +445,20 @@
     <div id="boton-agregar-nuevo-curso">
 
         <a href="{% url 'agregarTarea' %}" style="text-decoration: none;">
-        
-            <div class="boton-agregar-curso">
 
+            <div style="display: flex;">
                 <div id="icon-agregar">
     
                     <p> + </p>
-    
+            
                 </div>
-    
-                <div id="texto-agregar">
-    
-                    <p>Agregar</p>
-    
+                <div id="agregar-texto" >
+                    <p>
+                        Agregar    
+                    </p>
                 </div>
-                
-        
             </div>
+            
         
         </a>
     
@@ -500,17 +497,22 @@
         document.getElementById("id-form-anotacion-"+name_id).style.display="block";
     }
 
-    function colapsarContenedorTarea(contenedor, titulo){
+    function colapsarContenedorTarea(contenedor, titulo, icon){
         var elemento = document.getElementById(contenedor);
+        var titulo_elemento = document.getElementById(titulo);
+        var icon_titulo = document.getElementById(icon);
+
         if (elemento.classList.contains('colapsar-css')){
             
             elemento.classList.remove('colapsar-css')
-            document.getElementById(titulo).style.opacity="100%";
+            titulo_elemento.style.opacity="100%";
+            icon_titulo.style.transform= 'rotate(180deg)';
 
         } else {
 
             elemento.classList.add('colapsar-css')
-            document.getElementById(titulo).style.opacity="50%";
+            titulo_elemento.style.opacity="50%";
+            icon_titulo.style.transform= 'rotate(0deg)';
 
         }
 
