@@ -5,20 +5,33 @@
     --colorContenedores: #f3f3f3;
   }
 
-#boton-agregar-nuevo-curso{
+#contenedor-pagina{
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    width: 100%;
+    color:#4b4b4b; 
+}
+
+#botones{
     position: fixed;
+    bottom: 80px;
     right: 6%;
-    bottom: 100px;
+}
+
+.boton-desplegar{
     transition: 0.3s;
     width: 50px;
     overflow: hidden;
-}
-
-#boton-agregar-nuevo-curso:hover{
-    width: 140px;
-    height: 50px;
     background-color: rgba(0, 0, 0, 0.247);
     border-radius: 30px;
+}
+.boton-desplegar-agregar:hover{
+    width: 140px;
+    
+}
+.boton-desplegar-reporte:hover{
+    width: 190px;
 }
 
 #icon-agregar{
@@ -37,20 +50,44 @@
     bottom: px;
     color: white;
     margin-top: -5px;
-    flex-shrink: 1;
 }
 
-#agregar-texto{
-    border: 1px solid red;
+.agregar-texto{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-
+    margin-top: 13px;
+    width: 100%;
+    margin-left: 5px;
 }
 
-#agregar-texto p{
+.agregar-texto div{
+    text-align: center;
+}
+
+.agregar-texto p{
     color: white;
-    border: 1px solid green;
+    
+}
+
+.img-bugs{
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.281);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+#botones{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+    gap: 8px;
+    
 }
 
 .contenedor-tarea{
@@ -185,6 +222,10 @@
 .textarea-anotacion{
     width: 100%;
     height: 100%;
+    height: 252px; 
+    line-height: 20px; 
+    padding: 9px 13px; 
+    margin-bottom: 5px;
 }
 
 .colapsar-css{
@@ -235,4 +276,49 @@
         transform:scaleY(1);
 
     }
+}
+
+.boton-icon-mensaje{
+    margin-right:15px ;
+}
+.botones-img{
+    width: 25px; 
+    height: 25px;
+}
+.boton-icon-editar{
+    margin-right: 10px;
+}
+.menu-anotaciones{
+    width:100%; 
+    height: 30px; 
+    display: flex; 
+    justify-content: right; 
+    background-color: rgb(37, 37, 37);
+}
+.no-anotaciones{
+    height:252px ; 
+    margin-bottom: 0px; 
+    padding: 9px 13px;
+}
+.si-anotaciones{
+    color: black; 
+    height:252px ; 
+    margin-bottom: 0px; 
+    padding: 9px 13px; 
+    width: 100%;
+}
+.contenedor-boton-editar{
+    display:flex; 
+    justify-content: center;
+}
+.boton-sin-estilo{
+    border: none; 
+    background-color: rgba(255, 0, 0, 0);
+}
+.contenedor-botones-ok-cancel{
+    display: flex; 
+    justify-content: center;
+}
+.sin-decoracion{
+    text-decoration: none;
 }

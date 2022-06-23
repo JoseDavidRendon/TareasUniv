@@ -3,39 +3,49 @@
 {% load static %}
 {% load widget_tweaks %}
 
+</script>
 
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 
-<div style="display: flex; flex-direction: column; align-items: center; width: 100%;color:#4b4b4b ; ">
+<div id="contenedor-pagina">
 
     <!-- Contenedor para tareas que no se han comenzado -->
     <br><h2><strong onclick="colapsarContenedorTarea('Contenedor-Comenzar', 'titulo-comenzar-tarea', 'titulo-icon-comenzar')" class="titulo" id="titulo-comenzar-tarea" >Tareas sin comenzar <img class="titulo-icon" id="titulo-icon-comenzar" src="{%  static 'icons/icon-dropdown.png'  %}" alt=""></strong></h2>
 
     <div class="contenedor-contenedores " id="Contenedor-Comenzar">
-            
         
             {% for tarea in formTareasPendientes %}
 
+            <div class="contenedor-tarea" id="contenedor-tarea-{{tarea.id}}">
+                
                 {% for dias in diasRestantes %}
 
                     {% if dias.0 == tarea.id %}
-                    
+                            
                         {% if dias.1 < 0 %}
 
-                            <div class="contenedor-tarea" style="background-color: rgb(255, 255, 255);">
+                            <script>
+                                document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='rgb(255, 255, 255)'; 
+                            </script>
 
                         {% elif dias.1 >= 0 %}
                                 
                                 {% if dias.1 <= 3 %}
-
-                                <div class="contenedor-tarea" style="background-color: var(--colorMuyPocoTiempo);">
                                 
+                                <script>
+                                    document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='var(--colorMuyPocoTiempo)'; 
+                                </script>
+
                                 {% elif dias.1 <= 7 %}
 
-                                    <div class="contenedor-tarea" style="background-color: var(--colorMedioTiempo);">
-                            
+                                <script>
+                                    document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='var(--colorMedioTiempo)'; 
+                                </script>
+                        
                                 {% else %}
-                                    <div class="contenedor-tarea" style="background-color: var(--colorSuficienteTiempo);">
+                                <script>
+                                    document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor= 'var(--colorSuficienteTiempo)'; 
+                                </script>
 
                         {% endif %}
                     
@@ -82,11 +92,35 @@
 
                         <div class="botones">
                             
-                            <div onclick="scriptBackground('{{tarea.id}}')" style="margin-right:15px ;"><a id="mensaje-{{tarea.id}}" class="" data-bs-toggle="collapse" href="#expandir-{{tarea.id}}" aria-expanded="false"><img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-topic.png' %}" alt=""></a></div>
+                            <div class="boton-icon-mensaje" onclick="scriptBackground('{{tarea.id}}')">
+                                
+                                <a id="mensaje-{{tarea.id}}" class="" data-bs-toggle="collapse" href="#expandir-{{tarea.id}}" aria-expanded="false" >
+                                    
+                                    <img class="botones-img" src="{% static 'icons/icon-topic.png' %}" alt="">
+                                
+                                </a>
+                            
+                            </div>
 
-                            <div style="margin-right: 10px;"><a href="{%  url 'editarTarea' tarea.id %}"><img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-edit.png' %}" alt=""></a></div><br> <br>
+                            <div class="boton-icon-editar">
+                                
+                                <a href="{%  url 'editarTarea' tarea.id %}">
+                                    
+                                    <img class="botones-img" src="{% static 'icons/icon-edit.png' %}" alt="">
+                                
+                                </a>
+                            
+                            </div><br> <br>
                 
-                            <div><a href="{%  url 'borrarCurso' tarea.id %}"><img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-borrar.png' %}" alt=""></a></div><br> <br>
+                            <div>
+                                
+                                <a href="{%  url 'borrarCurso' tarea.id %}">
+                                    
+                                    <img class="botones-img" src="{% static 'icons/icon-borrar.png' %}" alt="">
+                                
+                                </a>
+                            
+                            </div><br> <br>
                             
                         </div>
 
@@ -94,9 +128,13 @@
 
                         <div class="collapse collapse1 "  id="expandir-{{tarea.id}}">
 
-                            <div style="width:100%; height: 30px; display: flex; justify-content: right; background-color: rgb(37, 37, 37);">
+                            <div class="menu-anotaciones">
                             
-                                <div onclick="noScriptBackground('{{tarea.id}}')" ><img style="width: 25px; height: 25px;" src="{% static 'icons/icon-cancel.png' %}" alt=""></div>
+                                <div onclick="noScriptBackground('{{tarea.id}}')" >
+                                    
+                                    <img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt="">
+                                
+                                </div>
 
                             </div>
     
@@ -105,16 +143,23 @@
                                 <div id="anotacion-actual-{{tarea.id}}" >
 
                                     {% if tarea.anotacion == "" %}
-                                        <p style="height:252px ; margin-bottom: 0px; padding: 9px 13px;">No hay anotaciones</p>
+
+                                        <p class="no-anotaciones">No hay anotaciones</p>
+
                                     {% else %}
-                                        <textarea style="color: black; height:252px ; margin-bottom: 0px; padding: 9px 13px; width: 100%;" disabled>{{tarea.anotacion}}</textarea>
-                                        <!--<p style="height:252px ; margin-bottom: 0px; padding: 9px 13px;">{{tarea.anotacion}}</p> -->
+
+                                        <textarea class="si-anotaciones" disabled>{{tarea.anotacion}}</textarea>
+                                        
                                     {% endif %}
                                     
                                     
-                                    <div style="display:flex; justify-content: center;">
+                                    <div class="contenedor-boton-editar">
 
-                                        <button style="border: none; background-color: rgba(255, 0, 0, 0);" onclick="AbrirEditor('{{tarea.id}}')"> <img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-edit.png' %}" alt=""></button>
+                                        <button class="boton-sin-estilo" onclick="AbrirEditor('{{tarea.id}}')"> 
+                                            
+                                            <img class="botones-img" src="{% static 'icons/icon-edit.png' %}" alt="">
+                                        
+                                        </button>
 
                                     </div>
 
@@ -126,16 +171,21 @@
 
                                     <div id="field-anotacion-{{tarea.id}}" >
 
-                                        <textarea style="height: 252px; line-height: 20px; padding: 9px 13px; margin-bottom: 5px;" name="anotacion" maxlength="10000" placeholder="{{tarea.anotacion}}" class="form-control textarea-anotacion" required id="id_anotacion">{{tarea.anotacion}}</textarea>
+                                        <textarea name="anotacion" maxlength="10000" placeholder="{{tarea.anotacion}}" class="form-control textarea-anotacion" required id="id_anotacion">{{tarea.anotacion}}</textarea>
 
                                         <input type="hidden" value="{{tarea.id}}" name="id">
+
                                     </div>
 
-                                    <div style="display: flex; justify-content: center;">
+                                    <div class="contenedor-botones-ok-cancel">
 
-                                        <button type="submit" style="border: none; background-color:rgba(255, 0, 0, 0);"><img style="width:25px; height: 25px;" src="{% static 'icons/icon-ok.png' %}" alt=""></button>
+                                        <button type="submit" class="boton-sin-estilo">
+                                            
+                                            <img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt="">
+                                        
+                                        </button>
 
-                                        <a onclick="noScriptBackground('{{tarea.id}}')"><img style="width: 25px; height: 25px;" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>
+                                        <a onclick="noScriptBackground('{{tarea.id}}')"><img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>
 
                                         <input type="reset" style="display: none;" id="reset-btn-{{tarea.id}}">
 
@@ -173,6 +223,8 @@
     <div class="contenedor-contenedores" id="Contenedor-Proceso">
         
             {% for tarea in formTareasProceso %}
+
+            <div class="contenedor-tarea" id="contenedor-tarea-{{tarea.id}}">
             
                 {% for dias in diasRestantesProceso %}
 
@@ -180,37 +232,36 @@
                         
                             {% if dias.1 < 0 %}
 
-                                <div class="contenedor-tarea" style="background-color: rgb(255, 255, 255);">
-                            
-                            {% endif %}
+                                <script>
+                                    document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='rgb(255, 255, 255)'; 
+                                </script>
 
-                            {% if dias.1 >= 0 %}
+                            {% elif dias.1 >= 0 %}
                                     
                                     {% if dias.1 <= 3 %}
-
-                                    <div class="contenedor-tarea" style="background-color: var(--colorMuyPocoTiempo);">
-                            
-                                    {% endif %}
-
-                            {% endif %}
-                            {% if dias.1 > 3 %}
                                     
-                                    {% if dias.1 <= 7 %}
+                                    <script>
+                                        document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='var(--colorMuyPocoTiempo)'; 
+                                    </script>
 
-                                    <div class="contenedor-tarea" style="background-color: var(--colorMedioTiempo);">
+                                    {% elif dias.1 <= 7 %}
+
+                                    <script>
+                                        document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='var(--colorMedioTiempo)'; 
+                                    </script>
                             
-                                    {% endif %}
-
-                            {% endif %}
-                            {% if dias.1 > 7 %}
-
-                                <div class="contenedor-tarea" style="background-color: var(--colorSuficienteTiempo);">
+                                    {% else %}
+                                    <script>
+                                        document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor= 'var(--colorSuficienteTiempo)'; 
+                                    </script>
 
                             {% endif %}
                         
                         {% endif %}
 
-                    {% endfor %}
+                    {% endif %}
+
+                {% endfor %}
 
                     <div class="contenedor-curso-tarea">
 
@@ -246,23 +297,51 @@
 
                             {% endfor %}
 
-                        <div class="botones">
+                            <div class="botones">
                             
-                            <div onclick="scriptBackground('{{tarea.id}}')" style="margin-right:15px ;"><a id="mensaje-{{tarea.id}}" class="" data-bs-toggle="collapse" href="#expandir-{{tarea.id}}" aria-expanded="false"><img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-topic.png' %}" alt=""></a></div>
-
-                            <div style="margin-right: 10px;"><a href="{%  url 'editarTarea' tarea.id %}"><img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-edit.png' %}" alt=""></a></div><br> <br>
-                
-                            <div><a href="{%  url 'borrarCurso' tarea.id %}"><img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-borrar.png' %}" alt=""></a></div><br> <br>
-                            
-                        </div>
+                                <div class="boton-icon-mensaje" onclick="scriptBackground('{{tarea.id}}')">
+                                    
+                                    <a id="mensaje-{{tarea.id}}" class="" data-bs-toggle="collapse" href="#expandir-{{tarea.id}}" aria-expanded="false">
+                                        
+                                        <img class="botones-img" src="{% static 'icons/icon-topic.png' %}" alt="">
+                                    
+                                    </a>
+                                
+                                </div>
+    
+                                <div class="boton-icon-editar">
+                                    
+                                    <a href="{%  url 'editarTarea' tarea.id %}">
+                                        
+                                        <img class="botones-img" src="{% static 'icons/icon-edit.png' %}" alt="">
+                                    
+                                    </a>
+                                
+                                </div><br> <br>
+                    
+                                <div>
+                                    
+                                    <a href="{%  url 'borrarCurso' tarea.id %}">
+                                        
+                                        <img class="botones-img" src="{% static 'icons/icon-borrar.png' %}" alt="">
+                                    
+                                    </a>
+                                
+                                </div><br> <br>
+                                
+                            </div>
 
                         <div class="" id="pantalla-desenfoque" ></div>
 
                         <div class="collapse collapse1 "  id="expandir-{{tarea.id}}">
 
-                            <div style="width:100%; height: 30px; display: flex; justify-content: right; background-color: rgb(37, 37, 37);">
+                            <div class="menu-anotaciones">
                             
-                                <div onclick="noScriptBackground('{{tarea.id}}')" ><img style="width: 25px; height: 25px;" src="{% static 'icons/icon-cancel.png' %}" alt=""></div>
+                                <div onclick="noScriptBackground('{{tarea.id}}')" >
+                                    
+                                    <img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt="">
+                                
+                                </div>
 
                             </div>
     
@@ -271,16 +350,23 @@
                                 <div id="anotacion-actual-{{tarea.id}}" >
 
                                     {% if tarea.anotacion == "" %}
-                                        <p style="height:252px ; margin-bottom: 0px; padding: 9px 13px;">No hay anotaciones</p>
+
+                                    <p class="no-anotaciones">No hay anotaciones</p>
+
                                     {% else %}
-                                        <textarea style="color: black; height:252px ; margin-bottom: 0px; padding: 9px 13px; width: 100%;" disabled>{{tarea.anotacion}}</textarea>
-                                        <!--<p style="height:252px ; margin-bottom: 0px; padding: 9px 13px;">{{tarea.anotacion}}</p> -->
+
+                                    <textarea class="si-anotaciones" disabled>{{tarea.anotacion}}</textarea>
+                                    
                                     {% endif %}
                                     
                                     
-                                    <div style="display:flex; justify-content: center;">
+                                    <div class="contenedor-boton-editar">
 
-                                        <button style="border: none; background-color: rgba(255, 0, 0, 0);" onclick="AbrirEditor('{{tarea.id}}')"> <img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-edit.png' %}" alt=""></button>
+                                        <button class="boton-sin-estilo" onclick="AbrirEditor('{{tarea.id}}')"> 
+                                            
+                                            <img class="botones-img" src="{% static 'icons/icon-edit.png' %}" alt="">
+                                        
+                                        </button>
 
                                     </div>
 
@@ -292,20 +378,26 @@
 
                                     <div id="field-anotacion-{{tarea.id}}" >
 
-                                        <textarea style="height: 252px; line-height: 20px; padding: 9px 13px; margin-bottom: 5px;" name="anotacion" maxlength="10000" placeholder="{{tarea.anotacion}}" class="form-control textarea-anotacion" required id="id_anotacion">{{tarea.anotacion}}</textarea>
+                                        <textarea name="anotacion" maxlength="10000" placeholder="{{tarea.anotacion}}" class="form-control textarea-anotacion" required id="id_anotacion">{{tarea.anotacion}}</textarea>
 
                                         <input type="hidden" value="{{tarea.id}}" name="id">
+
                                     </div>
 
-                                    <div style="display: flex; justify-content: center;">
+                                    <div class="contenedor-botones-ok-cancel">
 
-                                        <button type="submit" style="border: none; background-color:rgba(255, 0, 0, 0);"><img style="width:25px; height: 25px;" src="{% static 'icons/icon-ok.png' %}" alt=""></button>
+                                        <button type="submit" class="boton-sin-estilo">
+                                            
+                                            <img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt="">
+                                        
+                                        </button>
 
-                                        <a onclick="noScriptBackground('{{tarea.id}}')"><img style="width: 25px; height: 25px;" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>
+                                        <a onclick="noScriptBackground('{{tarea.id}}')"><img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>
 
                                         <input type="reset" style="display: none;" id="reset-btn-{{tarea.id}}">
 
                                     </div>
+                                    
                                 </form>
 
 
@@ -330,18 +422,15 @@
 
     <br><h2><strong onclick="colapsarContenedorTarea('Contenedor-Terminado', 'titulo-terminado-tarea', 'titulo-icon-terminado')" id="titulo-terminado-tarea" class="titulo">Tareas terminadas <img class="titulo-icon" id="titulo-icon-terminado" src="{%  static 'icons/icon-dropdown.png'  %}" alt=""></strong></h2> 
 
-
-
-
     <!--  ---------------------------------------------------------  -->
-   
-   
-   
+
        <div class="contenedor-contenedores" id="Contenedor-Terminado" style="margin-bottom: 30px;">
            
                {% for tarea in formTareasTerminadas %}
                
-                <div class="contenedor-tarea" style="background-color: rgb(255, 255, 255);">
+                <div class="contenedor-tarea" id="contenedor-tarea-{{tarea.id}}">
+                    
+                    <script> document.getElementById("contenedor-tarea-"+"{{tarea.id}}").style.backgroundColor='rgb(255, 255, 255)';  </script>
    
                        <div class="contenedor-curso-tarea">
    
@@ -357,25 +446,53 @@
        
                            <div class="contenedor-dias-botones">
    
-                                <p>Plazo finalizado</p>
+                                <p>Terminado</p>
    
                                 <div class="botones">
+                            
+                                    <div class="boton-icon-mensaje" onclick="scriptBackground('{{tarea.id}}')">
+                                        
+                                        <a id="mensaje-{{tarea.id}}" class="" data-bs-toggle="collapse" href="#expandir-{{tarea.id}}" aria-expanded="false">
+                                            
+                                            <img class="botones-img" src="{% static 'icons/icon-topic.png' %}" alt="">
+                                        
+                                        </a>
                                     
-                                    <div onclick="scriptBackground('{{tarea.id}}')" style="margin-right:15px ;"><a id="mensaje-{{tarea.id}}" class="" data-bs-toggle="collapse" href="#expandir-{{tarea.id}}" aria-expanded="false"><img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-topic.png' %}" alt=""></a></div>
+                                    </div>
         
-                                    <div style="margin-right: 10px;"><a href="{%  url 'editarTarea' tarea.id %}"><img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-edit.png' %}" alt=""></a></div><br> <br>
+                                    <div class="boton-icon-editar">
+                                        
+                                        <a href="{%  url 'editarTarea' tarea.id %}">
+                                            
+                                            <img class="botones-img" src="{% static 'icons/icon-edit.png' %}" alt="">
+                                        
+                                        </a>
+                                    
+                                    </div><br> <br>
                         
-                                    <div><a href="{%  url 'borrarCurso' tarea.id %}"><img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-borrar.png' %}" alt=""></a></div><br> <br>
+                                    <div>
+                                        
+                                        <a href="{%  url 'borrarCurso' tarea.id %}">
+                                            
+                                            <img class="botones-img" src="{% static 'icons/icon-borrar.png' %}" alt="">
+                                        
+                                        </a>
+                                    
+                                    </div><br> <br>
                                     
                                 </div>
         
                                 <div class="" id="pantalla-desenfoque" ></div>
-        
+
                                 <div class="collapse collapse1 "  id="expandir-{{tarea.id}}">
         
-                                    <div style="width:100%; height: 30px; display: flex; justify-content: right; background-color: rgb(37, 37, 37);">
+                                    <div class="menu-anotaciones">
                                     
-                                        <div onclick="noScriptBackground('{{tarea.id}}')" ><img style="width: 25px; height: 25px;" src="{% static 'icons/icon-cancel.png' %}" alt=""></div>
+                                        <div onclick="noScriptBackground('{{tarea.id}}')" >
+                                            
+                                            <img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt="">
+                                        
+                                        </div>
         
                                     </div>
             
@@ -384,16 +501,23 @@
                                         <div id="anotacion-actual-{{tarea.id}}" >
         
                                             {% if tarea.anotacion == "" %}
-                                                <p style="height:252px ; margin-bottom: 0px; padding: 9px 13px;">No hay anotaciones</p>
+        
+                                                <p class="no-anotaciones">No hay anotaciones</p>
+        
                                             {% else %}
-                                                <textarea style="color: black; height:252px ; margin-bottom: 0px; padding: 9px 13px; width: 100%;" disabled>{{tarea.anotacion}}</textarea>
-                                                <!--<p style="height:252px ; margin-bottom: 0px; padding: 9px 13px;">{{tarea.anotacion}}</p> -->
+        
+                                                <textarea class="si-anotaciones" disabled>{{tarea.anotacion}}</textarea>
+                                                
                                             {% endif %}
                                             
                                             
-                                            <div style="display:flex; justify-content: center;">
+                                            <div class="contenedor-boton-editar">
         
-                                                <button style="border: none; background-color: rgba(255, 0, 0, 0);" onclick="AbrirEditor('{{tarea.id}}')"> <img style="width: 25px; height: 25px;" title="Editar" src="{% static 'icons/icon-edit.png' %}" alt=""></button>
+                                                <button class="boton-sin-estilo" onclick="AbrirEditor('{{tarea.id}}')"> 
+                                                    
+                                                    <img class="botones-img" src="{% static 'icons/icon-edit.png' %}" alt="">
+                                                
+                                                </button>
         
                                             </div>
         
@@ -405,16 +529,21 @@
         
                                             <div id="field-anotacion-{{tarea.id}}" >
         
-                                                <textarea style="height: 252px; line-height: 20px; padding: 9px 13px; margin-bottom: 5px;" name="anotacion" maxlength="10000" placeholder="{{tarea.anotacion}}" class="form-control textarea-anotacion" required id="id_anotacion">{{tarea.anotacion}}</textarea>
+                                                <textarea name="anotacion" maxlength="10000" placeholder="{{tarea.anotacion}}" class="form-control textarea-anotacion" required id="id_anotacion">{{tarea.anotacion}}</textarea>
         
                                                 <input type="hidden" value="{{tarea.id}}" name="id">
+        
                                             </div>
         
-                                            <div style="display: flex; justify-content: center;">
+                                            <div class="contenedor-botones-ok-cancel">
         
-                                                <button type="submit" style="border: none; background-color:rgba(255, 0, 0, 0);"><img style="width:25px; height: 25px;" src="{% static 'icons/icon-ok.png' %}" alt=""></button>
+                                                <button type="submit" class="boton-sin-estilo">
+                                                    
+                                                    <img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt="">
+                                                
+                                                </button>
         
-                                                <a onclick="noScriptBackground('{{tarea.id}}')"><img style="width: 25px; height: 25px;" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>
+                                                <a onclick="noScriptBackground('{{tarea.id}}')"><img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>
         
                                                 <input type="reset" style="display: none;" id="reset-btn-{{tarea.id}}">
         
@@ -422,47 +551,77 @@
                                         </form>
         
         
-                                        </div>    
+                                      </div>    
             
                                 </div>
-                           
-                           
-                       </div>
-                       
-   
-                   </div>
-                   
-                   
-   
-               </div>
+                                
+                                
+                            </div>
+                            
+        
+                        </div>
+                        
+                        
+        
+                    </div>
    
    
                {% endfor %}        
    
        </div>
    
-
-    <div id="boton-agregar-nuevo-curso">
-
-        <a href="{% url 'agregarTarea' %}" style="text-decoration: none;">
-
+<div id="botones">
+    
+    <div class="boton-desplegar boton-desplegar-agregar">
+    
+        <a class="sin-decoracion" href="{% url 'agregarTarea' %}" >
+    
             <div style="display: flex;">
+    
                 <div id="icon-agregar">
     
                     <p> + </p>
             
                 </div>
-                <div id="agregar-texto" >
-                    <p>
-                        Agregar    
-                    </p>
+    
+                <div class="agregar-texto" >
+    
+                    <div ><p>Agregar</p></div>
+    
                 </div>
+            
             </div>
             
-        
         </a>
     
     </div>
+
+    <div class="boton-desplegar boton-desplegar-reporte">
+
+        <a class="sin-decoracion" href="#abrir-reportes">
+        
+            <div style="display: flex; width: 180px;">
+
+                <div class="img-bugs">
+
+                    <img src="{% static 'icons/icon-bug.png' %}" style="width: 30px; height: 30px;" alt="">
+
+                </div>
+
+                <div class="agregar-texto">
+
+                    <div><p>Reportar un bug</p></div>
+
+                </div>
+
+            </div>
+            
+        </a>
+
+    </div>
+
+</div>
+
 
 </div>
 
@@ -516,14 +675,10 @@
 
         }
 
-        
-
     }
 
 
+
 </script>
-
-
-
 
 {% endblock content %}
