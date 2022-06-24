@@ -1,0 +1,1 @@
+web: gunicorn TareasUnivProyecto.wsgi --log-file -
