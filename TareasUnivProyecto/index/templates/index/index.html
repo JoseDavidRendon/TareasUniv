@@ -4,11 +4,41 @@
 {% load widget_tweaks %}
 <head>
     <title>Inicio</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
 </head>
+
+<script>
+
+    function clickBtnCalificado(id){
+        var contenedor = document.getElementById('selector-'+id);
+        if (contenedor.classList.contains('Checked')){
+            desactivarCalificado(id);
+        } else {
+            activarCalificado(id);
+        }
+    }
+    function activarCalificado(id){
+        var contenedor = document.getElementById('selector-'+id);
+        if (contenedor.classList.contains('NoChecked')){
+            contenedor.classList.remove('NoChecked');
+        }
+        contenedor.classList.add('Checked');
+        contenedor.style.backgroundColor="rgb(165, 244, 165)";
+        document.getElementById('boton-interior-'+id).style.marginLeft="32px";
+
+    }
+    function desactivarCalificado(id){
+        var contenedor = document.getElementById('selector-'+id);
+        if (contenedor.classList.contains('Checked')){
+            contenedor.classList.remove('Checked');
+        }
+        contenedor.classList.add('NoChecked');
+        contenedor.style.backgroundColor="rgb(244, 165, 165)"
+        document.getElementById('boton-interior-'+id).style.marginLeft="0px";
+    }
 
 </script>
 
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
 
 <div id="contenedor-pagina">
 
@@ -168,7 +198,7 @@
 
                                 </div>
 
-                                <form id="id-form-anotacion-{{tarea.id}}" action="actualizarAnotacion/" method="POST">
+                                <form id="id-form-anotacion-{{tarea.id}}" action="/actualizarAnotacion/" method="POST">
 
                                     {% csrf_token %}
 
@@ -375,7 +405,7 @@
 
                                 </div>
 
-                                <form id="id-form-anotacion-{{tarea.id}}" action="actualizarAnotacion/" method="POST">
+                                <form id="id-form-anotacion-{{tarea.id}}" action="/actualizarAnotacion/" method="POST">
 
                                     {% csrf_token %}
 
@@ -449,9 +479,48 @@
        
                            <div class="contenedor-dias-botones">
    
-                                <p>Terminado</p>
+                                <div class="boton-agregar-calificacion" >
+                                        
+                                        <p>Calificado:</p>
+
+                                        <div class="selector-calificacion" id="selector-{{tarea.id}}" onclick="clickBtnCalificado('{{tarea.id}}')">
+
+
+                                            <div class="boton-interior" id="boton-interior-{{tarea.id}}">
+
+                                            </div>
+
+                                        </div>
+
+                                        <script>
+                                            var status = '{{tarea.calificado}}';
+                                            var id = '{{tarea.id}}'
+                                            if (status=="True"){
+                                                activarCalificado(id)
+                                            } else {
+                                                desactivarCalificado(id)
+                                            }
+
+                                        </script>
+                                        <form action="">
+
+                                            <div class="fondo-pregunta" style="display: none;" id="fondo-pregunta-{{tarea.id}}">
+                                                <div class="mensaje-pregunta position-fixed top-50 start-50 translate-middle">
+                                                    <p>Seguro que desea continuar?</p>
+                                                    <div>
+                                                        <button class="boton-sin-estilo" type="submit"><img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt=""></button>
+                                                        <a href="{% url 'inicio' %}"><img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>
+
+                                                    </div>
+                                                </div>
+    
+                                            </div>
+                                        </form>
+                                </div>
    
                                 <div class="botones">
+                                    
+                                    
                             
                                     <div class="boton-icon-mensaje" onclick="scriptBackground('{{tarea.id}}')">
                                         
@@ -526,7 +595,7 @@
         
                                         </div>
         
-                                        <form id="id-form-anotacion-{{tarea.id}}" action="actualizarAnotacion/" method="POST">
+                                        <form id="id-form-anotacion-{{tarea.id}}" action="/actualizarAnotacion/" method="POST">
         
                                             {% csrf_token %}
         
@@ -679,8 +748,6 @@
         }
 
     }
-
-
 
 </script>
 

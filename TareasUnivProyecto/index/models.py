@@ -11,6 +11,8 @@ class CursosYTareas(models.Model):
     entrega = models.DateField(default=django.utils.timezone.now)
     usuario = models.CharField(default='usuario', max_length=100)
     anotacion = models.TextField(default="", max_length=10000)
+    calificado = models.BooleanField(default=False)
+    calificaion = models.IntegerField(default=0)
 
 class EstadoDelCurso(models.Model):
     curso = models.CharField(max_length=100)

@@ -173,3 +173,6 @@ def actualizarAnotacion(request):
         return redirect(to=inicio)   
 
     return HttpResponse("no funciona")
+
+def dashboard(request):
+    return render(request, 'index/dashboard.html')
