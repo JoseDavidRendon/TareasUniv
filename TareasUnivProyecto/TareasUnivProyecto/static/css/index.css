@@ -99,7 +99,6 @@
     width: 87%;
     padding: 10px;
     border-radius: 8px;
-    
     line-height: 10px;
 }
 
@@ -373,3 +372,27 @@
     display: flex;
     flex-direction: row;
 }
+
+@media screen and (max-width: 494px) {
+    .contenedor-expandido{
+        height: 180px !important;
+    }
+    .contenedor-dias-botones{
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+  } 
+
+@media screen and (max-width: 412px) {
+    .contenedor-expandido{
+        height: 200px !important;
+    }
+  } 
+  @media screen and (max-width: 359px) {
+    .contenedor-tarea{
+        width: 100%;
+    }
+    .contenedor-contenedores{
+        width: 97%;
+    }
+  } 
