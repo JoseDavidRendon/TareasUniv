@@ -5,40 +5,8 @@
 <head>
     <title>Inicio</title>
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
 </head>
-
-<script>
-
-    function clickBtnCalificado(id){
-        var contenedor = document.getElementById('selector-'+id);
-        if (contenedor.classList.contains('Checked')){
-            desactivarCalificado(id);
-        } else {
-            activarCalificado(id);
-        }
-    }
-    function activarCalificado(id){
-        var contenedor = document.getElementById('selector-'+id);
-        if (contenedor.classList.contains('NoChecked')){
-            contenedor.classList.remove('NoChecked');
-        }
-        contenedor.classList.add('Checked');
-        contenedor.style.backgroundColor="rgb(165, 244, 165)";
-        document.getElementById('boton-interior-'+id).style.marginLeft="32px";
-
-    }
-    function desactivarCalificado(id){
-        var contenedor = document.getElementById('selector-'+id);
-        if (contenedor.classList.contains('Checked')){
-            contenedor.classList.remove('Checked');
-        }
-        contenedor.classList.add('NoChecked');
-        contenedor.style.backgroundColor="rgb(244, 165, 165)"
-        document.getElementById('boton-interior-'+id).style.marginLeft="0px";
-    }
-
-</script>
-
 
 <div id="contenedor-pagina">
 
@@ -157,7 +125,7 @@
                             
                         </div>
 
-                        <div class="" id="pantalla-desenfoque" ></div>
+                        <div class="" id="pantalla-desenfoque-{{tarea.id}}" ></div>
 
                         <div class="collapse collapse1 "  id="expandir-{{tarea.id}}">
 
@@ -364,7 +332,7 @@
                                 
                             </div>
 
-                        <div class="" id="pantalla-desenfoque" ></div>
+                        <div class="" id="pantalla-desenfoque-{{tarea.id}}" ></div>
 
                         <div class="collapse collapse1 "  id="expandir-{{tarea.id}}">
 
@@ -483,39 +451,41 @@
                                         
                                         <p>Calificado:</p>
 
-                                        <div class="selector-calificacion" id="selector-{{tarea.id}}" onclick="clickBtnCalificado('{{tarea.id}}')">
-
-
+                                        <div class="selector-calificacion clickable" id="selector-{{tarea.id}}" onclick="clickBtnCalificado('{{tarea.id}}')">
+                                            
                                             <div class="boton-interior" id="boton-interior-{{tarea.id}}">
 
                                             </div>
 
                                         </div>
 
+
+                                        <form action="/editarCalificado/" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" value="0" id="check-{{tarea.id}}" name="check-value">
+                                            <input type="hidden" value="{{tarea.id}}" name="id">
+                                            <div class="contenedor-numero-ok">
+                                                <div class="lineal" >
+                                                    <input type="number" min="0" max="{{tarea.valor}}" id="insertar-nota-{{tarea.id}}" value="{{tarea.calificacion}}"  name="calif-tarea" disabled>
+                                                    <div onclick="editarCalificacion('{{tarea.id}}')" style="display: none;" id="boton-edit-calif-{{tarea.id}}"><img src="{% static 'icons/icon-pencil.png' %}" alt="" class="botones-img clickable"></div>
+                                                </div>
+                                                <div class="" id="check-ok-{{tarea.id}}" style="display: none;">
+                                                    <div>
+                                                        <button class="boton-sin-estilo" type="submit"><img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt="" title="Actualizar"></button>
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                        </form>
                                         <script>
                                             var status = '{{tarea.calificado}}';
                                             var id = '{{tarea.id}}'
                                             if (status=="True"){
                                                 activarCalificado(id)
+                                                document.getElementById('boton-edit-calif-{{tarea.id}}').style.display="block";
                                             } else {
                                                 desactivarCalificado(id)
                                             }
-
                                         </script>
-                                        <form action="">
-
-                                            <div class="fondo-pregunta" style="display: none;" id="fondo-pregunta-{{tarea.id}}">
-                                                <div class="mensaje-pregunta position-fixed top-50 start-50 translate-middle">
-                                                    <p>Seguro que desea continuar?</p>
-                                                    <div>
-                                                        <button class="boton-sin-estilo" type="submit"><img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt=""></button>
-                                                        <a href="{% url 'inicio' %}"><img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>
-
-                                                    </div>
-                                                </div>
-    
-                                            </div>
-                                        </form>
                                 </div>
    
                                 <div class="botones">
@@ -554,7 +524,7 @@
                                     
                                 </div>
         
-                                <div class="" id="pantalla-desenfoque" ></div>
+                                <div class="" id="pantalla-desenfoque-{{tarea.id}}" ></div>
 
                                 <div class="collapse collapse1 "  id="expandir-{{tarea.id}}">
         
@@ -696,59 +666,4 @@
 
 
 </div>
-
-<script type="text/javascript">
-
-    function scriptBackground(name_id) {
-
-        document.getElementById("pantalla-desenfoque").classList.add("desenfoque");
-
-        document.getElementById("id-form-anotacion-"+name_id).style.display="none";
-
-        document.getElementById("anotacion-actual-"+name_id).style.display="block";
-
-        document.getElementById("reset-btn-"+name_id).click();    
-    }
-
-    function noScriptBackground(name_id) {
-
-        document.getElementById("mensaje-"+name_id).click();
-
-        document.getElementById("pantalla-desenfoque").classList.remove("desenfoque");
-
-        document.getElementById("expandir-"+name_id).classList.remove("sobreponer");
-
-        document.getElementById("anotacion-actual-"+name_id).style.display="none";
-    }
-
-    function AbrirEditor(name_id) {
-        
-        document.getElementById("anotacion-actual-"+name_id).style.display="none";
-
-        document.getElementById("id-form-anotacion-"+name_id).style.display="block";
-    }
-
-    function colapsarContenedorTarea(contenedor, titulo, icon){
-        var elemento = document.getElementById(contenedor);
-        var titulo_elemento = document.getElementById(titulo);
-        var icon_titulo = document.getElementById(icon);
-
-        if (elemento.classList.contains('colapsar-css')){
-            
-            elemento.classList.remove('colapsar-css')
-            titulo_elemento.style.opacity="100%";
-            icon_titulo.style.transform= 'rotate(180deg)';
-
-        } else {
-
-            elemento.classList.add('colapsar-css')
-            titulo_elemento.style.opacity="50%";
-            icon_titulo.style.transform= 'rotate(0deg)';
-
-        }
-
-    }
-
-</script>
-
 {% endblock content %}

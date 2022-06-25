@@ -12,7 +12,7 @@ class CursosYTareas(models.Model):
     usuario = models.CharField(default='usuario', max_length=100)
     anotacion = models.TextField(default="", max_length=10000)
     calificado = models.BooleanField(default=False)
-    calificaion = models.IntegerField(default=0)
+    calificacion = models.IntegerField(default=0)
 
 class EstadoDelCurso(models.Model):
     curso = models.CharField(max_length=100)

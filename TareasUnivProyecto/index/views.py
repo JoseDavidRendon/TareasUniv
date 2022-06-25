@@ -176,3 +176,25 @@ def actualizarAnotacion(request):
 
 def dashboard(request):
     return render(request, 'index/dashboard.html')
+
+def editarCalificado(request):
+    estado = int(request.POST['check-value'])
+    id = int(request.POST['id'])
+    try:
+        valor = int(request.POST['calif-tarea'])
+    except:
+        pass
+    formTarea = formularioTareas = CursosYTareas.objects.get(pk=id)
+    userId=  formTarea.usuario
+    userLocal = request.user.username
+    if (userLocal == userId):
+        if (estado==1):
+            formTarea.calificado=True
+            formTarea.calificacion=valor
+            formTarea.save()
+        elif (estado ==0):
+            formTarea.calificado=False
+            formTarea.save()
+        else:
+            return HttpResponse('Error')        
+    return redirect(to=inicio)
