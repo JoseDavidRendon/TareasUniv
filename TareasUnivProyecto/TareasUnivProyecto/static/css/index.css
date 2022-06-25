@@ -388,7 +388,7 @@
 @media screen and (max-width: 494px) {
     .contenedor-dias-botones-termionada{
         flex-direction: column !important;
-        align-items: flex-end;
+        flex-direction: column;
         gap: 20px !important;
     }
 }
