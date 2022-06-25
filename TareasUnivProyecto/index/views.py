@@ -33,8 +33,7 @@ def inicio(request):
         'diasRestantes':diasRestantes,
         'diasRestantesProceso':diasRestantesProceso,
         'formAnotaciones': formAnotaciones()
-    }  
-    print(diasRestantes[0])
+    } 
     return render(request, 'index/index.html', data)
 
 
