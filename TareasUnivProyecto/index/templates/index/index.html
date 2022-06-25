@@ -429,7 +429,7 @@
            
                {% for tarea in formTareasTerminadas %}
                
-                <div class="contenedor-tarea contenedor-expandido" id="contenedor-tarea-{{tarea.id}}">
+                <div class="contenedor-tarea" id="contenedor-tarea-{{tarea.id}}">
                     
                     <script> document.getElementById("contenedor-tarea-"+"{{tarea.id}}").style.backgroundColor='rgb(255, 255, 255)';  </script>
    
@@ -445,37 +445,40 @@
                
                            <p class="separacion">Fecha de entrega: {{tarea.entrega}}</p> 
        
-                           <div class="contenedor-dias-botones">
+                           <div class="contenedor-dias-botones contenedor-dias-botones-termionada">
    
                                 <div class="boton-agregar-calificacion" >
                                         
                                         <p>Calificado:</p>
 
-                                        <div class="selector-calificacion clickable" id="selector-{{tarea.id}}" onclick="clickBtnCalificado('{{tarea.id}}')">
+                                        <div class="input-checker">
+                                            <div class="selector-calificacion clickable" id="selector-{{tarea.id}}" onclick="clickBtnCalificado('{{tarea.id}}')">
                                             
-                                            <div class="boton-interior" id="boton-interior-{{tarea.id}}">
-
+                                                <div class="boton-interior" id="boton-interior-{{tarea.id}}">
+    
+                                                </div>
+    
                                             </div>
-
+    
+    
+                                            <form action="/editarCalificado/" method="POST">
+                                                {% csrf_token %}
+                                                <input type="hidden" value="0" id="check-{{tarea.id}}" name="check-value">
+                                                <input type="hidden" value="{{tarea.id}}" name="id">
+                                                <div class="contenedor-numero-ok">
+                                                    <div class="lineal" >
+                                                        <input type="number" min="0" max="{{tarea.valor}}" id="insertar-nota-{{tarea.id}}" value="{{tarea.calificacion}}"  name="calif-tarea" disabled>
+                                                        <div onclick="editarCalificacion('{{tarea.id}}')" style="display: none;" id="boton-edit-calif-{{tarea.id}}"><img src="{% static 'icons/icon-pencil.png' %}" alt="" class="botones-img clickable"></div>
+                                                    </div>
+                                                    <div class="" id="check-ok-{{tarea.id}}" style="display: none;">
+                                                        <div>
+                                                            <button class="boton-sin-estilo" type="submit"><img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt="" title="Actualizar"></button>
+                                                        </div>  
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
-
-
-                                        <form action="/editarCalificado/" method="POST">
-                                            {% csrf_token %}
-                                            <input type="hidden" value="0" id="check-{{tarea.id}}" name="check-value">
-                                            <input type="hidden" value="{{tarea.id}}" name="id">
-                                            <div class="contenedor-numero-ok">
-                                                <div class="lineal" >
-                                                    <input type="number" min="0" max="{{tarea.valor}}" id="insertar-nota-{{tarea.id}}" value="{{tarea.calificacion}}"  name="calif-tarea" disabled>
-                                                    <div onclick="editarCalificacion('{{tarea.id}}')" style="display: none;" id="boton-edit-calif-{{tarea.id}}"><img src="{% static 'icons/icon-pencil.png' %}" alt="" class="botones-img clickable"></div>
-                                                </div>
-                                                <div class="" id="check-ok-{{tarea.id}}" style="display: none;">
-                                                    <div>
-                                                        <button class="boton-sin-estilo" type="submit"><img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt="" title="Actualizar"></button>
-                                                    </div>  
-                                                </div>
-                                            </div>
-                                        </form>
+                                        
                                         <script>
                                             var status = '{{tarea.calificado}}';
                                             var id = '{{tarea.id}}'
