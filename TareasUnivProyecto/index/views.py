@@ -1,6 +1,8 @@
 
 import datetime
 from pyexpat.errors import messages
+from random import random
+from urllib import request
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators  import login_required
@@ -8,6 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import UserRegisterForm, formAgregarCurso, formAnotaciones
 from .models import CursosYTareas, EstadoDelCurso
+from django import template
 # Create your views here.
 
 @login_required
@@ -174,7 +177,17 @@ def actualizarAnotacion(request):
     return HttpResponse("no funciona")
 
 def dashboard(request):
-    return render(request, 'index/dashboard.html')
+    tareas = CursosYTareas.objects.filter(usuario=request.user.username)
+    cursos = []
+    for curso in tareas:
+        cursos.append(curso.curso)
+    cursosSinRepetir=list(set(cursos))
+
+    data={
+        'tareas':tareas,
+        'cursosDisponibles': cursosSinRepetir,
+    }
+    return render(request, 'index/dashboard.html', data)
 
 def editarCalificado(request):
     estado = int(request.POST['check-value'])
@@ -197,3 +210,8 @@ def editarCalificado(request):
         else:
             return HttpResponse('Error')        
     return redirect(to=inicio)
+
+def traer_usuario(request):
+    usuario=request.user.username
+    print(usuario)
+    return usuario
