@@ -191,9 +191,7 @@
     border-radius: 13px;
     overflow: hidden;
     z-index: 1;
-    
 }
-
 
 .contenedor-contenido-anotacion{
    
@@ -294,8 +292,19 @@
     width:100%; 
     height: 30px; 
     display: flex; 
-    justify-content: right; 
+    justify-content:space-between; 
     background-color: rgb(37, 37, 37);
+}
+.contenedor-titulo-menu-anotaciones{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding-left: 30px;
+}
+.contenedor-titulo-menu-anotaciones p{
+    margin: 0px;
 }
 .no-anotaciones{
     height:252px ; 

@@ -95,7 +95,7 @@
                             
                             <div class="boton-icon-mensaje" onclick="scriptBackground('{{tarea.id}}')">
                                 
-                                <a id="mensaje-{{tarea.id}}" class="blocked" data-bs-toggle="collapse" aria-expanded="false" >
+                                <a id="mensaje-{{tarea.id}}">
                                     
                                     <img class="botones-img" src="{% static 'icons/icon-topic.png' %}" alt="">
                                 
@@ -125,11 +125,15 @@
                             
                         </div>
 
-                        <div class="" id="pantalla-desenfoque-{{tarea.id}}" ></div>
+                        <div id="pantalla-desenfoque-{{tarea.id}}" ></div>
 
-                        <div class="collapse collapse1 "  id="expandir-{{tarea.id}}">
+                        <div class="collapse collapse1"  id="expandir-{{tarea.id}}">
 
                             <div class="menu-anotaciones">
+                                
+                                <div class="contenedor-titulo-menu-anotaciones">
+                                    <p>Anotación</p>
+                                </div>
                             
                                 <div onclick="noScriptBackground('{{tarea.id}}')" >
                                     
@@ -302,7 +306,7 @@
                             
                                 <div class="boton-icon-mensaje" onclick="scriptBackground('{{tarea.id}}')">
                                     
-                                    <a id="mensaje-{{tarea.id}}" class="" data-bs-toggle="collapse" aria-expanded="false">
+                                    <a id="mensaje-{{tarea.id}}">
                                         
                                         <img class="botones-img" src="{% static 'icons/icon-topic.png' %}" alt="">
                                     
@@ -334,10 +338,12 @@
 
                         <div class="" id="pantalla-desenfoque-{{tarea.id}}" ></div>
 
-                        <div class="collapse collapse1 "  id="expandir-{{tarea.id}}">
+                        <div class="collapse collapse1"  id="expandir-{{tarea.id}}">
 
                             <div class="menu-anotaciones">
-                            
+                                <div class="contenedor-titulo-menu-anotaciones">
+                                    <p>Anotación</p>
+                                </div>
                                 <div onclick="noScriptBackground('{{tarea.id}}')" >
                                     
                                     <img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt="">
@@ -493,11 +499,9 @@
    
                                 <div class="botones">
                                     
-                                    
-                            
                                     <div class="boton-icon-mensaje" onclick="scriptBackground('{{tarea.id}}')">
                                         
-                                        <a id="mensaje-{{tarea.id}}" class="" data-bs-toggle="collapse"  aria-expanded="false">
+                                        <a id="mensaje-{{tarea.id}}">
                                             
                                             <img class="botones-img" src="{% static 'icons/icon-topic.png' %}" alt="">
                                         
@@ -529,10 +533,12 @@
         
                                 <div class="" id="pantalla-desenfoque-{{tarea.id}}" ></div>
 
-                                <div class="collapse collapse1 "  id="expandir-{{tarea.id}}">
+                                <div class="collapse collapse1"  id="expandir-{{tarea.id}}">
         
                                     <div class="menu-anotaciones">
-                                    
+                                        <div class="contenedor-titulo-menu-anotaciones">
+                                            <p>Anotación</p>
+                                        </div>
                                         <div onclick="noScriptBackground('{{tarea.id}}')" >
                                             
                                             <img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt="">
@@ -670,7 +676,4 @@
 
 </div>
 
-<script>
-    document.getElementsByClassName('blocked').style.display="block";
-</script>
 {% endblock content %}
