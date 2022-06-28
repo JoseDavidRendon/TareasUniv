@@ -15,7 +15,24 @@
 <div class="contenedor-tareas">
 
 
+    {% for curso in cursosDisponibles %}
+    <div class="contenedor-contenedores-graficas" >
+        <div class="titulo-graficas"><h2><strong>{{curso}}</strong></h2></div>
+        
+        <div class="contenedor-graficas">
+            <div class="contenedor-graficaLineal">
+                
+                <canvas id="grafica-{{curso}}" max-width="80%" max-height="200px"></canvas>
+                <script> crearLinea('{{curso}}') </script>
     
+            </div>
+            
+
+        </div>
+        
+        
+    </div>  
+    {% endfor %}
 
 </div>
 
