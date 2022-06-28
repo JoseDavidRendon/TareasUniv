@@ -133,7 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGOUT_REDIRECT_URL = "/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'TareasUnivProyecto/staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_TMP  = os.path.join(BASE_DIR, 'static') 
 #STATIC_URL  = '/static/'
 
