@@ -188,6 +188,6 @@
     justify-content: center;
 }
 .contenedor-tareas{
-    max-width: 100%;
-    overflow: hidden;
+    max-width: 100% !important;
+    overflow: hidden !important;
 }
