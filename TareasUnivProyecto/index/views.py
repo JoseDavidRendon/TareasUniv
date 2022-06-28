@@ -53,7 +53,7 @@ def registro(request):
             user=authenticate(username=formulario.cleaned_data['username'], password=formulario.cleaned_data['password1'])
             login(request, user)
             messages.success(request, 'Profile details updated.')
-            return redirect(to="/")
+            return redirect(to=inicio)
         else:
             #error=formulario.errors.as_data
             error = formulario.errors.values
@@ -67,7 +67,7 @@ def registro(request):
 
 def salir(request):
     logout()
-    return redirect(to="/")
+    return redirect(to=inicio)
 
 
 
