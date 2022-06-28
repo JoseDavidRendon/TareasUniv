@@ -138,6 +138,7 @@
     color: rgb(78, 78, 78);
 }
 .contenedor-contenedores-graficas{
+    max-width: 100%;
     padding-top: 40px;
 }
 .contenedor-porcentajes{
