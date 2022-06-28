@@ -8,10 +8,8 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <script src="{% static 'js/dashboard.js' %}"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+    
 </head>
 
 <div class="contenedor-tareas">
@@ -21,7 +19,10 @@
     <div class="contenedor-contenedores-graficas" >
         <div class="titulo-graficas"><h2><strong>{{curso}}</strong></h2></div>
         <div class="container">
-            <div id="grafico-de-lineas-{{curso}}" style="height: 200px; "></div>
+            
+            <canvas id="grafica-{{curso}}" style="max-width: 100%; min-width: 80%;"></canvas>
+            <script> crearLinea('{{curso}}') </script>
+
         </div>
         
         <div class="contenedor-graficas">
@@ -62,7 +63,6 @@
         
         
     </div>  
-    <script> crearLinea('grafico-de-lineas-{{curso}}') </script>
     {% endfor %}
 
 </div>

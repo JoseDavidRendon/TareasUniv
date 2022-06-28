@@ -22,25 +22,24 @@ function mostrarBarraCalificaciones(id, numeroVerde, numeroAmarillo, numeroRojo)
 }
 
 function crearLinea (id){
-    new Morris.Line({
-        // ID of the element in which to draw the chart.
-        element: id,
-        // Chart data records -- each entry in this array corresponds to a point on
-        // the chart.
-        data: [
-            { year: '2008', value: 20 },
-            { year: '2009', value: 10 },
-            { year: '2010', value: 5 },
-            { year: '2011', value: 5 },
-            { year: '2012', value: 20 }
-        ],
-        // The name of the data record attribute that contains x-values.
-        xkey: 'year',
-        // A list of names of data record attributes that contain y-values.
-        ykeys: ['value'],
-        // Labels for the ykeys -- will be displayed when you hover over the
-        // chart.
-        labels: ['Value'],
-        resize: true,
+    var ctx = document.getElementById('grafica-'+id).getContext('2d');
+    var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderColor:'rgba(255, 99, 132, 1)',
+        borderWidth: 1
+        }]
+        },
+        options: {
+        scales: {
+        y: {
+        beginAtZero: true
+        }
+        }
+        }
         });
 }
