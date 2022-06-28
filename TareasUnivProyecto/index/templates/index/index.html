@@ -95,7 +95,7 @@
                             
                             <div class="boton-icon-mensaje" onclick="scriptBackground('{{tarea.id}}')">
                                 
-                                <a id="mensaje-{{tarea.id}}" class="" data-bs-toggle="collapse" href="#expandir-{{tarea.id}}" aria-expanded="false" >
+                                <a id="mensaje-{{tarea.id}}" class="blocked" data-bs-toggle="collapse" aria-expanded="false" >
                                     
                                     <img class="botones-img" src="{% static 'icons/icon-topic.png' %}" alt="">
                                 
@@ -302,7 +302,7 @@
                             
                                 <div class="boton-icon-mensaje" onclick="scriptBackground('{{tarea.id}}')">
                                     
-                                    <a id="mensaje-{{tarea.id}}" class="" data-bs-toggle="collapse" href="#expandir-{{tarea.id}}" aria-expanded="false">
+                                    <a id="mensaje-{{tarea.id}}" class="" data-bs-toggle="collapse" aria-expanded="false">
                                         
                                         <img class="botones-img" src="{% static 'icons/icon-topic.png' %}" alt="">
                                     
@@ -497,7 +497,7 @@
                             
                                     <div class="boton-icon-mensaje" onclick="scriptBackground('{{tarea.id}}')">
                                         
-                                        <a id="mensaje-{{tarea.id}}" class="" data-bs-toggle="collapse" href="#expandir-{{tarea.id}}" aria-expanded="false">
+                                        <a id="mensaje-{{tarea.id}}" class="" data-bs-toggle="collapse"  aria-expanded="false">
                                             
                                             <img class="botones-img" src="{% static 'icons/icon-topic.png' %}" alt="">
                                         
@@ -669,4 +669,8 @@
 
 
 </div>
+
+<script>
+    document.getElementsByClassName('blocked').style.display="block";
+</script>
 {% endblock content %}

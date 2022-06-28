@@ -49,6 +49,8 @@ function scriptBackground(name_id) {
     document.getElementById("anotacion-actual-"+name_id).style.display="block";
 
     document.getElementById("reset-btn-"+name_id).click();    
+
+    document.getElementById('expandir-'+name_id).classList.add('show');
 }
 
 function noScriptBackground(name_id) {
@@ -60,6 +62,8 @@ function noScriptBackground(name_id) {
     document.getElementById("expandir-"+name_id).classList.remove("sobreponer");
 
     document.getElementById("anotacion-actual-"+name_id).style.display="none";
+
+    document.getElementById('expandir-'+name_id).classList.remove('show');
 }
 
 function AbrirEditor(name_id) {
