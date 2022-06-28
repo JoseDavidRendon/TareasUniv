@@ -150,4 +150,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ALLOWED_HOSTS = [
     gethostname(),
     os.environ.get('OPENSHIFT_APP_DNS', 'localhost'),
+    'primera-app-django.herokuapp.com',
 ]
