@@ -186,6 +186,4 @@
     flex-wrap: wrap;
     margin-top: 8px;
     justify-content: center;
-    max-width: 100% !important;
-    overflow: hidden;
 }
