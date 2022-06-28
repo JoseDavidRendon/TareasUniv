@@ -183,7 +183,20 @@
 .conjunto-de-graficas{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     margin-top: 8px;
     justify-content: center;
 }
+.contenedor-graficas{
+    display: flex;
+    flex-direction: row;
+}
+@media screen and (max-width: 596px) {
+    .conjunto-de-graficas{
+        flex-direction: column;
+    }
+    .contenedor-graficas{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+  } 
