@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 import mimetypes
+from socket import gethostname
 mimetypes.add_type("text/css", ".css", True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -145,3 +146,8 @@ os.makedirs(STATIC_ROOT, exist_ok=True)
 #)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+ALLOWED_HOSTS = [
+    gethostname(),
+    os.environ.get('OPENSHIFT_APP_DNS', 'localhost'),
+]
