@@ -26,7 +26,42 @@
                 <script> crearLinea('{{curso}}') </script>
     
             </div>
-            
+            <div class="conjunto-de-graficas">
+                
+                <div class="grafico-circular">
+                    <div class="delimitador"></div>
+                    <div class="prueba"></div>
+                    <div class="barra1 " id="barra-mostrar-verde-{{curso}}"></div>
+                    <div class="barra2 " id="barra-mostrar-amarillo-{{curso}}"></div>
+                    <div class="barra3 " id="barra-mostrar-rojo-{{curso}}"></div>
+                    <div class="interior"></div> 
+                    <div class="contenedor-porcentajes">
+                        <div class="porcentajes">
+                            <div>
+                                <div class="numero1"><p id="numero-mostrar-calificaciones-verde-{{curso}}"></p><p class="numero-simbol1">%</p></div>
+                            </div>
+                            <div class="porcentaje-amarillo-verde">
+                                <div class="numero2"><p id="numero-mostrar-calificaciones-amarillo-{{curso}}"></p><p class="numero-simbol1">%</p></div>
+                                <div class="numero3"><p id="numero-mostrar-calificaciones-rojo-{{curso}}"></p><p class="numero-simbol1">%</p></div>
+    
+                            </div>
+                        </div>
+    
+                    </div>
+                    <div class="titulo-grafico-circular-calificaciones"><p>Calificaciones</p></div>
+                    <script> mostrarBarraCalificaciones("{{curso}}",'{% obtenerProgresoVerde request curso %}', '{% obtenerProgresoAmarillo request curso %}', '{% obtenerProgresoRojo request curso %}'); </script> 
+                </div>  
+                <div class="grafico-circular">
+                    <div class="delimitador"></div>
+                    <div class="prueba"></div>
+                    <div class="barraProgreso" id="barra-mostrar-{{curso}}"></div>
+                    <div class="interior"></div> 
+                    <div class="numero"><p id="numero-mostrar-{{curso}}"></p><p class="numero-simbol">%</p></div>
+                    <div class="titulo-grafico-circular"><p>Progreso</p></div>
+                    <script> mostrarBarra("{{curso}}", '{% obtenerProgreso request curso %}'); </script>
+                </div>  
+
+            </div>
 
         </div>
         
