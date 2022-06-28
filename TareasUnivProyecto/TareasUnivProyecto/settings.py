@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&zzy-@ljf7gu$5^b(xyv=0et7-0o+0*)&zjmglyhs-n#1im2tq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
  
 ALLOWED_HOSTS = ["*"]
 
@@ -134,7 +134,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGOUT_REDIRECT_URL = "/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_TMP  = os.path.join(BASE_DIR, 'TareasUnivProyecto/static') 
+STATIC_TMP  = os.path.join(BASE_DIR, 'static') 
 #STATIC_URL  = '/static/'
 
 os.makedirs(STATIC_TMP, exist_ok=True)
