@@ -124,6 +124,7 @@
 .titulo-graficas{
     text-align: center;
     margin-bottom: 20px;
+    color: rgb(78, 78, 78);
 }
 .contenedor-contenedores-graficas{
     padding-top: 40px;
@@ -158,4 +159,9 @@
     justify-content:center;
     height: 40px;
 
+}
+
+.barras-rendimiento{
+    display: flex;
+    width: 100% !important;
 }

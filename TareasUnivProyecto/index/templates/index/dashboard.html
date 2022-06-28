@@ -8,6 +8,10 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <script src="{% static 'js/dashboard.js' %}"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 </head>
 
 <div class="contenedor-tareas">
@@ -15,9 +19,12 @@
 
     {% for curso in cursosDisponibles %}
     <div class="contenedor-contenedores-graficas" >
-        <div class="titulo-graficas"><h2>{{curso}}</h2></div>
+        <div class="titulo-graficas"><h2><strong>{{curso}}</strong></h2></div>
+        <div class="barras-rendimiento">
+            <div id="grafico-de-lineas-{{curso}}" style="height: 200px; "></div>
+        </div>
+        
         <div class="contenedor-graficas">
-
             <div class="grafico-circular">
                 <div class="delimitador"></div>
                 <div class="prueba"></div>
@@ -31,8 +38,8 @@
                             <div class="numero1"><p id="numero-mostrar-calificaciones-verde-{{curso}}"></p><p class="numero-simbol1">%</p></div>
                         </div>
                         <div class="porcentaje-amarillo-verde">
-                            <div class="numero2"><p id="numero-mostrar-calificaciones-amarillo-{{curso}}">3</p><p class="numero-simbol1">%</p></div>
-                            <div class="numero3"><p id="numero-mostrar-calificaciones-amarillo-{{curso}}">3</p><p class="numero-simbol1">%</p></div>
+                            <div class="numero2"><p id="numero-mostrar-calificaciones-amarillo-{{curso}}"></p><p class="numero-simbol1">%</p></div>
+                            <div class="numero3"><p id="numero-mostrar-calificaciones-rojo-{{curso}}"></p><p class="numero-simbol1">%</p></div>
 
                         </div>
                     </div>
@@ -55,7 +62,7 @@
         
         
     </div>  
-    
+    <script> crearLinea('grafico-de-lineas-{{curso}}') </script>
     {% endfor %}
 
 </div>
