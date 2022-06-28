@@ -12,7 +12,7 @@ html{
 
 header{
     background-color: #ffffff;
-    height: 50px;
+    height: 55px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -68,7 +68,7 @@ input[type=checkbox]{
 }
 
 #barra-lateral{
-    top: 50px;
+    top: 55px;
     position: fixed;
     height: 100%;
     width: 60px;
