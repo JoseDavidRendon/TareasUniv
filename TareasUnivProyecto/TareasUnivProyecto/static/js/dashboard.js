@@ -30,9 +30,9 @@ function crearLinea (id){
         datasets: [{
         label: 'Calificación',
         data: [12, 19, 3, 5, 2, 3],
-        borderColor:'rgba(255, 99, 132, 1)',
+        borderColor:'rgb(121, 180, 183)',
         borderWidth: 1,
-        backgroundColor:'rgba(255, 99, 132, 1)' ,
+        backgroundColor:'rgb(121, 180, 183)' ,
         }]
         },
         options: {

@@ -72,7 +72,7 @@ input[type=checkbox]{
     position: fixed;
     height: 100%;
     width: 60px;
-    background-color: #79B4B7;
+    background-color: #79b4b7;
     transition: 0.5s;
     display: flex;
     flex-direction: column;

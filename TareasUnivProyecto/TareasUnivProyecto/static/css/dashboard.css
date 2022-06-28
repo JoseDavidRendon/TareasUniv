@@ -19,6 +19,15 @@
     position: absolute;
     z-index: 1;
 }
+.barraProgreso{
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 50% , rgb(121, 180, 183) 50%);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 7;
+    transform: rotate(0deg);
+}
 .barra1{
     width: 200px;
     height: 200px;
@@ -165,7 +174,7 @@
 
 .contenedor-graficaLineal{
     margin-bottom: 30px;
-    max-width: 400px !important;
+    max-width: 98% !important;
     max-height: 200px !important;
 }
 
