@@ -205,6 +205,32 @@
     height: 200px !important;
     width: 400px !important;
 }
+.leyenda, .contenedor-leyenda{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.contenedor-leyenda{
+    margin: 5px;
+    align-items: center;
+}
+.contenedor-leyenda p{
+    margin: 0px;
+}
+.icon-leyenda{
+    height: 10px;
+    width: 10px;
+    margin-right: 5px;
+}
+.verde{
+    background-color: rgba(167,209,111,1);
+}
+.rojo{
+    background-color: rgb(241, 94, 94);
+}
+.amarillo{
+    background-color: rgb(232, 241, 94);
+}
 
 @media screen and (max-width: 550px) {
     .grafico-circular{

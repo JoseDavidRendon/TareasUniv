@@ -37,3 +37,18 @@ def obtenerProgresoRojo(request, curso):
             valorCalificado += tareas.valor
     print(valorCalificado)
     return(valorCalificado)
+
+@register.simple_tag
+def obtenerValoresDeCalificacion(request, curso):
+    usuario = request.user.username
+    positivo = 0
+    negativo  = 0
+    pendiente = 0
+    for tareas in CursosYTareas.objects.filter(curso = curso, usuario=usuario):
+        if tareas.calificado:
+            positivo += tareas.calificacion
+            negativo += tareas.valor-tareas.calificacion
+        else:
+            pendiente += tareas.valor
+    datos="{0},{1},{2}".format(positivo, negativo, pendiente)
+    return datos

@@ -32,17 +32,25 @@ function crearLinea (id){
         }
         });
 }
-function crearDonut (id){
-
+function crearDonut (id, valores){
+    var ArrayValores = valores.split(",")
+    var positivoPorcentaje = Math.round((ArrayValores[0]*100)/500);
+    var negativoPorcentaje = Math.round((ArrayValores[1]*100)/500);
+    var pendientePorcentaje = Math.round((ArrayValores[2]*100)/500);
+    var porcentajeRestante = Math.round(100-(positivoPorcentaje+negativoPorcentaje+pendientePorcentaje))
+    // ArraValores[0]=positivo, ArrayValores[1]=negativo, ArrayValores[2]=pendiente
+    document.getElementById('texto-circular-verde-'+id).textContent=positivoPorcentaje+"%";
+    document.getElementById('texto-circular-rojo-'+id).textContent=negativoPorcentaje+"%";
+    document.getElementById('texto-circular-amarillo-'+id).textContent=pendientePorcentaje+"%";
 var data={
     labels:[
-        '50%',
-        '50%',
-        '50%'
+        'Positivo',
+        'Negativo',
+        'Pendiente'
     ],
     datasets: [{
         label:"prueba",
-        data:[50, 10,30,20],
+        data:[positivoPorcentaje, negativoPorcentaje,pendientePorcentaje, porcentajeRestante],
         backgroundColor:[
             'rgba(167,209,111,1)',
             'rgb(241, 94, 94)',
@@ -97,7 +105,6 @@ var myChart = new Chart(
 function crearDonutProgreso (id, progreso){
     var progresoPorcentaje = ((progreso*100)/500)
     document.getElementById('texto-circular-'+id).textContent=Math.round(progresoPorcentaje)+"%";
-    console.log("Porcentaje: "+progresoPorcentaje+" original: "+progreso);
     var percent = 100-progresoPorcentaje;
     var data={
         labels:[

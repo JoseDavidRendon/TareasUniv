@@ -30,7 +30,18 @@
             <div class="conjunto-de-graficas">
                 <div class="grafico-circular">
                     <canvas id="grafica-circular-{{curso}}" max-width="80%" max-height="200px"></canvas>
-                    <script> crearDonut('{{curso}}') </script>
+                    <div class="leyenda">
+                        <div class="contenedor-leyenda">
+                            <div class="icon-leyenda verde"></div><p id="texto-circular-verde-{{curso}}"></p>
+                        </div>    
+                        <div class="contenedor-leyenda">
+                            <div class="icon-leyenda rojo"></div><p id="texto-circular-rojo-{{curso}}"></p>
+                        </div>
+                        <div class="contenedor-leyenda">
+                            <div class="icon-leyenda amarillo"></div><p id="texto-circular-amarillo-{{curso}}"></p>
+                        </div>
+                    </div>
+                    <script> crearDonut('{{curso}}', '{% obtenerValoresDeCalificacion request curso %}') </script>
                 </div> 
                 <div class="grafico-circular">
                     <canvas id="grafica-circular2-{{curso}}" max-width="80%" max-height="200px"></canvas>
