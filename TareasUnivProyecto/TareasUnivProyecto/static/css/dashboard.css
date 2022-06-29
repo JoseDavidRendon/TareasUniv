@@ -182,11 +182,7 @@
 }
 
 .contenedor-graficaLineal{
-    margin-bottom: 30px;
-    max-width: 98% !important;
-    height: 200px !important;
-    max-height: 200px !important;
-    margin: 10px;
+    margin-top: 10px;
 }
 
 
@@ -205,19 +201,29 @@
 .titulo-grafica-lineal{
     display: none;
 }
+.graficoLineal{
+    height: 200px !important;
+    width: 400px !important;
+}
 
 @media screen and (max-width: 550px) {
     .grafico-circular{
         margin-top: 50px;
     }
-    .contenedor-graficaLineal{
-        margin-bottom: 30px;
-        height: 300px !important;
-        max-height: 200px !important;
-    }
     
     .contenedor-graficas{
         max-width: 98%;
         padding: 0px !important;
+    }
+    .graficoLineal{
+        height: 200px !important;
+        width: 400px !important;
+    }
+  } 
+
+  @media screen and (max-width: 464px) {
+    .graficoLineal{
+        height: 200px !important;
+        width: 300px !important;
     }
   } 

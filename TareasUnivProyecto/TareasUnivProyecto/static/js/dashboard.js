@@ -42,11 +42,11 @@ var data={
     ],
     datasets: [{
         label:"prueba",
-        data:[50, 30,10,20],
+        data:[50, 10,30,20],
         backgroundColor:[
             'rgba(167,209,111,1)',
-            'rgb(232, 241, 94)',
             'rgb(241, 94, 94)',
+            'rgb(232, 241, 94)',
             'rgb(225, 225, 225)'
         ],
         borderWidth:0
