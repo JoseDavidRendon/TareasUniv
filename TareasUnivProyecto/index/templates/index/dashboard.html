@@ -24,7 +24,7 @@
             <div class="contenedor-graficaLineal">
                 
                 <canvas id="grafica-{{curso}}" class="graficoLineal" ></canvas>
-                <script> crearLinea('{{curso}}') </script>
+                <script> crearLinea('{{curso}}', '{% autoescape off %}{% obtenerValoresGraficaLineal request curso %} {% endautoescape %}') </script>
     
             </div>
             <div class="conjunto-de-graficas">

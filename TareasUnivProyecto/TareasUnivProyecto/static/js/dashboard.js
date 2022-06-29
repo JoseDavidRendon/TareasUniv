@@ -1,36 +1,50 @@
 
-function crearLinea (id){
+function crearLinea (id, mostrar){
+    var datos = JSON.parse(mostrar);
+    // console.log(datos);
+    var labelss=Object.keys(datos);
+    var dataForDatasets = Object.values(datos);
+    // for (var agg in labelss){
+    //     console.log(datos[agg])
+    // };
+    // var largoDict = len(datos);
+    // for (var i=1; i<5;i++){
+    //     labelss+=i;
+    // }
+    console.log(datos);
     var ctx = document.getElementById('grafica-'+id).getContext('2d');
     var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-        label: 'Calificación',
-        data: [12, 19, 3, 5, 2, 3],
-        borderColor:'rgb(121, 180, 183)',
-        borderWidth: 1,
-        backgroundColor:'rgb(121, 180, 183)' ,
-        }]
+            // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+            labels:labelss,
+            
+            datasets: [{
+                label: 'Calificación',
+                data: dataForDatasets,
+                borderColor:'rgb(121, 180, 183)',
+                borderWidth: 1,
+                backgroundColor:'rgb(121, 180, 183)' ,
+            }]
         },
-        options: {
-        scales: {
-        y: {
-        beginAtZero: true
-        }
-        },
-        plugins:{
-            legend:{
-                display:false
+            options: {
+            scales: {
+                y: {
+                beginAtZero: true
+                }
             },
-            title: {
-                display: true,
-                text: 'Tareas',
-                fullSize:false
-            },
+            plugins:{
+                    legend:{
+                        display:false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Tareas',
+                        fullSize:false
+                    },
+            }
         }
-        }
-        });
+    });
 }
 function crearDonut (id, valores){
     var ArrayValores = valores.split(",")

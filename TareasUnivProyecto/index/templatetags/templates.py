@@ -1,5 +1,8 @@
 from django import template
 from ..models import CursosYTareas, EstadoDelCurso
+import json
+from django.utils.safestring import SafeString
+from django.template.defaultfilters import stringfilter
 register = template.Library()
 
 @register.simple_tag
@@ -9,34 +12,6 @@ def obtenerProgreso(request, curso):
     for tareas in CursosYTareas.objects.filter(usuario=usuario, curso = curso):
         retornar+=tareas.valor 
     return (retornar)#valor 0-500
-
-@register.simple_tag
-def obtenerProgresoVerde(request, curso):
-    usuario = request.user.username
-    porcentajeVerde = 0
-    porcentajeAmarillo = 0
-    for tareas in CursosYTareas.objects.filter(usuario=usuario, curso = curso):
-        if tareas.calificado:
-            porcentajeVerde+=tareas.calificacion
-    return(porcentajeVerde)
-
-@register.simple_tag
-def obtenerProgresoAmarillo(request, curso):
-    usuario = request.user.username
-    porcentajeAmarillo = 0
-    for tareas in CursosYTareas.objects.filter(usuario=usuario, curso = curso):
-        porcentajeAmarillo += tareas.valor
-    return(porcentajeAmarillo)
-
-@register.simple_tag
-def obtenerProgresoRojo(request, curso):
-    usuario = request.user.username
-    valorCalificado = 0
-    for tareas in CursosYTareas.objects.filter(usuario=usuario, curso = curso):
-        if tareas.calificado:
-            valorCalificado += tareas.valor
-    print(valorCalificado)
-    return(valorCalificado)
 
 @register.simple_tag
 def obtenerValoresDeCalificacion(request, curso):
@@ -52,3 +27,15 @@ def obtenerValoresDeCalificacion(request, curso):
             pendiente += tareas.valor
     datos="{0},{1},{2}".format(positivo, negativo, pendiente)
     return datos
+
+@register.simple_tag
+def obtenerValoresGraficaLineal(request, curso):
+    usuario = request.user.username
+    datos={}
+    paso=1
+    for tareas in CursosYTareas.objects.filter(usuario=usuario, curso=curso, estado="terminada"):
+        datos[tareas.tarea]=tareas.calificacion        
+        paso +=1
+    datos_json = json.dumps(datos)
+    print(datos_json)
+    return(datos_json)
