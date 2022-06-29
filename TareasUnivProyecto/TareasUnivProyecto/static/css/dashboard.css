@@ -1,8 +1,11 @@
 .grafico-circular{
     width: 200px;
-    height: 200px;
     color: rgb(112, 112, 112);
     margin: 8px;
+}
+.subtitulo-circular{
+    text-align: center;
+    margin-top: 5px;
 }
 .delimitador{
     width: 200px;
@@ -130,6 +133,7 @@
     justify-content: center;
     flex-wrap: wrap;
     box-shadow: inset 0px 0px 3px 1px rgba(0, 0, 0, 0.192);
+    max-width: 100%;
     /* padding: 20px; */
 }
 .titulo-graficas{
@@ -140,6 +144,9 @@
 .contenedor-contenedores-graficas{
     max-width: 100%;
     padding-top: 17px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .contenedor-tareas{
     padding: 40px 0px 40px 0px;
@@ -158,14 +165,12 @@
     flex-direction: column;
     font-weight: bold;
 }
-.titulo-grafico-circular-calificaciones{
-    position: relative;
-    top: 9px;
+.titulo-graficos-circulares{
+    margin-top: 18px;
     font-size: 30px;
     line-height: 22px;
     text-align: center;
-    height: 32px;
-    z-index: 11;
+    color: rgb(112, 112, 112);
 }
 
 .porcentaje-amarillo-verde{
@@ -179,6 +184,7 @@
 .contenedor-graficaLineal{
     margin-bottom: 30px;
     max-width: 98% !important;
+    height: 200px !important;
     max-height: 200px !important;
     margin: 10px;
 }
@@ -193,32 +199,24 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding-top: 20px;
+    padding: 20px;
 }
 .titulo-grafica-lineal{
     display: none;
 }
 
-@media screen and (max-width: 530px) {
-    .conjunto-de-graficas{
-        margin-top: 55px;
-        flex-direction: column;
+@media screen and (max-width: 550px) {
+    .grafico-circular{
+        margin-top: 50px;
     }
+    .contenedor-graficaLineal{
+        margin-bottom: 30px;
+        height: 300px !important;
+        max-height: 200px !important;
+    }
+    
     .contenedor-graficas{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .titulo-grafica-lineal{
-        display: block;
-        color: rgb(112, 112, 112);
-        position: relative;
-        top: 9px;
-        font-size: 30px;
-        line-height: 22px;
-        text-align: center;
-        height: 32px;
-        z-index: 11;
-        margin-top: 10px;
+        max-width: 98%;
+        padding: 0px !important;
     }
   } 

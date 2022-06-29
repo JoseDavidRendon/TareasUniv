@@ -1,25 +1,3 @@
-function mostrarBarra(id, numero){
-    var progreso = Math.trunc(100-(((500-numero)*100)/500));
-    var numRotar = ((progreso)*180)/100;
-    document.getElementById('numero-mostrar-'+id).textContent=progreso;
-    document.getElementById('barra-mostrar-'+id).style.transform='rotate('+numRotar+'deg)'
-}
-function mostrarBarraCalificaciones(id, numeroVerde, numeroAmarillo, numeroRojo){
-    var porcentajeVerde = Math.trunc(100-(((500-numeroVerde)*100)/500));
-    var porcentajeAmarillo = Math.trunc(100-(((500-numeroAmarillo)*100)/500));
-    var porcentajeRojo = Math.trunc(100-(((500-numeroRojo)*100)/500));
-    var numRotarVerde = ((porcentajeVerde)*180)/100;
-    var numRotarAmarillo = ((porcentajeAmarillo)*180)/100;
-    var numRotarRojo = ((porcentajeRojo)*180)/100;
-    var porcentajeArregladoRojo = porcentajeRojo-porcentajeVerde;
-    var porcentajeArregladoAmarillo = porcentajeAmarillo-porcentajeRojo;
-    document.getElementById('numero-mostrar-calificaciones-verde-'+id).textContent=porcentajeVerde;
-    document.getElementById('numero-mostrar-calificaciones-amarillo-'+id).textContent=porcentajeArregladoAmarillo;
-    document.getElementById('numero-mostrar-calificaciones-rojo-'+id).textContent=porcentajeArregladoRojo;
-    document.getElementById('barra-mostrar-verde-'+id).style.transform='rotate('+numRotarVerde+'deg)';
-    document.getElementById('barra-mostrar-amarillo-'+id).style.transform='rotate('+numRotarAmarillo+'deg)';
-    document.getElementById('barra-mostrar-rojo-'+id).style.transform='rotate('+numRotarRojo+'deg)';
-}
 
 function crearLinea (id){
     var ctx = document.getElementById('grafica-'+id).getContext('2d');
@@ -40,7 +18,137 @@ function crearLinea (id){
         y: {
         beginAtZero: true
         }
+        },
+        plugins:{
+            legend:{
+                display:false
+            },
+            title: {
+                display: true,
+                text: 'Tareas',
+                fullSize:false
+            },
         }
         }
         });
+}
+function crearDonut (id){
+
+var data={
+    labels:[
+        '50%',
+        '50%',
+        '50%'
+    ],
+    datasets: [{
+        label:"prueba",
+        data:[50, 30,10,20],
+        backgroundColor:[
+            'rgba(167,209,111,1)',
+            'rgb(232, 241, 94)',
+            'rgb(241, 94, 94)',
+            'rgb(225, 225, 225)'
+        ],
+        borderWidth:0
+    }]
+};
+const labels = (tooltipItems) => {
+    if(tooltipItems.label==""){
+        return " Calificacion no asignada : "+tooltipItems.raw+"%";
+    }else{
+        var mostrar = " "+tooltipItems.label+" : "+tooltipItems.raw+"%";
+        return mostrar;
+    }
+  };
+var config ={
+    type:'doughnut',
+    data,
+    options:{
+        rotation:(180),
+        scales:{
+        },
+        plugins:{
+            legend:{
+                display:false,
+                
+            },
+            title: {
+                display: true,
+                text: 'Calificaciones',
+                fullSize:false
+            },
+            tooltip:{
+                callbacks: {
+                    label: labels,
+            }
+        }
+    }
+}
+};
+
+var myChart = new Chart(
+    document.getElementById('grafica-circular-'+id), config
+)
+
+}
+
+
+
+function crearDonutProgreso (id, progreso){
+    var progresoPorcentaje = ((progreso*100)/500)
+    document.getElementById('texto-circular-'+id).textContent=Math.round(progresoPorcentaje)+"%";
+    console.log("Porcentaje: "+progresoPorcentaje+" original: "+progreso);
+    var percent = 100-progresoPorcentaje;
+    var data={
+        labels:[
+            'Completado',
+        ],
+        datasets: [{
+            label:"prueba",
+            data:[progresoPorcentaje, percent],
+            backgroundColor:[
+                'rgb(121, 180, 183)',
+                'rgb(225, 225, 225)'
+            ],
+            borderWidth:0
+        }]
+    };
+    const labels = (tooltipItems) => {
+        if(tooltipItems.label==""){
+            return " Calificacion no asignada : "+tooltipItems.raw+"%";
+        }else{
+            var mostrar = " "+tooltipItems.label+" : "+tooltipItems.raw+"%";
+            return mostrar;
+        }
+      };
+    var config ={
+        type:'doughnut',
+        data,
+        options:{
+            rotation:(180),
+            scales:{
+            },
+            plugins:{
+                legend:{
+                    display:false,
+                    
+                },
+                
+            title: {
+                display: true,
+                text: 'Progreso',
+                fullSize:false
+            },
+                tooltip:{
+                    callbacks: {
+                        label: labels,
+                }
+            }
+        }
+    }
+    };
+    
+    var myChart = new Chart(
+        document.getElementById('grafica-circular2-'+id), config
+    );
 }

@@ -7,9 +7,8 @@ def obtenerProgreso(request, curso):
     usuario = request.user.username
     retornar= 0
     for tareas in CursosYTareas.objects.filter(usuario=usuario, curso = curso):
-        retornar+=tareas.valor
-    
-    return (retornar)
+        retornar+=tareas.valor 
+    return (retornar)#valor 0-500
 
 @register.simple_tag
 def obtenerProgresoVerde(request, curso):
