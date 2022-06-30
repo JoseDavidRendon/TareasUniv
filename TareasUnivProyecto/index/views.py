@@ -176,6 +176,7 @@ def actualizarAnotacion(request):
 
     return HttpResponse("no funciona")
 
+@login_required
 def dashboard(request):
     tareas = CursosYTareas.objects.filter(usuario=request.user.username)
     cursos = []
