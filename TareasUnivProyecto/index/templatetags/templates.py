@@ -33,8 +33,10 @@ def obtenerValoresGraficaLineal(request, curso):
     usuario = request.user.username
     datos={}
     paso=1
-    for tareas in CursosYTareas.objects.filter(usuario=usuario, curso=curso, estado="terminada"):
-        datos[tareas.tarea]=tareas.calificacion        
+    for tareas in CursosYTareas.objects.filter(usuario=usuario, curso=curso, estado="terminada", calificado=True):
+        datos["Tarea %s" %paso]={"nombre":tareas.tarea,
+        "calificacion":int(((tareas.calificacion*100)/tareas.valor))
+        }
         paso +=1
     datos_json = json.dumps(datos)
     print(datos_json)

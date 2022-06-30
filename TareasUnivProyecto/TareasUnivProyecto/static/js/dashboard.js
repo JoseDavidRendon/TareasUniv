@@ -1,9 +1,14 @@
 
 function crearLinea (id, mostrar){
-    var datos = JSON.parse(mostrar);
+    const datos = JSON.parse(mostrar);
     // console.log(datos);
     var labelss=Object.keys(datos);
-    var dataForDatasets = Object.values(datos);
+    var dataForDatasets = [];
+    for (var i = 0; i<Object.values(datos).length;i++){
+        dataForDatasets=dataForDatasets.concat(Object.values(datos)[i]["calificacion"]);
+    }
+    console.log(dataForDatasets);
+    // console.log(dataForDatasets);
     // for (var agg in labelss){
     //     console.log(datos[agg])
     // };
@@ -11,7 +16,7 @@ function crearLinea (id, mostrar){
     // for (var i=1; i<5;i++){
     //     labelss+=i;
     // }
-    console.log(datos);
+    // console.log(datos);
     var ctx = document.getElementById('grafica-'+id).getContext('2d');
     var myChart = new Chart(ctx, {
     type: 'line',
