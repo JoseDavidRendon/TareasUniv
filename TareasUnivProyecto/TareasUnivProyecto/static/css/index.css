@@ -13,26 +13,9 @@
     color:#4b4b4b; 
 }
 
-#botones{
-    position: fixed;
-    bottom: 80px;
-    right: 6%;
-}
 
-.boton-desplegar{
-    transition: 0.3s;
-    width: 50px;
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.247);
-    border-radius: 30px;
-}
-.boton-desplegar-agregar:hover{
-    width: 140px;
-    
-}
-.boton-desplegar-reporte:hover{
-    width: 190px;
-}
+
+
 
 #icon-agregar{
     font-size: 40px;
@@ -52,43 +35,12 @@
     margin-top: -5px;
 }
 
-.agregar-texto{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 13px;
-    width: 100%;
-    margin-left: 5px;
-}
 
-.agregar-texto div{
-    text-align: center;
-}
 
-.agregar-texto p{
-    color: white;
-    
-}
 
-.img-bugs{
-    width: 50px;
-    height: 50px;
-    background-color: rgba(0, 0, 0, 0.281);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-}
 
-#botones{
-    display: flex;
-    flex-direction: column;
-    align-items:flex-end;
-    gap: 8px;
-    
-}
+
+
 
 .contenedor-tarea{
     box-shadow:  0px 0px 3px 1px rgba(82, 82, 82, 0.192);
@@ -146,12 +98,7 @@
 }
 
 
-.botones{
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-    flex-grow: 1;
-}
+
 
 .contenedor-dias-botones{
     display: flex;
@@ -277,11 +224,6 @@
 .boton-icon-mensaje{
     margin-right:15px ;
 }
-.botones-img{
-    width: 25px; 
-    height: 25px;
-    cursor:pointer;
-}
 .clickable{
     cursor:pointer;
 }
@@ -322,16 +264,9 @@
     display:flex; 
     justify-content: center;
 }
-.boton-sin-estilo{
-    border: none; 
-    background-color: rgba(255, 0, 0, 0);
-}
 .contenedor-botones-ok-cancel{
     display: flex; 
     justify-content: center;
-}
-.sin-decoracion{
-    text-decoration: none;
 }
 .boton-agregar-calificacion{
     display: flex;

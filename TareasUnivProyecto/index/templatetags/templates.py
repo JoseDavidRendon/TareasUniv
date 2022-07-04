@@ -1,5 +1,5 @@
 from django import template
-from ..models import CursosYTareas, EstadoDelCurso
+from ..models import CursosYTareas, EstadoDelCurso, Settings
 import json
 from django.utils.safestring import SafeString
 from django.template.defaultfilters import stringfilter
@@ -39,5 +39,14 @@ def obtenerValoresGraficaLineal(request, curso):
         }
         paso +=1
     datos_json = json.dumps(datos)
-    print(datos_json)
     return(datos_json)
+
+@register.simple_tag
+def comprobarCheckedDB(request, id):
+    usuario= request.user.username
+    tarea = Settings.objects.get(usuario=usuario)
+    listaTareas=(tarea.dashboardActivos).split(",")
+    if id in listaTareas:
+        return 1
+    else:
+        return 0

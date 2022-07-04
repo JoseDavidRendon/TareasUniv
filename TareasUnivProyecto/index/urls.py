@@ -1,5 +1,5 @@
 from django.urls import include, path
-from index.views import inicio, registro, salir, agregarCurso, nuevoCurso, editarTarea, actualizarCurso, borrarCurso,enviarAnotacion, actualizarAnotacion, dashboard, editarCalificado
+from index.views import inicio, registro, salir, agregarCurso, nuevoCurso, editarTarea, actualizarCurso, borrarCurso,enviarAnotacion, actualizarAnotacion, dashboard, editarCalificado, actualizarConfigDashboard
 
 
 
@@ -18,6 +18,7 @@ urlpatterns = [
     path('actualizarAnotacion/', actualizarAnotacion, name='actualizarAnotacion'),
     path('dashboard/', dashboard, name='dashboard'),
     path('editarCalificado/', editarCalificado, name='editarCalificado'),
+    path('actualizarConfigDashboard/', actualizarConfigDashboard, name='actualizarConfigDashboard'),
 ]
  
  

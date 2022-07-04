@@ -17,6 +17,7 @@
 
 
     {% for curso in cursosDisponibles %}
+    {% if curso %}
     <div class="contenedor-contenedores-graficas" >
         <div class="titulo-graficas"><h2><strong>{{curso}}</strong></h2></div>
         
@@ -54,9 +55,61 @@
         </div>
         
         
-    </div>  
+    </div>
+    {% endif %}
+      
     {% endfor %}
 
+</div>
+
+
+<div id="botones">
+    <div class="boton-desplegar boton-configuracion boton-configuracion-hover">
+            <div style="display: flex;">
+                <div class="img-bugs">
+                    <img src="{% static 'icons/icon-config.png' %}" style="width: 30px; height: 30px;" alt="">
+                </div>
+                <div class="contenedor-busqueda">
+                    <div class="configuracion">
+                        <p class="titulo-contenedor-busqueda"><strong>Cursos visibles</strong></p>
+                        <input type="text" id="busqueda-de-cursos" onkeyup="buscadorDeCursos()" placeholder="Busqueda">
+                        <form action="/actualizarConfigDashboard/" method="post">
+                    
+                            {% csrf_token %}
+                            <div class="contenedor-checkboxes">
+                                {% for curso in todosLosCursos %}
+                                    <div class="casilla-contenedor" id="{{curso}}">
+                                        <input  type="checkbox" name="{{curso}}" id="checkbox-{{curso}}">
+                                        <label for="{{curso}}" class="casilla-curso">{{curso}}</label>
+                                        <script>comprobarChecked('{{curso}}', '{%  comprobarCheckedDB request curso %}')</script>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="boton-submit-busqueda"><button type="submit" class="boton-sin-estilo">
+                                <img src="{% static 'icons/icon-ok.png' %} " class="botones-img" alt="">
+                            </button></div>
+                            
+                    
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="boton-desplegar boton-desplegar-reporte">
+        <a class="sin-decoracion" href="#abrir-reportes">
+            <div style="display: flex; width: 180px;">
+                <div class="img-bugs">
+                    <img src="{% static 'icons/icon-bug.png' %}" style="width: 30px; height: 30px;" alt="">
+                </div>
+                <div class="agregar-texto ">
+                    <div><p>Reportar un bug</p></div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+</div>
 </div>
 
 {% endblock %}

@@ -55,7 +55,7 @@ body{
     right: 15px;
 }
 
-input[type=checkbox]{
+#checkbox_toggle{
     display: none;
 }
 
@@ -190,13 +190,13 @@ footer{
     #barra-lateral{
        width: 0px;
     }
-    input[type=checkbox]:checked  ~ #barra-lateral{
+    #checkbox_toggle:checked  ~ #barra-lateral{
         width: 340px;
     }
     .contenedor-barra{
         display: none;
     }
-    input[type=checkbox]:checked  ~ #barra-lateral a .contenedor-barra{
+    #checkbox_toggle:checked  ~ #barra-lateral a .contenedor-barra{
         display: flex;
     }
     .button-menu{
@@ -204,3 +204,80 @@ footer{
         background-color: #61a0a83a;
     }
   } 
+
+
+
+  .boton-desplegar{
+    transition: 0.3s;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.247);
+    border-radius: 30px;
+}
+.boton-desplegar-agregar:hover{
+    width: 140px;
+    
+}
+.boton-desplegar-reporte:hover{
+    width: 190px;
+    color: white;
+}
+.sin-decoracion{
+    text-decoration: none;
+    color: white;
+}
+#botones{
+    position: fixed;
+    bottom: 80px;
+    right: 6%;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+    gap: 8px;
+}
+.img-bugs{
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.281);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+.agregar-texto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 13px;
+    width: 100%;
+    margin-left: 5px;
+    color: white;
+}
+.botones{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    flex-grow: 1;
+}
+
+.agregar-texto div{
+    text-align: center;
+}
+
+.agregar-texto p{
+    color: white;
+    
+}
+.boton-sin-estilo{
+    border: none; 
+    background-color: rgba(255, 0, 0, 0);
+}
+
+.botones-img{
+    width: 25px; 
+    height: 25px;
+    cursor:pointer;
+}

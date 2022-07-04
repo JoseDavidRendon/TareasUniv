@@ -3,13 +3,14 @@ import datetime
 from pyexpat.errors import messages
 from random import random
 from urllib import request
+from django.conf import settings
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators  import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import UserRegisterForm, formAgregarCurso, formAnotaciones
-from .models import CursosYTareas, EstadoDelCurso
+from .models import CursosYTareas, EstadoDelCurso, Settings
 from django import template
 # Create your views here.
 
@@ -178,17 +179,36 @@ def actualizarAnotacion(request):
 
 @login_required
 def dashboard(request):
-    tareas = CursosYTareas.objects.filter(usuario=request.user.username)
+    usuario = request.user.username
+    tareas = CursosYTareas.objects.filter(usuario=usuario)
+    try:
+        config = Settings.objects.get(usuario=usuario)
+        dashboardConfig = config.dashboardActivos.split(",")
+        print( dashboardConfig)
+    except:
+        dashboardConfig=("")
     cursos = []
     for curso in tareas:
         cursos.append(curso.curso)
     cursosSinRepetir=list(set(cursos))
-
     data={
         'tareas':tareas,
-        'cursosDisponibles': cursosSinRepetir,
+        'cursosDisponibles': dashboardConfig,
+        'todosLosCursos':cursosSinRepetir
     }
     return render(request, 'index/dashboard.html', data)
+
+def actualizarConfigDashboard(request):
+    cursosSeleccionados=",".join([tarea for tarea in request.POST if tarea!='csrfmiddlewaretoken'])
+    # print(cursosSeleccionados)
+    abrirSettings, created = Settings.objects.get_or_create(
+    usuario=request.user.username,
+    defaults={'usuario':request.user.username, 'dashboardActivos':cursosSeleccionados}
+    )
+    if not created:
+        abrirSettings.dashboardActivos = cursosSeleccionados
+        abrirSettings.save()
+    return redirect(to=dashboard)
 
 def editarCalificado(request):
     estado = int(request.POST['check-value'])

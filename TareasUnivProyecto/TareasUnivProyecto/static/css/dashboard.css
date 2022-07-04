@@ -252,4 +252,38 @@
         height: 200px !important;
         width: 300px !important;
     }
-  } 
+  }
+.contenedor-checkboxes{
+    display: flex;
+    flex-direction: column;
+    height: 140px;
+    overflow-y: scroll;
+}
+
+.boton-configuracion:hover{
+    width: 230px;
+    height: 280px;
+    background-color: rgb(243, 243, 243);
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.164);
+    border-radius: 3px;
+}
+.boton-configuracion:hover .img-bugs{
+    display: none !important;
+}
+.configuracion{
+    padding: 18px;
+}
+.titulo-contenedor-busqueda{
+    margin-bottom: 5px;
+    text-align: center;
+}
+#busqueda-de-cursos{
+    margin-bottom: 10px;
+    border-color: rgba(0, 0, 0, 0.219);
+    padding-left: 5px;
+}
+.boton-submit-busqueda{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

@@ -62,5 +62,5 @@ class formAnotaciones(forms.ModelForm):
         self.fields['estado'].required = False
         self.fields['entrega'].required = False
         
-
+        
     

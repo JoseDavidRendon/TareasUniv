@@ -1,5 +1,8 @@
 
 function crearLinea (id, mostrar){
+    const labels = (tooltipItems) => {
+            return " calificación: "+tooltipItems.raw+"%";
+      };
     const datos = JSON.parse(mostrar);
     // console.log(datos);
     var labelss=Object.keys(datos);
@@ -7,16 +10,6 @@ function crearLinea (id, mostrar){
     for (var i = 0; i<Object.values(datos).length;i++){
         dataForDatasets=dataForDatasets.concat(Object.values(datos)[i]["calificacion"]);
     }
-    console.log(dataForDatasets);
-    // console.log(dataForDatasets);
-    // for (var agg in labelss){
-    //     console.log(datos[agg])
-    // };
-    // var largoDict = len(datos);
-    // for (var i=1; i<5;i++){
-    //     labelss+=i;
-    // }
-    // console.log(datos);
     var ctx = document.getElementById('grafica-'+id).getContext('2d');
     var myChart = new Chart(ctx, {
     type: 'line',
@@ -30,12 +23,18 @@ function crearLinea (id, mostrar){
                 borderColor:'rgb(121, 180, 183)',
                 borderWidth: 1,
                 backgroundColor:'rgb(121, 180, 183)' ,
+                pointRadius:5
             }]
         },
             options: {
             scales: {
                 y: {
-                beginAtZero: true
+                beginAtZero: true,
+                ticks: {
+                    callback: function(value){
+                        return value+"%";
+                    }
+                }
                 }
             },
             plugins:{
@@ -47,6 +46,11 @@ function crearLinea (id, mostrar){
                         text: 'Tareas',
                         fullSize:false
                     },
+                    tooltip:{
+                        callbacks: {
+                            label: labels,
+                    }
+                }
             }
         }
     });
@@ -177,4 +181,22 @@ function crearDonutProgreso (id, progreso){
     var myChart = new Chart(
         document.getElementById('grafica-circular2-'+id), config
     );
+}
+
+function comprobarChecked(id, comprobado){
+    if (comprobado ==1){
+        document.getElementById('checkbox-'+id).checked=true;
+    }
+}
+function buscadorDeCursos(cursos){
+    var cursosDisponiblesString = "{{todosLosCursos  | safe}}".replaceAll("'","\"");
+    var casilla = document.getElementsByClassName('casilla-curso');
+    var inputText = document.getElementById('busqueda-de-cursos');
+    for (var i = 0; i< casilla.length;i++){
+        var idd = casilla[i].innerHTML;
+        document.getElementById(idd).style.display="none";
+        if (casilla[i].innerHTML.includes(inputText.value)){
+            document.getElementById(idd).style.display="block";
+        }
+    }
 }

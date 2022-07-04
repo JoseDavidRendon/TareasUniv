@@ -1,6 +1,6 @@
 from sqlite3 import Cursor
 from django.contrib import admin
-from index.models import CursosYTareas, EstadoDelCurso
+from index.models import CursosYTareas, EstadoDelCurso, Settings
 # Register your models here.
 
 
@@ -14,5 +14,11 @@ class ModelEstadodelCurso(admin.ModelAdmin):
     list_display=('curso', 'verificacion')
     list_filter = ('curso', 'verificacion')
 
+class ModelSettings(admin.ModelAdmin):
+    list_display=('usuario',)
+    list_filter = ('usuario',)
+
+
 admin.site.register(CursosYTareas, ModelCursosYtareas)
 admin.site.register(EstadoDelCurso, ModelEstadodelCurso)
+admin.site.register(Settings, ModelSettings)
