@@ -287,3 +287,9 @@
     display: flex;
     justify-content: center;
 }
+.contenedor-busqueda{
+    display: none;
+}
+.boton-configuracion:hover .contenedor-busqueda{
+    display: block;
+}
