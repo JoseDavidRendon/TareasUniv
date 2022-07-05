@@ -196,7 +196,7 @@ function buscadorDeCursos(cursos){
     var casilla = document.getElementsByClassName('casilla-curso');
     var inputText = document.getElementById('busqueda-de-cursos');
     for (var i = 0; i< casilla.length;i++){
-        var idd = casilla[i].innerHTML;
+        var idd = (casilla[i].innerHTML.toLowerCase());
         document.getElementById(idd).style.display="none";
         if (casilla[i].innerHTML.includes(inputText.value.toLowerCase())){
             document.getElementById(idd).style.display="flex";
