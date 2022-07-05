@@ -73,13 +73,16 @@
                     <div class="configuracion">
                         <p class="titulo-contenedor-busqueda"><strong>Cursos visibles</strong></p>
                         <input type="text" id="busqueda-de-cursos" onkeyup="buscadorDeCursos()" placeholder="Busqueda" autocomplete="nope">
+                        <div class="botones-select">
+                            <div id="boton-select-all" onclick="selectAll(true)">Todo</div>
+                            <div id="boton-unselect-all" onclick="selectAll(false)">Nada</div>
+                        </div>
                         <form action="/actualizarConfigDashboard/" method="post">
-                    
                             {% csrf_token %}
                             <div class="contenedor-checkboxes">
                                 {% for curso in todosLosCursos %}
                                     <div class="casilla-contenedor" id="{{curso}}">
-                                        <input  type="checkbox" name="{{curso}}" id="checkbox-{{curso}}">
+                                        <input  type="checkbox" name="{{curso}}" id="checkbox-{{curso}}" class="checkboxAll">
                                         <label for="{{curso}}" class="casilla-curso">{{curso}}</label>
                                         <script>comprobarChecked('{{curso}}', '{%  comprobarCheckedDB request curso %}')</script>
                                     </div>

@@ -200,3 +200,16 @@ function buscadorDeCursos(cursos){
         }
     }
 }
+function selectAll(state){
+    if (state){
+        var coleccion = document.getElementsByClassName('checkboxAll');
+        for (var i =0;i<coleccion.length;i++){
+                coleccion[i].checked=true;
+        }
+    }else{
+        var coleccion = document.getElementsByClassName('checkboxAll');
+        for (var i =0;i<coleccion.length;i++){
+                coleccion[i].checked=false;
+        }
+    }
+}
