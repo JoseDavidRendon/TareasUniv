@@ -184,8 +184,11 @@ function crearDonutProgreso (id, progreso){
 }
 
 function comprobarChecked(id, comprobado){
+    
     if (comprobado ==1){
+        var checkboxContainer = document.getElementById(id);
         document.getElementById('checkbox-'+id).checked=true;
+        checkboxContainer.classList.add('checkedContainer');
     }
 }
 function buscadorDeCursos(cursos){
@@ -205,11 +208,30 @@ function selectAll(state){
         var coleccion = document.getElementsByClassName('checkboxAll');
         for (var i =0;i<coleccion.length;i++){
                 coleccion[i].checked=true;
+                id = coleccion[i].getAttribute('name');
+                var checkboxContainer = document.getElementById(id);
+                checkboxContainer.classList.add('checkedContainer');
         }
     }else{
         var coleccion = document.getElementsByClassName('checkboxAll');
         for (var i =0;i<coleccion.length;i++){
                 coleccion[i].checked=false;
+                id = coleccion[i].getAttribute('name');
+                var checkboxContainer = document.getElementById(id);
+                checkboxContainer.classList.remove('checkedContainer');
         }
     }
+}
+function clickCheckbox(id){
+    var checkboxElement = document.getElementById('checkbox-'+id);
+    var checkboxContainer = document.getElementById(id);
+    if (checkboxElement.checked){
+        checkboxElement.checked=false;
+        checkboxContainer.classList.remove('checkedContainer');
+    } else {
+        checkboxElement.checked=true;
+        checkboxContainer.classList.add('checkedContainer');
+
+    }
+
 }

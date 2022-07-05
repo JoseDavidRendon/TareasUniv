@@ -81,9 +81,10 @@
                             {% csrf_token %}
                             <div class="contenedor-checkboxes">
                                 {% for curso in todosLosCursos %}
-                                    <div class="casilla-contenedor" id="{{curso}}">
+                                    <div class="casilla-contenedor " id="{{curso}}"  onclick="clickCheckbox('{{curso}}')">
                                         <input  type="checkbox" name="{{curso}}" id="checkbox-{{curso}}" class="checkboxAll">
                                         <label for="{{curso}}" class="casilla-curso">{{curso}}</label>
+                                        <div><img class="botones-img" src="{% static 'icons/icon-check.png' %}" alt=""></div>
                                         <script>comprobarChecked('{{curso}}', '{%  comprobarCheckedDB request curso %}')</script>
                                     </div>
                                 {% endfor %}
