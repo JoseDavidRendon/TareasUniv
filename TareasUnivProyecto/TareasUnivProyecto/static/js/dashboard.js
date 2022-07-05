@@ -198,7 +198,7 @@ function buscadorDeCursos(cursos){
     for (var i = 0; i< casilla.length;i++){
         var idd = casilla[i].innerHTML;
         document.getElementById(idd).style.display="none";
-        if (casilla[i].innerHTML.includes(inputText.value)){
+        if (casilla[i].innerHTML.includes(inputText.value.toLowerCase())){
             document.getElementById(idd).style.display="flex";
         }
     }
