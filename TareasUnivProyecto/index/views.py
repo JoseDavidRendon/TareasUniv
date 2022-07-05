@@ -77,7 +77,7 @@ def agregarCurso(request):
         formulario = formAgregarCurso(request.POST)
         if formulario.is_valid():
             form=CursosYTareas()
-            form.curso = formulario.cleaned_data['curso']
+            form.curso = formulario.cleaned_data['curso'].lower()
             form.estado = formulario.cleaned_data['estado']
             form.tarea = formulario.cleaned_data['tarea']
             form.valor = formulario.cleaned_data['valor']
@@ -86,7 +86,7 @@ def agregarCurso(request):
             form.usuario = request.user
             form.save()
             formEstadoDelCurso=EstadoDelCurso()
-            Existencia = EstadoDelCurso.objects.filter(curso=formulario.cleaned_data['curso']).count()
+            Existencia = EstadoDelCurso.objects.filter(curso=formulario.cleaned_data['curso'].lower()).count()
             if Existencia == 0:
                 formEstadoDelCurso.curso=formulario.cleaned_data['curso']
                 formEstadoDelCurso.save()
@@ -142,7 +142,7 @@ def actualizarCurso(request):
             form = CursosYTareas.objects.filter(id=id)
             if id==form[0].id:
                 form.update(
-                    curso=formulario.cleaned_data['curso'],
+                    curso=formulario.cleaned_data['curso'].lower(),
                     tarea=formulario.cleaned_data['tarea'],
                     valor=formulario.cleaned_data['valor'],
                     estado=formulario.cleaned_data['estado'],
@@ -186,6 +186,7 @@ def dashboard(request):
         dashboardConfig = config.dashboardActivos.split(",")
         print( dashboardConfig)
     except:
+        config = Settings.objects.create(usuario=usuario)
         dashboardConfig=("")
     cursos = []
     for curso in tareas:

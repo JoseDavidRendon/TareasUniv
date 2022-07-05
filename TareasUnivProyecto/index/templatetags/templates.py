@@ -45,10 +45,8 @@ def obtenerValoresGraficaLineal(request, curso):
 def comprobarCheckedDB(request, id):
     usuario= request.user.username
     tarea = Settings.objects.get(usuario=usuario)
-    listt = tarea.dashboardActivos
-    listtt = listt.lower()
-    listaTareas=listt.split(",")
-    if id.lower() in listaTareas:
+    listaTareas=(tarea.dashboardActivos).split(",")
+    if id in listaTareas:
         return 1
     else:
         return 0
