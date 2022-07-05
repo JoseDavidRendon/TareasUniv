@@ -14,11 +14,15 @@
     <br><h2><strong onclick="colapsarContenedorTarea('Contenedor-Comenzar', 'titulo-comenzar-tarea', 'titulo-icon-comenzar')" class="titulo" id="titulo-comenzar-tarea" >Tareas sin comenzar <img class="titulo-icon" id="titulo-icon-comenzar" src="{%  static 'icons/icon-dropdown.png'  %}" alt=""></strong></h2>
 
     <div class="contenedor-contenedores " id="Contenedor-Comenzar">
-        
+            {% if formTareasPendientes.count == 0 %}
+            <div class="contenedor-vacío"><img class="icon-vacio" src="{% static 'icons/icon-empty.png' %}" alt="">No hay tareas</div>
+            {% endif %}
             {% for tarea in formTareasPendientes %}
-
+            
+            
             <div class="contenedor-tarea" id="contenedor-tarea-{{tarea.id}}">
-                
+                  
+            <script>console.log("hay algo")</script>
                 {% for dias in diasRestantes %}
 
                     {% if dias.0 == tarea.id %}
@@ -210,8 +214,7 @@
                 
                 
 
-            </div>
-
+            </div>  
             {% endfor %}        
 
     </div>
@@ -226,6 +229,9 @@
 
 
     <div class="contenedor-contenedores" id="Contenedor-Proceso">
+            {% if formTareasProceso.count == 0 %}
+            <div class="contenedor-vacío"><img class="icon-vacio" src="{% static 'icons/icon-empty.png' %}" alt="">No hay tareas</div>
+            {% endif %}
         
             {% for tarea in formTareasProceso %}
 
@@ -432,8 +438,12 @@
     <!--  ---------------------------------------------------------  -->
 
        <div class="contenedor-contenedores" id="Contenedor-Terminado" style="margin-bottom: 30px;">
-           
-               {% for tarea in formTareasTerminadas %}
+
+                {% if formTareasTerminadas.count == 0 %}
+                <div class="contenedor-vacío"><img class="icon-vacio" src="{% static 'icons/icon-empty.png' %}" alt="">No hay tareas</div>
+                {% endif %}
+
+                {% for tarea in formTareasTerminadas %}
                
                 <div class="contenedor-tarea" id="contenedor-tarea-{{tarea.id}}">
                     
