@@ -199,7 +199,7 @@ function buscadorDeCursos(cursos){
         var idd = casilla[i].innerHTML;
         document.getElementById(idd).style.display="none";
         if (casilla[i].innerHTML.includes(inputText.value)){
-            document.getElementById(idd).style.display="block";
+            document.getElementById(idd).style.display="flex";
         }
     }
 }
