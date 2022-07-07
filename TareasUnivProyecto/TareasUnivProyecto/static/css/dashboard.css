@@ -326,3 +326,28 @@
     background-color: rgba(53, 59, 59, 0.822);
     color: white;
 }
+.contenedor-vacío{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    max-width: 300px;
+    font-weight: bold;
+    opacity: 60%;
+    text-align: center;
+    
+}
+.primer-p{
+    margin-top: 20px;
+    font-size: 20px;
+    color: black;
+}
+.segundo-p{
+    color: rgba(0, 0, 0, 0.747);
+}
+.icon-vacio{
+    height: 180px;
+    width: 180px;
+}

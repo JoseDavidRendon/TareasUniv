@@ -56,6 +56,11 @@
         
         
     </div>
+    {% else %}
+    <div class="contenedor-vacío"><img class="icon-vacio" src="{% static 'icons/icon-empty.png' %}" alt="">
+    <p class="primer-p">No hay cursos seleccionados</p>
+    <p class="segundo-p">Haga clic en el botón de opciones y seleccione los cursos que desea mostrar</p>
+    </div>
     {% endif %}
       
     {% endfor %}
