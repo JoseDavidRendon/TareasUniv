@@ -22,36 +22,52 @@
         <div class="titulo-graficas"><h2><strong>{{curso}}</strong></h2></div>
         
         <div class="contenedor-graficas">
-            <div class="contenedor-graficaLineal">
+            <div class="graficas-superiores">
+
+                <div class="contenedor-graficaLineal">
+                    
+                    <canvas id="grafica-{{curso}}" class="graficoLineal" ></canvas>
+                    <script> crearLinea('{{curso}}', '{% autoescape off %}{% obtenerValoresGraficaLineal request curso %} {% endautoescape %}') </script>
+        
+                </div>
+                <div class="conjunto-de-graficas">
+                    <div class="grafico-circular">
+                        <canvas id="grafica-circular-{{curso}}" max-width="80%" max-height="200px"></canvas>
+                        <div class="leyenda">
+                            <div class="contenedor-leyenda">
+                                <div class="icon-leyenda verde"></div><p id="texto-circular-verde-{{curso}}"></p>
+                            </div>    
+                            <div class="contenedor-leyenda">
+                                <div class="icon-leyenda rojo"></div><p id="texto-circular-rojo-{{curso}}"></p>
+                            </div>
+                            <div class="contenedor-leyenda">
+                                <div class="icon-leyenda amarillo"></div><p id="texto-circular-amarillo-{{curso}}"></p>
+                            </div>
+                        </div>
+                        <script> crearDonut('{{curso}}', '{% obtenerValoresDeCalificacion request curso %}') </script>
+                    </div> 
+                    <div class="grafico-circular">
+                        <canvas id="grafica-circular2-{{curso}}" max-width="80%" max-height="200px"></canvas>
+                        <div class="subtitulo-circular"><p id="texto-circular-{{curso}}">20%</p></div>
+                        <script> crearDonutProgreso('{{curso}}', '{% obtenerProgreso request curso %}') </script>
+                    </div>  
+                    
+                </div>
                 
-                <canvas id="grafica-{{curso}}" class="graficoLineal" ></canvas>
-                <script> crearLinea('{{curso}}', '{% autoescape off %}{% obtenerValoresGraficaLineal request curso %} {% endautoescape %}') </script>
-    
             </div>
-            <div class="conjunto-de-graficas">
-                <div class="grafico-circular">
-                    <canvas id="grafica-circular-{{curso}}" max-width="80%" max-height="200px"></canvas>
-                    <div class="leyenda">
-                        <div class="contenedor-leyenda">
-                            <div class="icon-leyenda verde"></div><p id="texto-circular-verde-{{curso}}"></p>
-                        </div>    
-                        <div class="contenedor-leyenda">
-                            <div class="icon-leyenda rojo"></div><p id="texto-circular-rojo-{{curso}}"></p>
-                        </div>
-                        <div class="contenedor-leyenda">
-                            <div class="icon-leyenda amarillo"></div><p id="texto-circular-amarillo-{{curso}}"></p>
-                        </div>
-                    </div>
-                    <script> crearDonut('{{curso}}', '{% obtenerValoresDeCalificacion request curso %}') </script>
-                </div> 
-                <div class="grafico-circular">
-                    <canvas id="grafica-circular2-{{curso}}" max-width="80%" max-height="200px"></canvas>
-                    <div class="subtitulo-circular"><p id="texto-circular-{{curso}}">20%</p></div>
-                    <script> crearDonutProgreso('{{curso}}', '{% obtenerProgreso request curso %}') </script>
-                </div>  
-
+            <div class="titulo-barras"><p>Calificacion actual del curso</p></div>
+            <div class="contenedor-barra-promedio">
+                <div class="marcador marcador-promedio" id="marcador-{{curso}}">
+                    <div class="mensaje mensaje-top" id="mensaje-top-{{curso}}"><p>Te encuentras aquí:</p><p id="porcentaje-top-{{curso}}"></p></div>
+                </div>
+                <div class="marcador marcador-promedio-global" id="marcador-global-{{curso}}">
+                    <div class="mensaje mensaje-bot" id="mensaje-bot-{{curso}}"><p>Promedio global:</p><p id="porcentaje-bot-{{curso}}"></p></div>
+                </div>
             </div>
-
+            <div class="calificacion">
+                <p>Tu calificación si el curso terminara ahora: <span id="calificacion-definitiva-{{curso}}"></span></p>
+                <script> crearBarraPromedio('{{curso}}','{% obtenePromedioDelCurso request curso %}' ) </script>
+            </div>
         </div>
         
         

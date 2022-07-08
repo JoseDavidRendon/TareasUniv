@@ -235,3 +235,30 @@ function clickCheckbox(id){
     }
 
 }
+function crearBarraPromedio(id, originDict){
+    var diccionario = originDict.replaceAll('&#x27;',"\"");
+    var correctedDiccionario = JSON.parse(diccionario);
+    console.log(correctedDiccionario);
+    var marcador = document.getElementById('marcador-'+id);
+    var marcadorGlobal = document.getElementById('marcador-global-'+id);
+    marcador.style.left=correctedDiccionario['promedioPersonal']+"%";
+    marcadorGlobal.style.left=correctedDiccionario['promedioGlobal']+"%";
+    if (correctedDiccionario['promedioPersonal']  > 80){
+        document.getElementById('mensaje-top-'+id).style.right="100px"
+    }
+    if (correctedDiccionario['promedioGlobal']  > 80){
+        document.getElementById('mensaje-bot-'+id).style.right="100px"
+    }
+    if (correctedDiccionario['promedioPersonal']  < 20){
+        document.getElementById('mensaje-top-'+id).style.left="0px"
+    }
+    if (correctedDiccionario['promedioGlobal']  < 20){
+        document.getElementById('mensaje-bot-'+id).style.left="0px"
+    }
+    document.getElementById('porcentaje-top-'+id).textContent=correctedDiccionario['promedioPersonal']+"%";  
+    document.getElementById('porcentaje-bot-'+id).textContent=correctedDiccionario['promedioGlobal']+"%";  
+    document.getElementById('calificacion-definitiva-'+id).textContent=correctedDiccionario['calificacion'];
+    if(correctedDiccionario['calificacion'] >= 3.5){
+        document.getElementById('calificacion-definitiva-'+id).style.color="green"
+    } 
+}

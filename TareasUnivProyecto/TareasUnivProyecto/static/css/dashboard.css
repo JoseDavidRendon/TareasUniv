@@ -136,6 +136,10 @@
     max-width: 100%;
     /* padding: 20px; */
 }
+.progreso-global{
+    flex-shrink: 1;
+    flex-grow: 1;
+}
 .titulo-graficas{
     text-align: center;
     margin-bottom: 20px;
@@ -192,11 +196,18 @@
     flex-wrap: wrap;
     justify-content: center;
 }
-.contenedor-graficas{
+.graficas-superiores{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+}
+.contenedor-graficas{
+    display: flex;
+    flex-direction: column;
     padding: 20px;
+    justify-content: center;
+    align-items: center;
 }
 .titulo-grafica-lineal{
     display: none;
@@ -249,7 +260,7 @@
 
   @media screen and (max-width: 464px) {
     .graficoLineal{
-        height: 200px !important;
+        height: 180px !important;
         width: 300px !important;
     }
   }
@@ -350,4 +361,55 @@
 .icon-vacio{
     height: 180px;
     width: 180px;
+}
+.titulo-barras{
+    font-size: 12px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.603);
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+.contenedor-barra-promedio{
+    margin: 70px 0px;
+    background: linear-gradient(90deg, rgba(255,38,0,1) 0%, rgba(249,255,0,1) 50%, rgba(167,209,111,1) 100%);
+    width: 80%;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 1px 1px black;
+}
+.marcador{
+    width: 5px;
+    height: 25px;
+    position: relative;
+    box-shadow: 0px 0px 3px 1px rgb(104, 99, 151);
+}
+.marcador-promedio{
+    background-color: rgb(190, 233, 181);
+}
+.marcador-promedio-global{
+    background-color: rgb(228, 176, 176);
+}
+.mensaje{
+    font-size: 12px;
+    text-align: center;
+    position: relative;
+    right: 50px;
+    width: 120px;
+    background-color: white;
+    box-shadow: 0px 0px 1px 1px rgba(104, 99, 151, 0.445);
+    color: rgba(0, 0, 0, 0.692);
+}
+.mensaje-top{
+    bottom: 45px;
+}
+.mensaje-bot{
+    top: 33px;
+}
+.mensaje p{
+    margin: 0px;
+}
+.calificacion{
+    text-align: center;
+    padding: 0px 5px;
 }

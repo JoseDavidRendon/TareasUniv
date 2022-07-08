@@ -1,8 +1,11 @@
+from audioop import avg
 from django import template
 from ..models import CursosYTareas, EstadoDelCurso, Settings
 import json
 from django.utils.safestring import SafeString
 from django.template.defaultfilters import stringfilter
+from django.db.models import Avg, Min
+from django.contrib.auth.models import User
 register = template.Library()
 
 @register.simple_tag
@@ -33,7 +36,7 @@ def obtenerValoresGraficaLineal(request, curso):
     usuario = request.user.username
     datos={}
     paso=1
-    for tareas in CursosYTareas.objects.filter(usuario=usuario, curso=curso, estado="terminada", calificado=True):
+    for tareas in CursosYTareas.objects.filter(usuario=usuario, curso=curso, estado="terminada", calificado=True).order_by('entrega'):
         datos["Tarea %s" %paso]={"nombre":tareas.tarea,
         "calificacion":int(((tareas.calificacion*100)/tareas.valor))
         }
@@ -50,3 +53,31 @@ def comprobarCheckedDB(request, id):
         return 1
     else:
         return 0
+
+@register.simple_tag
+def obtenePromedioDelCurso(request, curso):
+    notas_esperadas={}
+    notas = {}
+    for materia in CursosYTareas.objects.filter(curso=curso, estado="terminada"):
+        if materia.usuario in notas:
+            notas_esperadas[materia.usuario]+=materia.valor
+            notas[materia.usuario]+=materia.calificacion
+        else:
+            notas_esperadas[materia.usuario]=materia.valor
+            notas[materia.usuario]=materia.calificacion
+    print(notas_esperadas)
+    print(notas)
+    promedios=0
+    for notass in notas:
+        promedios+=(notas[notass]*100)/notas_esperadas[notass]
+    promedio=(promedios/len(notas.keys()))
+    personal_esperadas=notas_esperadas[request.user.username]
+    personal=notas[request.user.username]
+    promedioPersonal = (personal*100)/personal_esperadas
+    calificacion = round((notas[request.user.username]*5)/notas_esperadas[request.user.username],1)
+    data={
+        'promedioGlobal':int(promedio),
+        'promedioPersonal':int(promedioPersonal),
+        'calificacion':calificacion
+    }
+    return (data)
