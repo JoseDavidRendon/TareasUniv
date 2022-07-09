@@ -4,7 +4,6 @@ function crearLinea (id, mostrar){
             return " calificación: "+tooltipItems.raw+"%";
       };
     const datos = JSON.parse(mostrar);
-    // console.log(datos);
     var labelss=Object.keys(datos);
     var dataForDatasets = [];
     for (var i = 0; i<Object.values(datos).length;i++){
@@ -23,7 +22,7 @@ function crearLinea (id, mostrar){
                 borderColor:'rgb(121, 180, 183)',
                 borderWidth: 1,
                 backgroundColor:'rgb(121, 180, 183)' ,
-                pointRadius:5
+                pointRadius:7
             }]
         },
             options: {
@@ -238,7 +237,6 @@ function clickCheckbox(id){
 function crearBarraPromedio(id, originDict){
     var diccionario = originDict.replaceAll('&#x27;',"\"");
     var correctedDiccionario = JSON.parse(diccionario);
-    console.log(correctedDiccionario);
     var marcador = document.getElementById('marcador-'+id);
     var marcadorGlobal = document.getElementById('marcador-global-'+id);
     marcador.style.left=correctedDiccionario['promedioPersonal']+"%";

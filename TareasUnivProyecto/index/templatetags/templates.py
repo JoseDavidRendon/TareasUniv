@@ -38,7 +38,7 @@ def obtenerValoresGraficaLineal(request, curso):
     paso=1
     for tareas in CursosYTareas.objects.filter(usuario=usuario, curso=curso, estado="terminada", calificado=True).order_by('entrega'):
         datos["Tarea %s" %paso]={"nombre":tareas.tarea,
-        "calificacion":int(((tareas.calificacion*100)/tareas.valor))
+        "calificacion":round(((tareas.calificacion*100)/tareas.valor))
         }
         paso +=1
     datos_json = json.dumps(datos)
