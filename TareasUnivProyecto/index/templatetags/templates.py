@@ -85,3 +85,11 @@ def obtenePromedioDelCurso(request, curso):
         'error':error
     }
     return (data)
+
+@register.simple_tag
+def pruebaa(val=None):
+    data = {
+        1:"hola",
+        2:"adios"
+    }
+    return (data)

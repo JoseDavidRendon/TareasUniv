@@ -53,6 +53,10 @@
     border-radius: 8px;
     line-height: 10px;
 }
+.contenedor-tarea-terminada{
+    margin-bottom: 20px;
+    width: 100%;
+}
 
 .separacion{
     line-height: 20px;
@@ -349,4 +353,35 @@
 .icon-vacio{
     height: 120px;
     width: 120px;
+}
+.contenedor-tareas-terminadas{
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    width: 87%;
+}
+.contenido-contenedor-tarea-terminada{
+    position: relative;
+    display: none;
+}
+.titulo-de-contenedor-terminada{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 10px;
+}
+.titulo-icon-terminado{
+    width: 10px; 
+    height: 10px; 
+    opacity: 50%;
+    /* transform: rotate(180deg); */
+    transition: 0.3s;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+.titulo-de-contenedor-terminada:hover{
+    color: #79B4B7;
 }

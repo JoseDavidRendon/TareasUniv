@@ -22,6 +22,10 @@ def inicio(request):
     formTareasPendientes = CursosYTareas.objects.filter(estado="espera", usuario = usuario)
     formTareasProceso = CursosYTareas.objects.filter(estado="proceso", usuario = usuario)
     formTareasTerminadas = CursosYTareas.objects.filter(estado="terminada", usuario = usuario)
+    formTareasTerminadas2 = []
+    for tarea in CursosYTareas.objects.filter(estado="terminada", usuario = usuario):
+        if tarea.curso not in formTareasTerminadas2:
+            formTareasTerminadas2.append(tarea.curso)
     diasRestantes = []
     for tarea in formTareasPendientes:
         diaRestante= tarea.entrega - datetime.date.today()
@@ -36,8 +40,10 @@ def inicio(request):
         'formTareasTerminadas':formTareasTerminadas,
         'diasRestantes':diasRestantes,
         'diasRestantesProceso':diasRestantesProceso,
-        'formAnotaciones': formAnotaciones()
+        'formAnotaciones': formAnotaciones(),
+        'formTareasTerminadasCursos':formTareasTerminadas2
     } 
+    print(formTareasTerminadas2)
     return render(request, 'index/index.html', data)
 
 

@@ -104,3 +104,17 @@ function editarCalificacion(id){
     document.getElementById('boton-edit-calif-'+id).style.display="none";
     document.getElementById('insertar-nota-'+id).disabled=false;
 }
+
+function mostrarOcultarTareasTerminadas(id){
+    var elemento = document.getElementById('tareas-'+id);
+    var elementoIcon = document.getElementById('icon-terminado-img-'+id);
+    if (elemento.classList.contains('visible')){
+        elemento.classList.remove('visible');
+        elemento.style.display="none";
+        elementoIcon.style.transform='rotate(0deg)';
+    } else {
+        elemento.classList.add('visible');
+        elemento.style.display="block";
+        elementoIcon.style.transform='rotate(180deg)';
+    }
+}
