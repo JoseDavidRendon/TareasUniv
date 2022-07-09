@@ -75,9 +75,13 @@ def obtenePromedioDelCurso(request, curso):
     personal=notas[request.user.username]
     promedioPersonal = (personal*100)/personal_esperadas
     calificacion = round((notas[request.user.username]*5)/notas_esperadas[request.user.username],1)
+    error = 0
+    if notas_esperadas[request.user.username]>500:
+        error=1
     data={
         'promedioGlobal':int(promedio),
         'promedioPersonal':int(promedioPersonal),
-        'calificacion':calificacion
+        'calificacion':calificacion,
+        'error':error
     }
     return (data)

@@ -21,16 +21,18 @@
     <div class="contenedor-contenedores-graficas" >
         <div class="titulo-graficas"><h2><strong>{{curso}}</strong></h2></div>
         
-        <div class="contenedor-graficas">
+        <div class="icon-warning" id="icon-warning-{{curso}}"><img src="{% static 'icons/icon-warning.png' %}" alt=""><p>Verifique que el valor de las tareas se haya digitado correctamente</p></div>
+        <div class="contenedor-graficas" id="contenedor-graficas-{{curso}}">
+            <div class="error-curso" id="error-curso-{{curso}}"></div>
             <div class="graficas-superiores">
 
-                <div class="contenedor-graficaLineal">
+                <div class="contenedor-graficaLineal" id="contenedor-graficaLineal-{{curso}}">
                     
                     <canvas id="grafica-{{curso}}" class="graficoLineal" ></canvas>
                     <script> crearLinea('{{curso}}', '{% autoescape off %}{% obtenerValoresGraficaLineal request curso %} {% endautoescape %}') </script>
         
                 </div>
-                <div class="conjunto-de-graficas">
+                <div class="conjunto-de-graficas" id="conjunto-de-graficas-{{curso}}">
                     <div class="grafico-circular">
                         <canvas id="grafica-circular-{{curso}}" max-width="80%" max-height="200px"></canvas>
                         <div class="leyenda">
@@ -55,18 +57,21 @@
                 </div>
                 
             </div>
-            <div class="titulo-barras"><p>Calificacion actual del curso</p></div>
-            <div class="contenedor-barra-promedio">
-                <div class="marcador marcador-promedio" id="marcador-{{curso}}">
-                    <div class="mensaje mensaje-top" id="mensaje-top-{{curso}}"><p>Te encuentras aquí:</p><p id="porcentaje-top-{{curso}}"></p></div>
+            <div class="contenedor-barra-promedio-padre" id="contenedor-barra-padre-{{curso}}">
+
+                <div class="titulo-barras"><p>Promedio del curso</p></div>
+                <div class="contenedor-barra-promedio">
+                    <div class="marcador marcador-promedio" id="marcador-{{curso}}">
+                        <div class="mensaje mensaje-top" id="mensaje-top-{{curso}}"><p>Te encuentras aquí:</p><p id="porcentaje-top-{{curso}}"></p></div>
+                    </div>
+                    <div class="marcador marcador-promedio-global" id="marcador-global-{{curso}}">
+                        <div class="mensaje mensaje-bot" id="mensaje-bot-{{curso}}"><p>Promedio global:</p><p id="porcentaje-bot-{{curso}}"></p></div>
+                    </div>
                 </div>
-                <div class="marcador marcador-promedio-global" id="marcador-global-{{curso}}">
-                    <div class="mensaje mensaje-bot" id="mensaje-bot-{{curso}}"><p>Promedio global:</p><p id="porcentaje-bot-{{curso}}"></p></div>
+                <div class="calificacion">
+                    <p>Tu calificación si el curso terminara ahora: <span id="calificacion-definitiva-{{curso}}"></span></p>
+                    <script> crearBarraPromedio('{{curso}}','{% obtenePromedioDelCurso request curso %}' ) </script>
                 </div>
-            </div>
-            <div class="calificacion">
-                <p>Tu calificación si el curso terminara ahora: <span id="calificacion-definitiva-{{curso}}"></span></p>
-                <script> crearBarraPromedio('{{curso}}','{% obtenePromedioDelCurso request curso %}' ) </script>
             </div>
         </div>
         

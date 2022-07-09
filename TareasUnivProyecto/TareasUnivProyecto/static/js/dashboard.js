@@ -258,7 +258,19 @@ function crearBarraPromedio(id, originDict){
     document.getElementById('porcentaje-top-'+id).textContent=correctedDiccionario['promedioPersonal']+"%";  
     document.getElementById('porcentaje-bot-'+id).textContent=correctedDiccionario['promedioGlobal']+"%";  
     document.getElementById('calificacion-definitiva-'+id).textContent=correctedDiccionario['calificacion'];
-    if(correctedDiccionario['calificacion'] >= 3.5){
+    if(correctedDiccionario['calificacion'] <3.0){
+        document.getElementById('calificacion-definitiva-'+id).style.color="red"
+    } else if (correctedDiccionario['calificacion'] <3.6){
+        document.getElementById('calificacion-definitiva-'+id).style.color="yellow"
+    } else{
         document.getElementById('calificacion-definitiva-'+id).style.color="green"
-    } 
+    }
+    if(correctedDiccionario['error']){
+        document.getElementById('conjunto-de-graficas-'+id).style.filter="blur(6px)";
+        document.getElementById('contenedor-graficaLineal-'+id).style.filter="blur(6px)";
+        document.getElementById('contenedor-barra-padre-'+id).style.filter="blur(6px)";
+        document.getElementById('contenedor-graficas-'+id).style.filter="saturate(13%)";
+        document.getElementById('error-curso-'+id).style.display="block";
+        document.getElementById('icon-warning-'+id).style.display="flex"
+    }
 }

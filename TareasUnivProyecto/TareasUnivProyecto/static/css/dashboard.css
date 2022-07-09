@@ -142,7 +142,7 @@
 }
 .titulo-graficas{
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     color: rgb(78, 78, 78);
 }
 .contenedor-contenedores-graficas{
@@ -379,7 +379,7 @@
     box-shadow: 0px 0px 1px 1px black;
 }
 .marcador{
-    width: 5px;
+    width: 1px;
     height: 25px;
     position: relative;
     box-shadow: 0px 0px 3px 1px rgb(104, 99, 151);
@@ -412,4 +412,37 @@
 .calificacion{
     text-align: center;
     padding: 0px 5px;
+}
+.error-curso{
+    background-color: rgba(197, 197, 197, 0.452);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    display: none;
+}
+.icon-warning{
+    position: relative;
+    z-index: 1;
+    height: 0px;
+    top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+}
+.icon-warning img{
+    width: 190px;
+    height: 190px;
+    opacity: 60%;
+}
+.icon-warning p {
+    opacity: 90%;
+    font-weight: bold;
+}
+.contenedor-barra-promedio-padre{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
