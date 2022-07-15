@@ -4,6 +4,6 @@ function ButtonsLoaded(){
         for (var i = 0; i<elementos.length; i++){
             elementos[i].classList.add('clicable')
         }    
-     }, 1000);
+     }, 500);
     
 }
