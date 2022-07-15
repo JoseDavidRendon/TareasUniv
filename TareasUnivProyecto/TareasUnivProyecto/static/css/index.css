@@ -11,6 +11,7 @@
     align-items: center; 
     width: 100%;
     color:#4b4b4b; 
+    padding-bottom:  40px;
 }
 
 
@@ -372,6 +373,9 @@
     cursor: pointer;
     user-select: none;
     margin-bottom: 10px;
+}
+#titulo-icon-terminado{
+    transform: rotate(0deg);
 }
 .titulo-icon-terminado{
     width: 10px; 

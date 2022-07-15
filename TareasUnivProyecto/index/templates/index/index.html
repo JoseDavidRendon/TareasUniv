@@ -23,7 +23,7 @@
             
             <div class="contenedor-tarea" id="contenedor-tarea-{{tarea.id}}">
                   
-            <script>console.log("hay algo")</script>
+            
                 {% for dias in diasRestantes %}
 
                     {% if dias.0 == tarea.id %}
@@ -438,7 +438,7 @@
 
     <!--  ---------------------------------------------------------  -->
 
-       <div class="contenedor-contenedores" id="Contenedor-Terminado" style="margin-bottom: 30px;">
+       <div class="contenedor-contenedores colapsar-css" id="Contenedor-Terminado" style="margin-bottom: 30px;">
 
                 {% if formTareasTerminadas.count == 0 %}
                 <div class="contenedor-vacío"><img class="icon-vacio" src="{% static 'icons/icon-empty.png' %}" alt="">No hay tareas</div>

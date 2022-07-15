@@ -9,8 +9,9 @@
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> 
+        <script src="{% static 'js/base.js' %}"></script>
     </head>
-    <body >
+    <body onload="ButtonsLoaded()">
     <header id="aber">
         <div class="menu" style="position: fixed;">
             <input type="checkbox" id="checkbox_toggle">
@@ -61,13 +62,18 @@
             
             
         </div>
-        <div class="dropdown" id="menu-usuario"> <!-- Menu desplegable del usuario-->
-            <a href="#" class="btn  " id="dropdownMenuLink" data-bs-toggle="dropdown"><img src="{% static 'icons/icon-dropdown.png' %}" alt=""></a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"> <!-- boton para salir-->
-                <li><a class="dropdown-item" href="{% url 'logout' %}">salir</a></li>
-                {% if user.is_staff %}
-                <li><a class="dropdown-item" href="/admin">Panel de administración</a></li>   
-                {% endif %}         
+        <div class="contenedor-botones-header">
+            <div class="boton-mensajes noclic"> <!-- Menu desplegable del usuario-->
+                <div></div>
+            </div>
+            <div class="dropdown noclic " id="menu-usuario"> <!-- Menu desplegable del usuario-->
+                <a href="#" class="btn  " id="dropdownMenuLink" data-bs-toggle="dropdown"><img src="{% static 'icons/icon-dropdown.png' %}" alt=""></a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"> <!-- boton para salir-->
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">salir</a></li>
+                    {% if user.is_staff %}
+                    <li><a class="dropdown-item" href="/admin">Panel de administración</a></li>   
+                    {% endif %}         
+                </div>
             </div>
         </div>
     </header>
