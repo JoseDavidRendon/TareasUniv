@@ -325,6 +325,7 @@ footer{
     overflow-wrap: break-word;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     overflow: hidden;
     cursor: pointer;
 }
@@ -366,4 +367,23 @@ footer{
     width: 100%;
     left: 0px;
     opacity: 35%;
+}
+.indicador-mensajes{
+    position: absolute;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+.indicador-mensajes div{
+    background-color: rgb(73, 157, 196);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+.indicador-mensajes div p{
+    position: relative;
+    bottom: 2px;
 }

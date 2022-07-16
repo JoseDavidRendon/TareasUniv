@@ -29,9 +29,17 @@ function expandirMensaje(id, idIcon){
             data: {"id":idIcon},
             headers: { "X-CSRFToken": getCookie("csrftoken")}
         });
+        cantidadDeMensajes = document.getElementById('cantidad-de-mensajes').textContent;
+        if (cantidadDeMensajes>1){
+            document.getElementById('cantidad-de-mensajes').textContent = cantidadDeMensajes-1;
+        } else {
+            document.getElementById('indicador-mensajes').remove();
+        }
+        
     } else {
         console.log('Obvio no existe')
     }
+    
 }
 function expandirContenedorMensajes(){
     var elemento = document.getElementById('contenedor-mensajes');

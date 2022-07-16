@@ -23,6 +23,7 @@ def inicio(request):
     formTareasProceso = CursosYTareas.objects.filter(estado="proceso", usuario = usuario)
     formTareasTerminadas = CursosYTareas.objects.filter(estado="terminada", usuario = usuario)
     mensajesDelUsuario = Mensajes.objects.filter(para=request.user.username).order_by('fecha')[::-1]
+    HayNuevoMensaje = Mensajes.objects.filter(para=request.user.username, leido=False)
     formTareasTerminadas2 = []
     for tarea in CursosYTareas.objects.filter(estado="terminada", usuario = usuario):
         if tarea.curso not in formTareasTerminadas2:
@@ -43,8 +44,10 @@ def inicio(request):
         'diasRestantesProceso':diasRestantesProceso,
         'formAnotaciones': formAnotaciones(),
         'formTareasTerminadasCursos':formTareasTerminadas2,
-        'mensajes':mensajesDelUsuario
+        'mensajes':mensajesDelUsuario,
+        'mensajesSinLeer':HayNuevoMensaje
     } 
+    print(len(HayNuevoMensaje))
     print(formTareasTerminadas2)
     return render(request, 'index/index.html', data)
 
