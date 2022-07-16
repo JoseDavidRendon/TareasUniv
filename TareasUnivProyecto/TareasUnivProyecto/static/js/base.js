@@ -11,7 +11,7 @@ function expandirMensaje(id, idIcon){
     var elemento =document.getElementById(id);
     if (elemento.classList.contains('mensaje-abierto')){
         elemento.classList.remove('mensaje-abierto')    
-        elemento.style.height='80px';
+        elemento.style.height='55px';
         elemento.classList.add('cerrado')
     } else {
         elemento.style.height='auto';

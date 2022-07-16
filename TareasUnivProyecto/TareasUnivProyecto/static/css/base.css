@@ -94,7 +94,7 @@ body{
 }
 
 .contenedor-barra{
-    height: 80px;
+    height: 55px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -320,7 +320,7 @@ footer{
 /* #e9ecef */
 .mensaje-casilla{
     padding: 5px 10px;
-    height: 80px;
+    height: 55px;
     word-wrap: break-word;         /* All browsers since IE 5.5+ */
     overflow-wrap: break-word;
     display: flex;
@@ -362,7 +362,7 @@ footer{
     background: linear-gradient(0deg, rgba(255,255,255,1) 5%, rgba(255,255,255,0.7371323529411764) 27%, rgba(255,255,255,0) 42%);
     /* background-color: white; */
     padding: 5px 10px;
-    height: 95px;
+    height: 55px;
     position: absolute;
     width: 100%;
     left: 0px;
