@@ -320,7 +320,7 @@ footer{
 /* #e9ecef */
 .mensaje-casilla{
     padding: 5px 10px;
-    height: 100px;
+    height: 80px;
     word-wrap: break-word;         /* All browsers since IE 5.5+ */
     overflow-wrap: break-word;
     display: flex;

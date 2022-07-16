@@ -76,7 +76,7 @@
                 <div class="contenedor-mensajes contenedor-cerrado" id="contenedor-mensajes">
                     {% for mensaje in mensajes %}
                     <div class="mensaje-casilla cerrado" id="mensaje-{{mensaje.id}}" onclick="expandirMensaje('mensaje-{{mensaje.id}}', '{{mensaje.id}}')">
-                        <div class="mensaje ">
+                        <div class="mensaje-completo ">
                             <p><span class="estilo-mensaje">De: </span>{{mensaje.de}}</p>
                             <p><span class="estilo-mensaje">Asunto: </span>{{mensaje.asunto}}</p>
                             <p><span class="estilo-mensaje">Contenido: </span>{{mensaje.contenido}}</p>

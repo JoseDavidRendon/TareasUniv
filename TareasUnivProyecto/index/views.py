@@ -192,6 +192,8 @@ def actualizarAnotacion(request):
 def dashboard(request):
     usuario = request.user.username
     tareas = CursosYTareas.objects.filter(usuario=usuario)
+    mensajesDelUsuario = Mensajes.objects.filter(para=request.user.username).order_by('fecha')[::-1]
+    HayNuevoMensaje = Mensajes.objects.filter(para=request.user.username, leido=False)
     try:
         config = Settings.objects.get(usuario=usuario)
         dashboardConfig = config.dashboardActivos.split(",")
@@ -206,7 +208,9 @@ def dashboard(request):
     data={
         'tareas':tareas,
         'cursosDisponibles': dashboardConfig,
-        'todosLosCursos':cursosSinRepetir
+        'todosLosCursos':cursosSinRepetir,
+        'mensajes':mensajesDelUsuario,
+        'mensajesSinLeer':HayNuevoMensaje
     }
     return render(request, 'index/dashboard.html', data)
 
