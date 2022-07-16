@@ -32,19 +32,21 @@ body{
     width: 30px;
 }
 
-#dropdownMenuLink{
+.dropdownMenu{
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #F8F0DF !important;
     border: none;
-    appearance: none;
     border-radius: 50%;
     width: 40px;
     height: 40px;
+    cursor: pointer;
+    user-select: none;
 }
-#dropdownMenuLink:hover{
-    background-color: #bdb8ad !important;
+
+.dropdownMenu:hover{
+    background-color: #faf8f5 !important;
 }
 
 #dropdownMenuLink img{
@@ -286,11 +288,82 @@ footer{
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 20px;
+    gap: 25px;
 }
 .noclic{
     pointer-events: none;
 }
 .clicable{
     pointer-events: all !important; 
+}
+#dropdownMenuMensaje img{
+    width: 20px;
+    height: 20px;
+}
+.contenedor-mensajes{
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    right: 2%;
+    top: 52px;
+    background-color: white;
+    padding: 5px 0px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 1px 1px rgb(197, 197, 197);
+    display: none;
+    overflow-y: scroll;
+}
+.contenido-mensajes{
+    width: 100%;
+    height: 100%;
+} 
+/* #e9ecef */
+.mensaje-casilla{
+    padding: 5px 10px;
+    height: 100px;
+    word-wrap: break-word;         /* All browsers since IE 5.5+ */
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    cursor: pointer;
+}
+.mensaje-casilla p{
+    margin: 0px;
+}
+.mensaje-casilla:hover{
+    background-color: #e9ecef;
+}
+.divisor-mensajes{
+    width: 100%;
+    height: 2px;
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgb(228, 228, 228) 0%, rgba(228, 228, 228) 78%, rgba(255,255,255,1) 100%);
+    margin-top: 5px;
+}
+.estilo-mensaje{
+    font-weight: bold;
+}
+.nuevo-mensaje{
+    width: 10px;
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+.mensaje-icon{
+    background-color: rgb(73, 157, 196);
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+}
+.cerrado::after{
+    content: "";
+    background: linear-gradient(0deg, rgba(255,255,255,1) 5%, rgba(255,255,255,0.7371323529411764) 27%, rgba(255,255,255,0) 42%);
+    /* background-color: white; */
+    padding: 5px 10px;
+    height: 95px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    opacity: 35%;
 }

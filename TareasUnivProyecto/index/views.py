@@ -1,4 +1,3 @@
-
 import datetime
 from pyexpat.errors import messages
 from random import random
@@ -10,8 +9,9 @@ from django.contrib.auth.decorators  import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import UserRegisterForm, formAgregarCurso, formAnotaciones
-from .models import CursosYTareas, EstadoDelCurso, Settings
+from .models import CursosYTareas, EstadoDelCurso, Settings, Mensajes
 from django import template
+from django.http import JsonResponse
 # Create your views here.
 
 @login_required
@@ -22,6 +22,7 @@ def inicio(request):
     formTareasPendientes = CursosYTareas.objects.filter(estado="espera", usuario = usuario)
     formTareasProceso = CursosYTareas.objects.filter(estado="proceso", usuario = usuario)
     formTareasTerminadas = CursosYTareas.objects.filter(estado="terminada", usuario = usuario)
+    mensajesDelUsuario = Mensajes.objects.filter(para=request.user.username).order_by('fecha')[::-1]
     formTareasTerminadas2 = []
     for tarea in CursosYTareas.objects.filter(estado="terminada", usuario = usuario):
         if tarea.curso not in formTareasTerminadas2:
@@ -41,7 +42,8 @@ def inicio(request):
         'diasRestantes':diasRestantes,
         'diasRestantesProceso':diasRestantesProceso,
         'formAnotaciones': formAnotaciones(),
-        'formTareasTerminadasCursos':formTareasTerminadas2
+        'formTareasTerminadasCursos':formTareasTerminadas2,
+        'mensajes':mensajesDelUsuario
     } 
     print(formTareasTerminadas2)
     return render(request, 'index/index.html', data)
@@ -239,7 +241,8 @@ def editarCalificado(request):
             return HttpResponse('Error')        
     return redirect(to=inicio)
 
-def traer_usuario(request):
-    usuario=request.user.username
-    print(usuario)
-    return usuario
+def foo(request):
+    mensaje = Mensajes.objects.get(pk=request.POST['id'])
+    mensaje.leido=True
+    mensaje.save()
+    return HttpResponse("ok")

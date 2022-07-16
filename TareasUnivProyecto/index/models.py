@@ -21,3 +21,11 @@ class EstadoDelCurso(models.Model):
 class Settings(models.Model):
     usuario = models.CharField(default='usuario', max_length=100)
     dashboardActivos = models.TextField(default="none", max_length=9999999, null=True, blank=True)
+
+class Mensajes(models.Model):
+    para = models.CharField(default='usuario', max_length=100)
+    de = models.CharField(default='Anonimo', max_length=100)
+    asunto = models.CharField(default='Sin asunto', max_length=100)
+    contenido = models.TextField(default="Mensjae vacío", max_length=9999999, null=True, blank=True)
+    leido = models.BooleanField(default=False)
+    fecha = models.DateField(default=django.utils.timezone.now)

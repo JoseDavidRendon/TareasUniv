@@ -93,3 +93,8 @@ def pruebaa(val=None):
         2:"adios"
     }
     return (data)
+
+@register.simple_tag
+def actualizarEstado(id):
+    print("Visto",id)
+    pass

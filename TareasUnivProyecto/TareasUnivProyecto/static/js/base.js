@@ -7,3 +7,55 @@ function ButtonsLoaded(){
      }, 500);
     
 }
+function expandirMensaje(id, idIcon){
+    var elemento =document.getElementById(id);
+    if (elemento.classList.contains('mensaje-abierto')){
+        elemento.classList.remove('mensaje-abierto')    
+        elemento.style.height='100px';
+        elemento.classList.add('cerrado')
+    } else {
+        elemento.style.height='auto';
+        elemento.classList.add('mensaje-abierto')
+        elemento.classList.remove('cerrado')
+    }
+    var hijos = document.getElementById('mensaje-'+idIcon);
+    console.log(hijos)
+    if (hijos.contains(document.getElementById('mensaje-icon-'+idIcon))){
+        console.log('existe')
+        document.getElementById('mensaje-icon-'+idIcon).remove()
+        $.ajax({
+            type: "POST",
+            url: "/foo",
+            data: {"id":idIcon},
+            headers: { "X-CSRFToken": getCookie("csrftoken")}
+        });
+    } else {
+        console.log('Obvio no existe')
+    }
+}
+function expandirContenedorMensajes(){
+    var elemento = document.getElementById('contenedor-mensajes');
+    if (elemento.classList.contains('contenedor-cerrado')){
+        elemento.style.display='block'
+        elemento.classList.remove('contenedor-cerrado')
+    } else {
+        elemento.style.display='none'
+        elemento.classList.add('contenedor-cerrado')
+    }
+    
+}
+function getCookie(c_name)
+{
+    if (document.cookie.length > 0)
+    {
+        c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1)
+        {
+            c_start = c_start + c_name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) c_end = document.cookie.length;
+            return unescape(document.cookie.substring(c_start,c_end));
+        }
+    }
+    return "";
+ }
