@@ -22,8 +22,6 @@ def inicio(request):
     formTareasPendientes = CursosYTareas.objects.filter(estado="espera", usuario = usuario)
     formTareasProceso = CursosYTareas.objects.filter(estado="proceso", usuario = usuario)
     formTareasTerminadas = CursosYTareas.objects.filter(estado="terminada", usuario = usuario)
-    mensajesDelUsuario = Mensajes.objects.filter(para=request.user.username).order_by('fecha')[::-1]
-    HayNuevoMensaje = Mensajes.objects.filter(para=request.user.username, leido=False)
     formTareasTerminadas2 = []
     for tarea in CursosYTareas.objects.filter(estado="terminada", usuario = usuario):
         if tarea.curso not in formTareasTerminadas2:
@@ -44,10 +42,9 @@ def inicio(request):
         'diasRestantesProceso':diasRestantesProceso,
         'formAnotaciones': formAnotaciones(),
         'formTareasTerminadasCursos':formTareasTerminadas2,
-        'mensajes':mensajesDelUsuario,
-        'mensajesSinLeer':HayNuevoMensaje
-    } 
-    print(len(HayNuevoMensaje))
+        'mensajes':cargarNotificaciones(request, 1),
+        'mensajesSinLeer':cargarNotificaciones(request, 2)
+    }
     print(formTareasTerminadas2)
     return render(request, 'index/index.html', data)
 
@@ -122,7 +119,9 @@ def agregarCurso(request):
 def nuevoCurso(request):
     data={
         'form':formAgregarCurso(),
-        'cursosVerificados': EstadoDelCurso.objects.filter(verificacion='verificado')
+        'cursosVerificados': EstadoDelCurso.objects.filter(verificacion='verificado'),
+        'mensajes':cargarNotificaciones(request, 1),
+        'mensajesSinLeer':cargarNotificaciones(request, 2)
     }
     #cursos= EstadoDelCurso()
     #return HttpResponse(cursos)
@@ -138,7 +137,9 @@ def editarTarea(request, id):
         data={
             'form':formAgregarCurso(instance=formInfo),
             'cursosVerificados': EstadoDelCurso.objects.filter(verificacion='verificado'),
-            'id':id
+            'id':id,
+            'mensajes':cargarNotificaciones(request, 1),
+            'mensajesSinLeer':cargarNotificaciones(request, 2)
         }
         return render(request, 'index/editarTarea.html', data)
     else:
@@ -192,8 +193,6 @@ def actualizarAnotacion(request):
 def dashboard(request):
     usuario = request.user.username
     tareas = CursosYTareas.objects.filter(usuario=usuario)
-    mensajesDelUsuario = Mensajes.objects.filter(para=request.user.username).order_by('fecha')[::-1]
-    HayNuevoMensaje = Mensajes.objects.filter(para=request.user.username, leido=False)
     try:
         config = Settings.objects.get(usuario=usuario)
         dashboardConfig = config.dashboardActivos.split(",")
@@ -209,8 +208,8 @@ def dashboard(request):
         'tareas':tareas,
         'cursosDisponibles': dashboardConfig,
         'todosLosCursos':cursosSinRepetir,
-        'mensajes':mensajesDelUsuario,
-        'mensajesSinLeer':HayNuevoMensaje
+        'mensajes':cargarNotificaciones(request, 1),
+        'mensajesSinLeer':cargarNotificaciones(request, 2)
     }
     return render(request, 'index/dashboard.html', data)
 
@@ -253,3 +252,10 @@ def foo(request):
     mensaje.leido=True
     mensaje.save()
     return HttpResponse("ok")
+
+def cargarNotificaciones(request, opc):
+    if opc==1:
+        retornar = Mensajes.objects.filter(para=request.user.username).order_by('fecha')[::-1]
+    else:
+        retornar = Mensajes.objects.filter(para=request.user.username, leido=False)
+    return retornar

@@ -300,12 +300,31 @@ footer{
     width: 20px;
     height: 20px;
 }
+.dropdown-menu{
+    position: absolute !important;
+    top: 47px !important;
+    overflow: hidden;
+    transform: none !important;
+}
+.mostrarDropdown{
+    animation: menuShow;
+    animation-duration: 0.2s;
+    transform-origin:top !important;
+}
+@keyframes menuShow{
+    0%{
+        transform: scaleY(0);
+    }
+    100%{
+        transform: scaleY(1);
+    }
+}
 .contenedor-mensajes{
     width: 400px;
     height: 400px;
     position: absolute;
     right: 2%;
-    top: 52px;
+    top: 56px;
     background-color: white;
     padding: 5px 0px;
     border-radius: 4px;
@@ -313,6 +332,59 @@ footer{
     display: none;
     overflow-y: scroll;
 }
+*::-webkit-scrollbar{
+    width: 5px;
+}
+*::-webkit-scrollbar-thumb{
+    background-color: rgb(153, 153, 153);
+    border-radius: 13px;
+    width: 5px;
+}
+*::-webkit-scrollbar-track{
+    background-color: rgb(219, 219, 219);
+}
+/* .contenedor-mensajes::-webkit-scrollbar{
+    width: 5px;
+}
+.contenedor-mensajes::-webkit-scrollbar-track{
+    background-color: rgba(255, 0, 0, 0);
+}
+.contenedor-mensajes::-webkit-scrollbar-thumb{
+    background-color: rgba(0, 0, 0, 0.11);
+    border-radius: 13px;
+    width: 5px;
+} */
+
+
+
+.expandir-contenedor-mensajes{
+    animation-name: expandir-mensajes;
+    animation-duration: 0.2s;
+}
+.minimizar-contenedor-mensajes{
+    animation-name: minimizar-mensajes;
+    animation-duration: 0.2s;
+}
+.contenedor-cerrado{
+    height: 0px;
+}
+@keyframes expandir-mensajes{
+    0% {
+        height: 0px;
+    }
+    100%{
+        height: 400px;
+    }
+}
+@keyframes minimizar-mensajes{
+    0% {
+        height: 400px;
+    }
+    100%{
+        height: 0px;
+    }
+}
+
 .contenido-mensajes{
     width: 100%;
     height: 100%;

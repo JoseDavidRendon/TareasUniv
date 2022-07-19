@@ -1,6 +1,6 @@
 from audioop import avg
 from django import template
-from ..models import CursosYTareas, EstadoDelCurso, Settings
+from ..models import CursosYTareas, EstadoDelCurso, Settings, Mensajes
 import json
 from django.utils.safestring import SafeString
 from django.template.defaultfilters import stringfilter

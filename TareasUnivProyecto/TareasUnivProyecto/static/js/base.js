@@ -45,10 +45,16 @@ function expandirContenedorMensajes(){
     var elemento = document.getElementById('contenedor-mensajes');
     if (elemento.classList.contains('contenedor-cerrado')){
         elemento.style.display='block'
+        elemento.classList.add('expandir-contenedor-mensajes')
         elemento.classList.remove('contenedor-cerrado')
+        elemento.classList.remove('minimizar-contenedor-mensajes')
     } else {
-        elemento.style.display='none'
-        elemento.classList.add('contenedor-cerrado')
+        elemento.classList.remove('expandir-contenedor-mensajes')
+        elemento.classList.add('minimizar-contenedor-mensajes')
+        setTimeout(() => { 
+            elemento.style.display='none'
+            elemento.classList.add('contenedor-cerrado')
+        }, 150);
     }
     
 }
@@ -67,3 +73,7 @@ function getCookie(c_name)
     }
     return "";
  }
+
+function expandirMenuUsuario(){
+    document.getElementById('contenedor-usuario-menu').classList.add('mostrarDropdown')
+}
