@@ -54,7 +54,7 @@ function expandirContenedorMensajes(){
         setTimeout(() => { 
             elemento.style.display='none'
             elemento.classList.add('contenedor-cerrado')
-        }, 150);
+        }, 50);
     }
     
 }

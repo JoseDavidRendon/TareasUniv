@@ -308,7 +308,7 @@ footer{
 }
 .mostrarDropdown{
     animation: menuShow;
-    animation-duration: 0.2s;
+    animation-duration: 0.1s;
     transform-origin:top !important;
 }
 @keyframes menuShow{
@@ -360,28 +360,30 @@ footer{
 .expandir-contenedor-mensajes{
     animation-name: expandir-mensajes;
     animation-duration: 0.2s;
+    transform-origin: top;
 }
 .minimizar-contenedor-mensajes{
     animation-name: minimizar-mensajes;
-    animation-duration: 0.2s;
+    animation-duration: 0.1s;
+    transform-origin: top;
 }
 .contenedor-cerrado{
     height: 0px;
 }
 @keyframes expandir-mensajes{
     0% {
-        height: 0px;
+        transform: scaleY(0);
     }
     100%{
-        height: 400px;
+        transform: scaleY(1);
     }
 }
 @keyframes minimizar-mensajes{
     0% {
-        height: 400px;
+        transform: scaleY(1);
     }
     100%{
-        height: 0px;
+        transform: scaleY(0);
     }
 }
 
@@ -459,3 +461,11 @@ footer{
     position: relative;
     bottom: 2px;
 }
+@media screen and (max-width: 500px) {
+    .contenedor-mensajes{
+        width: 100%;
+        right: 0px;
+        height: 100vh;
+    }
+  } 
+
