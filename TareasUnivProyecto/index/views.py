@@ -1,4 +1,5 @@
 import datetime
+from importlib.resources import contents
 from pyexpat.errors import messages
 from random import random
 from urllib import request
@@ -12,6 +13,9 @@ from .forms import UserRegisterForm, formAgregarCurso, formAnotaciones,formRepor
 from .models import CursosYTareas, EstadoDelCurso, Settings, Mensajes
 from django import template
 from django.http import JsonResponse
+from django.conf import settings
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
 # Create your views here.
 
 @login_required
@@ -269,4 +273,26 @@ def reportarBug(request):
     return render(request, 'index/reportarError.html', data)
 
 def enviarReporte(request):
-    return HttpResponse(request.POST['imagen'])
+    retornar ="invalido"
+    if request.method =='POST':
+        formDatos = formReporte(data=request.POST, files=request.FILES)
+        if formDatos.is_valid():
+            asunto = formDatos.cleaned_data['asunto']
+            contenido = render_to_string('index/mensaje_correo.html',{
+                'usuario':request.user.username,
+                'asunto':asunto,
+                'contenido':formDatos.cleaned_data['problema']
+            })
+            email = EmailMessage(
+                asunto,
+                contenido,
+                settings.EMAIL_HOST_USER,
+                ['melishamta2@gmail.com']
+            )
+            email.fail_silently = False
+            img = formDatos.cleaned_data['imagen']
+            email.attach(img.name, img.read(), img.content_type)
+            email.send()
+    
+
+    return redirect(to=reportarBug)

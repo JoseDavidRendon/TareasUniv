@@ -11,7 +11,7 @@
     <div class="contenedor-titulo-parrafo">
         <h2 class="titulo-error"><strong>Formulario de error</strong></h2>
     </div>
-    <form action="/enviarReporte" method="POST">
+    <form action="/enviarReporte" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="formulario-errores">
             <div class="contenedor-formulario-input">

@@ -1,4 +1,5 @@
 import datetime
+from django.forms import ImageField
 import django.utils.timezone
 from django.db import models
 

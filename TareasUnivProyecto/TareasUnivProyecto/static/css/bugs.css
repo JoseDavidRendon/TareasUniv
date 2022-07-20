@@ -7,7 +7,7 @@
     flex-direction: column;
     align-items: center;
     gap: 40px;
-    color: rgb(43, 43, 43);
+    color: rgb(75, 75, 75);
 }
 .contenido-errores form{
     width: 100%;
@@ -52,8 +52,7 @@
     height: 100px;
 }
 .input-img{
-    margin-top: 5px;  
-    width: 280px;
+    margin-top: 5px; 
 }
 .boton-enviar{
     display: flex;
@@ -61,3 +60,9 @@
     margin-top: 40px;
 }
 
+
+@media screen and (max-width: 320px) {
+    .input-img{
+        max-width: 280px;
+    }
+  } 

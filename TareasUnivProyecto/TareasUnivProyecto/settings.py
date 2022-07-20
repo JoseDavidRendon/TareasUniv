@@ -145,3 +145,15 @@ os.makedirs(STATIC_ROOT, exist_ok=True)
 #)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'melishamta2@gmail.com'
+EMAIL_HOST_PASSWORD = 'azytdnchdzfeotey'
+EMAIL_USE_TLS = True
+
+
