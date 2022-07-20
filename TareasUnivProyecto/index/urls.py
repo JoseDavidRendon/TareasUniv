@@ -1,5 +1,5 @@
 from django.urls import include, path
-from index.views import inicio, registro, salir, agregarCurso, nuevoCurso, editarTarea, actualizarCurso, borrarCurso,enviarAnotacion, actualizarAnotacion, dashboard, editarCalificado, actualizarConfigDashboard, foo
+from index.views import inicio, registro, salir, agregarCurso, nuevoCurso, editarTarea, actualizarCurso, borrarCurso,enviarAnotacion, actualizarAnotacion, dashboard, editarCalificado, actualizarConfigDashboard, foo, reportarBug,enviarReporte
 
 
 
@@ -19,7 +19,9 @@ urlpatterns = [
     path('dashboard/', dashboard, name='dashboard'),
     path('editarCalificado/', editarCalificado, name='editarCalificado'),
     path('actualizarConfigDashboard/', actualizarConfigDashboard, name='actualizarConfigDashboard'),
-    path('foo', foo, name='foo')
+    path('foo', foo, name='foo'),
+    path('reportarBug', reportarBug ,name='reportarBug'),
+    path('enviarReporte',enviarReporte,name='enviarReporte')
 ]
  
  

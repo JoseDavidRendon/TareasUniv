@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators  import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import UserRegisterForm, formAgregarCurso, formAnotaciones
+from .forms import UserRegisterForm, formAgregarCurso, formAnotaciones,formReporte
 from .models import CursosYTareas, EstadoDelCurso, Settings, Mensajes
 from django import template
 from django.http import JsonResponse
@@ -259,3 +259,14 @@ def cargarNotificaciones(request, opc):
     else:
         retornar = Mensajes.objects.filter(para=request.user.username, leido=False)
     return retornar
+
+def reportarBug(request):
+    data={
+        'mensajes':cargarNotificaciones(request, 1),
+        'mensajesSinLeer':cargarNotificaciones(request, 2),
+        'form':formReporte()
+    }
+    return render(request, 'index/reportarError.html', data)
+
+def enviarReporte(request):
+    return HttpResponse(request.POST['imagen'])

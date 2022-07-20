@@ -113,6 +113,33 @@
             {% endblock %}
         </div>
     </div>
+    <div id="botones">
+    
+        <div class="boton-desplegar boton-desplegar-reporte">
+    
+            <a class="sin-decoracion" href="{% url 'reportarBug' %}">
+            
+                <div style="display: flex; width: 180px;">
+    
+                    <div class="img-bugs">
+    
+                        <img src="{% static 'icons/icon-bug.png' %}" style="width: 30px; height: 30px;" alt="">
+    
+                    </div>
+    
+                    <div class="agregar-texto">
+    
+                        <div><p>Reportar un bug</p></div>
+    
+                    </div>
+    
+                </div>
+                
+            </a>
+    
+        </div>
+    
+    </div>
     <footer>
         <p>Creado por José David Rendón Maca</p>
     </footer>

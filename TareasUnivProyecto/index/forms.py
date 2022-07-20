@@ -1,5 +1,6 @@
 from dataclasses import fields
 import datetime
+from email.policy import default
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -64,3 +65,8 @@ class formAnotaciones(forms.ModelForm):
         
         
     
+class formReporte(forms.Form):
+    asunto = forms.CharField(max_length=100, required=False)
+    problema = forms.CharField(widget=forms.Textarea())
+    imagen = forms.ImageField(required=False)
+        

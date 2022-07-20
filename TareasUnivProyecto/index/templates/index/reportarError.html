@@ -1,0 +1,42 @@
+{% extends 'index/base.html' %}
+{% load static %}
+{% block content %}
+{% load widget_tweaks %}
+<head>
+    <title>Reportar error</title>
+    <link rel="stylesheet" href="{% static 'css/bugs.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+</head>
+<div class="contenido-errores">
+    <div class="contenedor-titulo-parrafo">
+        <h2 class="titulo-error"><strong>Formulario de error</strong></h2>
+    </div>
+    <form action="/enviarReporte" method="POST">
+        {% csrf_token %}
+        <div class="formulario-errores">
+            <div class="contenedor-formulario-input">
+                <p>Asunto</p>
+                {% render_field form.asunto class="input-texto" placeholder="Asunto del mensaje" %}
+            </div>
+            <div class="contenedor-formulario-input">
+                <p>Problema</p>
+                {% render_field form.problema class="input-textarea" placeholder="Contenido del mensaje" %}
+            </div>
+            <div class="contenedor-formulario-input">
+                <p>Imagen del error (opcional)</p>
+                {% render_field form.imagen class="input-img"  %}
+            </div>
+        </div>
+        <div class="boton-enviar">
+            <button class="boton-sin-estilo" type="submit"><img src="{% static 'icons/icon-ok.png' %}" alt=""></button>
+        </div>
+    </form>
+    <div class="contenedor-titulo-parrafo">
+        <p>El presente formulario será enviado a través correo electrónico a la administración del sitio,
+            quienes le proporcionarán una respuesta una vez que se haya solucionado el inconveniente.</p>
+    </div>
+    
+</div>
+
+
+{% endblock %}

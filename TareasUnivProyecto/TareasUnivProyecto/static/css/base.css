@@ -78,9 +78,10 @@ body{
     transition: 0.5s;
     display: flex;
     flex-direction: column;
-    padding-top: 16vh;
+    padding-top:100px;
     box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.137);
     z-index: 99;
+    gap: 20px;
 }
 
 .item-imagen img{
@@ -232,6 +233,16 @@ footer{
 #botones{
     position: fixed;
     bottom: 80px;
+    right: 6%;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+    gap: 8px;
+    z-index: 2;
+}
+#botones-secundario{
+    position: fixed;
+    bottom: 145px;
     right: 6%;
     display: flex;
     flex-direction: column;
