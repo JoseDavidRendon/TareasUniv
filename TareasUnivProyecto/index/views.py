@@ -2,6 +2,7 @@ import datetime
 from importlib.resources import contents
 from pyexpat.errors import messages
 from random import random
+from time import timezone
 from urllib import request
 from django.conf import settings
 from django.http import HttpRequest, HttpResponse
@@ -16,6 +17,8 @@ from django.http import JsonResponse
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
+from django.core.files import File
+import os
 # Create your views here.
 
 @login_required
@@ -262,6 +265,7 @@ def cargarNotificaciones(request, opc):
         retornar = Mensajes.objects.filter(para=request.user.username).order_by('fecha')[::-1]
     else:
         retornar = Mensajes.objects.filter(para=request.user.username, leido=False)
+
     return retornar
 
 def reportarBug(request):
@@ -293,6 +297,16 @@ def enviarReporte(request):
             img = formDatos.cleaned_data['imagen']
             email.attach(img.name, img.read(), img.content_type)
             email.send()
+            notificacion = Mensajes()
+            notificacion.para = request.user.username
+            notificacion.de = "Sistema"
+            notificacion.asunto = "El reporte ha sido enviado con éxito"
+            notificacion.contenido="El reporte: {0} ha sido enviado, un administrador le responderá por este medio \
+                una vez que el problema haya sido solucionado. \n Tu mensaje: {1}"\
+                .format(formDatos.cleaned_data['asunto'],formDatos.cleaned_data['problema'])
+            notificacion.save()
     
 
     return redirect(to=reportarBug)
+
+        
