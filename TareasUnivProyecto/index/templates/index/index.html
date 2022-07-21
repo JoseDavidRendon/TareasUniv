@@ -13,7 +13,6 @@
 
     <!-- Contenedor para tareas que no se han comenzado -->
     <br><h2><strong onclick="colapsarContenedorTarea('Contenedor-Comenzar', 'titulo-comenzar-tarea', 'titulo-icon-comenzar')" class="titulo" id="titulo-comenzar-tarea" >Tareas sin comenzar <img class="titulo-icon" id="titulo-icon-comenzar" src="{%  static 'icons/icon-dropdown.png'  %}" alt=""></strong></h2>
-    <a href="C:\Users\josed\Desktop\github\TareasUniv\TareasUnivProyecto\db.sqlite3">prueba de descarga</a>
     <div class="contenedor-contenedores " id="Contenedor-Comenzar">
             {% if formTareasPendientes.count == 0 %}
             <div class="contenedor-vacío"><img class="icon-vacio" src="{% static 'icons/icon-empty.png' %}" alt="">No hay tareas</div>
