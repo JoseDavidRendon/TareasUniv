@@ -276,6 +276,7 @@ def reportarBug(request):
     }
     return render(request, 'index/reportarError.html', data)
 
+@login_required
 def enviarReporte(request):
     retornar ="invalido"
     if request.method =='POST':
