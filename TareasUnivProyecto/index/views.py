@@ -294,9 +294,13 @@ def enviarReporte(request):
                 ['melishamta2@gmail.com']
             )
             email.fail_silently = False
-            img = formDatos.cleaned_data['imagen']
-            email.attach(img.name, img.read(), img.content_type)
+            try:
+                img = formDatos.cleaned_data['imagen']
+                email.attach(img.name, img.read(), img.content_type)
+            except:
+                print("no hay imagen")
             email.send()
+
             notificacion = Mensajes()
             notificacion.para = request.user.username
             notificacion.de = "Sistema"
