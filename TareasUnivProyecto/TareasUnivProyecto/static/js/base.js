@@ -19,9 +19,7 @@ function expandirMensaje(id, idIcon){
         elemento.classList.remove('cerrado')
     }
     var hijos = document.getElementById('mensaje-'+idIcon);
-    console.log(hijos)
     if (hijos.contains(document.getElementById('mensaje-icon-'+idIcon))){
-        console.log('existe')
         document.getElementById('mensaje-icon-'+idIcon).remove()
         $.ajax({
             type: "POST",

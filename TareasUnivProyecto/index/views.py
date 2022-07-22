@@ -52,7 +52,6 @@ def inicio(request):
         'mensajes':cargarNotificaciones(request, 1),
         'mensajesSinLeer':cargarNotificaciones(request, 2)
     }
-    print(formTareasTerminadas2)
     return render(request, 'index/index.html', data)
 
 
@@ -203,14 +202,16 @@ def dashboard(request):
     try:
         config = Settings.objects.get(usuario=usuario)
         dashboardConfig = config.dashboardActivos.split(",")
-        print( dashboardConfig)
     except:
         config = Settings.objects.create(usuario=usuario)
         dashboardConfig=("")
     cursos = []
     for curso in tareas:
-        cursos.append(curso.curso)
+        if curso.estado == 'terminada':
+            cursos.append(curso.curso)
     cursosSinRepetir=list(set(cursos))
+    # cursosSinRepetir = set(CursosYTareas.objects.filter(usuario=usuario, estado='terminada'))
+
     data={
         'tareas':tareas,
         'cursosDisponibles': dashboardConfig,
@@ -299,7 +300,7 @@ def enviarReporte(request):
                 img = formDatos.cleaned_data['imagen']
                 email.attach(img.name, img.read(), img.content_type)
             except:
-                print("no hay imagen")
+                pass
             email.send()
 
             notificacion = Mensajes()

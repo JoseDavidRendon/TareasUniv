@@ -21,7 +21,7 @@ class EstadoDelCurso(models.Model):
 
 class Settings(models.Model):
     usuario = models.CharField(default='usuario', max_length=100)
-    dashboardActivos = models.TextField(default="none", max_length=9999999, null=True, blank=True)
+    dashboardActivos = models.TextField(default="", max_length=9999999, null=True, blank=True)
 
 class Mensajes(models.Model):
     para = models.CharField(default='usuario', max_length=100)
