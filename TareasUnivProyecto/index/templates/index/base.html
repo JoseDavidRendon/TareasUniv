@@ -68,13 +68,14 @@
         <div class="contenedor-botones-header">
             <div class="boton-notificaciones" id="dropdownMenuMensaje">
                 <div class="dropdownMenu" onclick="expandirContenedorMensajes()">
-                    <img src="{% static 'icons/icon-notificacion.png' %}" alt="">
+                    <img class="dropp-img" src="{% static 'icons/icon-notificacion.png' %}" alt="">
                     {% if mensajesSinLeer %}
                     <div class="indicador-mensajes" id="indicador-mensajes"><div><p id="cantidad-de-mensajes">{{mensajesSinLeer|length}}</p></div></div>
                     {% endif %}
                 </div>
                 
                 <div class="contenedor-mensajes contenedor-cerrado" id="contenedor-mensajes">
+                    {% if mensajes %}
                     {% for mensaje in mensajes %}
                     <div class="mensaje-casilla cerrado" id="mensaje-{{mensaje.id}}" onclick="expandirMensaje('mensaje-{{mensaje.id}}', '{{mensaje.id}}')">
                         <div class="mensaje-completo ">
@@ -92,6 +93,9 @@
                     <div class="divisor-mensajes"></div>
                     <!-- --------------------- -->
                     {% endfor %}
+                    {% else %}
+                    <div class="no-mensajes"><img class="img-noNotif" src="{% static 'icons/icon-emptyNotif.png' %}" alt=""><p>No hay mensajes</p></div>
+                    {% endif %}
                 </div>
             </div>
             

@@ -307,7 +307,7 @@ footer{
 .clicable{
     pointer-events: all !important; 
 }
-#dropdownMenuMensaje img{
+.dropp-img{
     width: 20px;
     height: 20px;
 }
@@ -480,3 +480,21 @@ footer{
     }
   } 
 
+.no-mensajes{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
+.img-noNotif{
+    width: 100px;
+    height: 100px;
+    opacity:60% ;
+}
+.no-mensajes p{
+    opacity: 70%;
+    
+}
