@@ -12,7 +12,7 @@ register = template.Library()
 def obtenerProgreso(request, curso):
     usuario = request.user.username
     retornar= 0
-    for tareas in CursosYTareas.objects.filter(usuario=usuario, curso = curso):
+    for tareas in CursosYTareas.objects.filter(usuario=usuario, curso = curso, calificado = True):
         retornar+=tareas.valor 
     return (retornar)#valor 0-500
 
@@ -58,6 +58,7 @@ def comprobarCheckedDB(request, id):
 def obtenePromedioDelCurso(request, curso):
     notas_esperadas={}
     notas = {}
+    notas_calificadas=0
     for materia in CursosYTareas.objects.filter(curso=curso, estado="terminada"):
         if materia.usuario in notas:
             notas_esperadas[materia.usuario]+=materia.valor
@@ -65,6 +66,8 @@ def obtenePromedioDelCurso(request, curso):
         else:
             notas_esperadas[materia.usuario]=materia.valor
             notas[materia.usuario]=materia.calificacion
+        if materia.usuario == request.user.username and materia.calificado==True:
+            notas_calificadas+=materia.valor
     print(notas_esperadas)
     print(notas)
     promedios=0
@@ -74,7 +77,8 @@ def obtenePromedioDelCurso(request, curso):
     personal_esperadas=notas_esperadas[request.user.username]
     personal=notas[request.user.username]
     promedioPersonal = (personal*100)/personal_esperadas
-    calificacion = round((notas[request.user.username]*5)/notas_esperadas[request.user.username],1)
+    # calificacion = round((notas[request.user.username]*5)/notas_esperadas[request.user.username],1)
+    calificacion = round((notas[request.user.username]*5)/notas_calificadas,1)
     error = 0
     if notas_esperadas[request.user.username]>500:
         error=1

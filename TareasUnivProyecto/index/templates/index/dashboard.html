@@ -16,8 +16,9 @@
 <div class="contenedor-tareas">
 
 
+    {% if cursosDisponibles|length > 0 %}
     {% for curso in cursosDisponibles %}
-    {% if curso %}
+    <script>console.log('{{curso}}')</script>
     <div class="contenedor-contenedores-graficas" >
         <div class="titulo-graficas"><h2><strong>{{curso}}</strong></h2></div>
         
@@ -77,6 +78,7 @@
         
         
     </div>
+    {% endfor %}
     {% else %}
     <div class="contenedor-vacío"><img class="icon-vacio" src="{% static 'icons/icon-empty.png' %}" alt="">
     <p class="primer-p">No hay cursos seleccionados</p>
@@ -84,7 +86,6 @@
     </div>
     {% endif %}
       
-    {% endfor %}
 
 </div>
 
