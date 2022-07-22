@@ -68,8 +68,6 @@ def obtenePromedioDelCurso(request, curso):
             notas[materia.usuario]=materia.calificacion
         if materia.usuario == request.user.username and materia.calificado==True:
             notas_calificadas+=materia.valor
-    print(notas_esperadas)
-    print(notas)
     promedios=0
     for notass in notas:
         promedios+=(notas[notass]*100)/notas_esperadas[notass]
