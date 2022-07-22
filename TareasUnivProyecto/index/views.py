@@ -211,7 +211,10 @@ def dashboard(request):
             cursos.append(curso.curso)
     cursosSinRepetir=list(set(cursos))
     # cursosSinRepetir = set(CursosYTareas.objects.filter(usuario=usuario, estado='terminada'))
-
+    print(dashboardConfig)
+    if len(dashboardConfig)==1:
+        if dashboardConfig[0] == '':
+            dashboardConfig=()
     data={
         'tareas':tareas,
         'cursosDisponibles': dashboardConfig,

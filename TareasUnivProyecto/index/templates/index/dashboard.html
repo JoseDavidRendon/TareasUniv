@@ -16,7 +16,7 @@
 <div class="contenedor-tareas">
 
 
-    {% if cursosDisponibles|length > 0 %}
+    {% if cursosDisponibles|length >= 1 %}
     {% for curso in cursosDisponibles %}
     <script>console.log('{{curso}}')</script>
     <div class="contenedor-contenedores-graficas" >

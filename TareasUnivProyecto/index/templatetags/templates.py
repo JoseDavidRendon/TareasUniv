@@ -71,6 +71,7 @@ def obtenePromedioDelCurso(request, curso):
     promedios=0
     for notass in notas:
         promedios+=(notas[notass]*100)/notas_esperadas[notass]
+        
     promedio=(promedios/len(notas.keys()))
     personal_esperadas=notas_esperadas[request.user.username]
     personal=notas[request.user.username]
