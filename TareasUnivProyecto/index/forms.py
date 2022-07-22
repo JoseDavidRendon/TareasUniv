@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from .models import CursosYTareas
 
 class UserRegisterForm(UserCreationForm):
-    username = forms.CharField()
+    username = forms.CharField(max_length=10)
     email = forms.EmailField()
     password1: forms.CharField(label='Contraseña', widget=forms.PasswordInput)
     password2: forms.CharField(label='Confirma contraseña', widget=forms.PasswordInput)
