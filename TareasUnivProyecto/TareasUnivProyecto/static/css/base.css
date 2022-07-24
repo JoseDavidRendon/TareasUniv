@@ -5,7 +5,6 @@
     
 }
 
-
 html{
     min-height: 100%;
 }
@@ -26,10 +25,6 @@ header{
 body{
     background-color: #ecebe6 !important;
     min-height: 100%;
-}
-
-#img-admin{
-    width: 30px;
 }
 
 .dropdownMenu{
@@ -104,9 +99,6 @@ body{
 input[type=checkbox]:checked ~ #barra-lateral {
     width: 340px;
     overflow: hidden;
-}
-input[type=checkbox]:checked ~ label #imagen-menu {
-    transform: matrix3d();
 }
 
 .contenido{
@@ -289,12 +281,6 @@ footer{
     border: none; 
     background-color: rgba(255, 0, 0, 0);
 }
-
-.botones-img{
-    width: 25px; 
-    height: 25px;
-    cursor:pointer;
-}
 .contenedor-botones-header{
     display: flex;
     flex-direction: row;
@@ -354,19 +340,6 @@ footer{
 *::-webkit-scrollbar-track{
     background-color: rgb(219, 219, 219);
 }
-/* .contenedor-mensajes::-webkit-scrollbar{
-    width: 5px;
-}
-.contenedor-mensajes::-webkit-scrollbar-track{
-    background-color: rgba(255, 0, 0, 0);
-}
-.contenedor-mensajes::-webkit-scrollbar-thumb{
-    background-color: rgba(0, 0, 0, 0.11);
-    border-radius: 13px;
-    width: 5px;
-} */
-
-
 
 .expandir-contenedor-mensajes{
     animation-name: expandir-mensajes;
@@ -397,11 +370,6 @@ footer{
         transform: scaleY(0);
     }
 }
-
-.contenido-mensajes{
-    width: 100%;
-    height: 100%;
-} 
 /* #e9ecef */
 .mensaje-casilla{
     padding: 5px 10px;

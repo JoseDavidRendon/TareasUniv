@@ -31,33 +31,11 @@
     margin-right: 5px;
     width: 60px;
 }
-
-.campo-noForm{
-    padding-left: 12px;
-    padding-bottom: 6px;
-    color: #474747;
-    height: 37px;
-}
-
-.campo-noForm:focus{
-    outline-style: none;
-}
-
 .campo:focus{
     background-color: rgba(255, 255, 255, 0);
     box-shadow: none;
     border-color: black;
 }
-
-
-.select-con-boton{
-    display: flex;
-    flex-direction: row;
-}
-
-
-
-
 .contenido{
     max-width: 700px;
 }
