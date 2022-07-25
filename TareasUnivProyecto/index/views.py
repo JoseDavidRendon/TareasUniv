@@ -188,31 +188,23 @@ def actualizarAnotacion(request):
 
 @login_required
 def dashboard(request):
+    inicio = time.time()
     usuario = request.user.username
-    tareas = CursosYTareas.objects.filter(usuario=usuario)
-    try:
-        config = Settings.objects.get(usuario=usuario)
-        dashboardConfig = config.dashboardActivos.split(",")
-    except:
-        config = Settings.objects.create(usuario=usuario)
-        dashboardConfig=("")
-    cursos = []
-    for curso in tareas:
-        if curso.estado == 'terminada':
-            cursos.append(curso.curso)
-    cursosSinRepetir=list(set(cursos))
-    # cursosSinRepetir = set(CursosYTareas.objects.filter(usuario=usuario, estado='terminada'))
-    print(dashboardConfig)
-    if len(dashboardConfig)==1:
-        if dashboardConfig[0] == '':
-            dashboardConfig=()
+    cursosTerminados = CursosYTareas.objects.filter(usuario=usuario, estado='terminada').values_list('curso',flat=True)
+    configuracion = list(Settings.objects.get(usuario = usuario).dashboardActivos.split(","))
+    print(cursosTerminados)
+    print(configuracion)
+    for config in configuracion:
+        if config not in cursosTerminados:
+            configuracion.remove(config)
     data={
-        'tareas':tareas,
-        'cursosDisponibles': dashboardConfig,
-        'todosLosCursos':cursosSinRepetir,
+        'cursosDisponibles':configuracion,
+        'todosLosCursos':set(cursosTerminados),
         'mensajes':cargarNotificaciones(request, 1),
         'mensajesSinLeer':cargarNotificaciones(request, 2)
     }
+    final = time.time()
+    print("tiempo:  ", final-inicio)
     return render(request, 'index/dashboard.html', data)
 
 def actualizarConfigDashboard(request):
@@ -310,3 +302,4 @@ def enviarReporte(request):
     return redirect(to=reportarBug)
 
         
+

@@ -24,7 +24,7 @@ def obtenerValoresDeCalificacion(request, curso):
     positivo = 0
     negativo  = 0
     pendiente = 0
-    for tareas in CursosYTareas.objects.filter(curso = curso, usuario=usuario):
+    for tareas in CursosYTareas.objects.filter(curso = curso, usuario=usuario, estado='terminada'):
         if tareas.calificado:
             positivo += tareas.calificacion
             negativo += tareas.valor-tareas.calificacion

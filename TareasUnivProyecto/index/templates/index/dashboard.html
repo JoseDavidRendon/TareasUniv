@@ -15,10 +15,11 @@
 
 <div class="contenedor-tareas">
 
-
+    
+    <script>console.log('{{cursosDisponibles}}')</script>
     {% if cursosDisponibles|length >= 1 %}
     {% for curso in cursosDisponibles %}
-    <script>console.log('{{curso}}')</script>
+    <!-- <script>console.log('{{curso}}')</script> -->
     <div class="contenedor-contenedores-graficas" >
         <div class="titulo-graficas"><h2><strong>{{curso}}</strong></h2></div>
         
@@ -107,6 +108,7 @@
                         <form action="/actualizarConfigDashboard/" method="post">
                             {% csrf_token %}
                             <div class="contenedor-checkboxes">
+                                <script>console.log('{{todosLosCursos }}')</script>
                                 {% for curso in todosLosCursos %}
                                     <div class="casilla-contenedor " id="{{curso}}"  onclick="clickCheckbox('{{curso}}')">
                                         <input  type="checkbox" name="{{curso}}" id="checkbox-{{curso}}" class="checkboxAll">
