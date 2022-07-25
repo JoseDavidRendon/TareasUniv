@@ -21,45 +21,26 @@
             
             
             <div class="contenedor-tarea" id="contenedor-tarea-{{tarea.id}}">
-                  
-            
-                {% for dias in diasRestantes %}
-
-                    {% if dias.0 == tarea.id %}
-                            
-                        {% if dias.1 < 0 %}
-
-                            <script>
-                                document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='rgb(255, 255, 255)'; 
-                            </script>
-
-                        {% elif dias.1 >= 0 %}
-                                
-                                {% if dias.1 <= 3 %}
-                                
-                                <script>
-                                    document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='var(--colorMuyPocoTiempo)'; 
-                                </script>
-
-                                {% elif dias.1 <= 7 %}
-
-                                <script>
-                                    document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='var(--colorMedioTiempo)'; 
-                                </script>
-                        
-                                {% else %}
-                                <script>
-                                    document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor= 'var(--colorSuficienteTiempo)'; 
-                                </script>
-
-                        {% endif %}
-                    
+                {% calcularFecha tarea.entrega as TiempoRestante %}
+                {% if TiempoRestante < 0 %}
+                <script>
+                    document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='rgb(255, 255, 255)'; 
+                </script>
+                {% else %}
+                    {% if TiempoRestante <= 3 %}
+                    <script>
+                        document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='var(--colorMuyPocoTiempo)'; 
+                    </script>
+                    {% elif TiempoRestante <= 7 %}
+                    <script>
+                        document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='var(--colorMedioTiempo)'; 
+                    </script>
+                    {% else %}
+                    <script>
+                        document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor= 'var(--colorSuficienteTiempo)'; 
+                    </script>
                     {% endif %}
-
                 {% endif %}
-
-            {% endfor %}
-
 
                 <div class="contenedor-curso-tarea">
 
@@ -75,25 +56,12 @@
 
                     <div class="contenedor-dias-botones">
 
-
-                        {% for dias in diasRestantes %}
-
-                            {% if dias.0 == tarea.id %}
-                            
-                                {% if dias.1 < 0 %}
-
-                                    <p>Plazo finalizado</p>
-                                
-                                {% else %}
-
-                                    <p>{{ dias.1 }} Dias restantes</p>
-                                
-                                {% endif %}
-                            
-                            {% endif %}
-
-                        {% endfor %}
-
+                        
+                        {% if TiempoRestante >= 0 %}
+                        <p>{{ TiempoRestante }} Dias restantes</p>
+                        {% else %}
+                        <p>Plazo finalizado</p>
+                        {% endif %}
 
                         <div class="botones">
                             
@@ -237,42 +205,27 @@
 
             <div class="contenedor-tarea" id="contenedor-tarea-{{tarea.id}}">
             
-                {% for dias in diasRestantesProceso %}
-
-                        {% if dias.0 == tarea.id %}
-                        
-                            {% if dias.1 < 0 %}
-
-                                <script>
-                                    document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='rgb(255, 255, 255)'; 
-                                </script>
-
-                            {% elif dias.1 >= 0 %}
-                                    
-                                    {% if dias.1 <= 3 %}
-                                    
-                                    <script>
-                                        document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='var(--colorMuyPocoTiempo)'; 
-                                    </script>
-
-                                    {% elif dias.1 <= 7 %}
-
-                                    <script>
-                                        document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='var(--colorMedioTiempo)'; 
-                                    </script>
-                            
-                                    {% else %}
-                                    <script>
-                                        document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor= 'var(--colorSuficienteTiempo)'; 
-                                    </script>
-
-                            {% endif %}
-                        
-                        {% endif %}
-
+                {% calcularFecha tarea.entrega as TiempoRestante %}
+                {% if TiempoRestante < 0 %}
+                <script>
+                    document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='rgb(255, 255, 255)'; 
+                </script>
+                {% else %}
+                    {% if TiempoRestante <= 3 %}
+                    <script>
+                        document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='var(--colorMuyPocoTiempo)'; 
+                    </script>
+                    {% elif TiempoRestante <= 7 %}
+                    <script>
+                        document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor='var(--colorMedioTiempo)'; 
+                    </script>
+                    {% else %}
+                    <script>
+                        document.getElementById("contenedor-tarea-"+'{{tarea.id}}').style.backgroundColor= 'var(--colorSuficienteTiempo)'; 
+                    </script>
                     {% endif %}
+                {% endif %}
 
-                {% endfor %}
 
                     <div class="contenedor-curso-tarea">
 
@@ -288,25 +241,11 @@
     
                         <div class="contenedor-dias-botones">
 
-                            {% for dias in diasRestantesProceso %}
-
-                                {% if dias.0 == tarea.id %}
-                                
-                                    {% if dias.1 < 0 %}
-
-                                        <p>Plazo finalizado</p>
-                                    
-                                    {% endif %}
-
-                                    {% if dias.1 >= 0 %}
-
-                                        <p>{{ dias.1 }} Dias restantes</p>
-                                    
-                                    {% endif %}
-
-                                {% endif %}
-
-                            {% endfor %}
+                            {% if TiempoRestante >= 0 %}
+                            <p>{{ TiempoRestante }} Dias restantes</p>
+                            {% else %}
+                            <p>Plazo finalizado</p>
+                            {% endif %}
 
                             <div class="botones">
                             

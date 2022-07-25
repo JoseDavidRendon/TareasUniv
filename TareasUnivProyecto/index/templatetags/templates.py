@@ -6,6 +6,8 @@ from django.utils.safestring import SafeString
 from django.template.defaultfilters import stringfilter
 from django.db.models import Avg, Min
 from django.contrib.auth.models import User
+import datetime
+import time
 register = template.Library()
 
 @register.simple_tag
@@ -104,3 +106,8 @@ def pruebaa(val=None):
 def actualizarEstado(id):
     print("Visto",id)
     pass
+
+@register.simple_tag
+def calcularFecha(fecha):
+    retornar=fecha-datetime.date.today()
+    return  retornar.days

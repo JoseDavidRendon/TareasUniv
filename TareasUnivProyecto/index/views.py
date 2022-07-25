@@ -1,57 +1,48 @@
 import datetime
-from importlib.resources import contents
 from pyexpat.errors import messages
-from random import random
-from time import timezone
-from urllib import request
 from django.conf import settings
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators  import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import UserRegisterForm, formAgregarCurso, formAnotaciones,formReporte
 from .models import CursosYTareas, EstadoDelCurso, Settings, Mensajes
-from django import template
-from django.http import JsonResponse
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
-from django.core.files import File
-import os
+import time
 # Create your views here.
 
 @login_required
 
 
+#view index, página principal
 def inicio(request):
+    inicio = time.time()
     usuario = request.user.username
+    
+    #llamada a la base de datos para obtener las tareas que se mostratán en el index
     formTareasPendientes = CursosYTareas.objects.filter(estado="espera", usuario = usuario)
     formTareasProceso = CursosYTareas.objects.filter(estado="proceso", usuario = usuario)
     formTareasTerminadas = CursosYTareas.objects.filter(estado="terminada", usuario = usuario)
-    formTareasTerminadas2 = []
-    for tarea in CursosYTareas.objects.filter(estado="terminada", usuario = usuario):
-        if tarea.curso not in formTareasTerminadas2:
-            formTareasTerminadas2.append(tarea.curso)
-    diasRestantes = []
-    for tarea in formTareasPendientes:
-        diaRestante= tarea.entrega - datetime.date.today()
-        diasRestantes.append((tarea.id, diaRestante.days))
-    diasRestantesProceso = []
-    for tarea in formTareasProceso:
-        diaRestante= tarea.entrega - datetime.date.today()
-        diasRestantesProceso.append((tarea.id, diaRestante.days))
+    
+    #proceso que obtiene los nombres de los cursos de tareas terminadas sin repetir
+    formTareasTerminadas2 = set(formTareasTerminadas.values_list('curso', flat=True))
+
+    #información que se cargará en el index
     data={
         'formTareasPendientes':formTareasPendientes,
         'formTareasProceso':formTareasProceso,
         'formTareasTerminadas':formTareasTerminadas,
-        'diasRestantes':diasRestantes,
-        'diasRestantesProceso':diasRestantesProceso,
         'formAnotaciones': formAnotaciones(),
         'formTareasTerminadasCursos':formTareasTerminadas2,
         'mensajes':cargarNotificaciones(request, 1),
-        'mensajesSinLeer':cargarNotificaciones(request, 2)
+        'mensajesSinLeer':cargarNotificaciones(request, 2),
+        'fecha':datetime.date.today()
     }
+    final = time.time()
+    print("tiempo de ejecución:  ", final-inicio)
     return render(request, 'index/index.html', data)
 
 
