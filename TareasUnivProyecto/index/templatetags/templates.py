@@ -73,7 +73,7 @@ def obtenePromedioDelCurso(request, curso):
     if request.user.username in notasTodos.keys():
         promedioPersonal=(notasTodos[request.user.username]*100)/5
         calificacion=round(notasTodos[request.user.username],1)
-    if sum(todosUsuarios.filter(usuario=request.user.username).values_list('valor', flat=True))>500:
+    if sum(CursosYTareas.objects.filter(usuario=request.user.username, curso=curso ).values_list('valor', flat=True))>500:
         error=1
 
     data={
