@@ -185,7 +185,15 @@ def dashboard(request):
     inicio = time.time()
     usuario = request.user.username
     cursosTerminados = CursosYTareas.objects.filter(usuario=usuario, estado='terminada').values_list('curso',flat=True)
-    configuracion = list(Settings.objects.get(usuario = usuario).dashboardActivos.split(","))
+    # configuracion = list(Settings.objects.get(usuario = usuario).dashboardActivos.split(","))
+    
+    configuracionOpen, created = Settings.objects.get_or_create(
+    usuario=usuario,
+    defaults={'usuario':request.user.username, 'dashboardActivos':()}
+    )
+    configuracion=list(configuracionOpen.dashboardActivos.split(","))
+
+
     for config in configuracion:
         if config not in cursosTerminados:
             configuracion.remove(config)
