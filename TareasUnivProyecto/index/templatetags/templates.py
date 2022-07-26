@@ -1,4 +1,5 @@
 from audioop import avg
+from re import T
 from django import template
 from ..models import CursosYTareas, EstadoDelCurso, Settings, Mensajes
 import json
@@ -13,9 +14,7 @@ register = template.Library()
 @register.simple_tag
 def obtenerProgreso(request, curso):
     usuario = request.user.username
-    retornar= 0
-    for tareas in CursosYTareas.objects.filter(usuario=usuario, curso = curso, calificado = True, estado='terminada'):
-        retornar+=tareas.valor 
+    retornar= sum(CursosYTareas.objects.filter(usuario=usuario, curso=curso, calificado=True, estado='terminada').values_list('valor', flat=True))
     return (retornar)#valor 0-500
 
 @register.simple_tag

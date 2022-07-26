@@ -190,14 +190,13 @@ function comprobarChecked(id, comprobado){
         checkboxContainer.classList.add('checkedContainer');
     }
 }
-function buscadorDeCursos(cursos){
-    var cursosDisponiblesString = "{{todosLosCursos  | safe}}".replaceAll("'","\"");
+function buscadorDeCursos(){
     var casilla = document.getElementsByClassName('casilla-curso');
     var inputText = document.getElementById('busqueda-de-cursos');
     for (var i = 0; i< casilla.length;i++){
         var idd = casilla[i].innerHTML;
         document.getElementById(idd).style.display="none";
-        if (casilla[i].innerHTML.includes(inputText.value)){
+        if (casilla[i].innerHTML.includes(inputText.value.toLowerCase())){
             document.getElementById(idd).style.display="flex";
         }
     }
