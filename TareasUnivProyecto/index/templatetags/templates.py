@@ -102,10 +102,6 @@ def pruebaa(val=None):
     }
     return (data)
 
-@register.simple_tag
-def actualizarEstado(id):
-    print("Visto",id)
-    pass
 
 @register.simple_tag
 def calcularFecha(fecha):

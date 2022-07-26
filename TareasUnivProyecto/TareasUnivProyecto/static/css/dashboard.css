@@ -1,6 +1,17 @@
 /* contenedor general */
 .contenedor-tareas{
     padding: 40px 0px 40px 0px;
+    opacity: 100%;
+    animation: aparicionContenedor;
+    animation-duration: 1s;
+}
+@keyframes aparicionContenedor{
+    0%{
+        opacity: 0%;
+    }
+    90%{
+        opacity: 0%;
+    }
 }
 .contenedor-vacío{
     margin-top: 30px;

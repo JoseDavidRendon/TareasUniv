@@ -23,6 +23,8 @@ function activarCalificado(id){
     document.getElementById('check-'+id).setAttribute("value", "1");
     
 }
+
+
 function desactivarCalificado(id){
     document.getElementById('insertar-nota-'+id).style.display="none"
     var contenedor = document.getElementById('selector-'+id);

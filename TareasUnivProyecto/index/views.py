@@ -45,11 +45,6 @@ def inicio(request):
     print("tiempo de ejecución:  ", final-inicio)
     return render(request, 'index/index.html', data)
 
-
-def enviarAnotacion(request):
-    return redirect(to=inicio)
-
-
 def registro(request):
     error= False
     if request.method =='POST':
@@ -58,7 +53,6 @@ def registro(request):
             formulario.save()
             user=authenticate(username=formulario.cleaned_data['username'], password=formulario.cleaned_data['password1'])
             login(request, user)
-            messages.success(request, 'Profile details updated.')
             return redirect(to=inicio)
         else:
             #error=formulario.errors.as_data
@@ -192,8 +186,6 @@ def dashboard(request):
     usuario = request.user.username
     cursosTerminados = CursosYTareas.objects.filter(usuario=usuario, estado='terminada').values_list('curso',flat=True)
     configuracion = list(Settings.objects.get(usuario = usuario).dashboardActivos.split(","))
-    print(cursosTerminados)
-    print(configuracion)
     for config in configuracion:
         if config not in cursosTerminados:
             configuracion.remove(config)
@@ -299,7 +291,7 @@ def enviarReporte(request):
             notificacion.save()
     
 
-    return redirect(to=reportarBug)
+    return redirect(to=inicio)
 
         
 
