@@ -14,7 +14,7 @@ register = template.Library()
 def obtenerProgreso(request, curso):
     usuario = request.user.username
     retornar= 0
-    for tareas in CursosYTareas.objects.filter(usuario=usuario, curso = curso, calificado = True):
+    for tareas in CursosYTareas.objects.filter(usuario=usuario, curso = curso, calificado = True, estado='terminada'):
         retornar+=tareas.valor 
     return (retornar)#valor 0-500
 
@@ -58,50 +58,31 @@ def comprobarCheckedDB(request, id):
 
 @register.simple_tag
 def obtenePromedioDelCurso(request, curso):
-    notas_esperadas={}
-    notas = {}
-    notas_calificadas=0
-    for materia in CursosYTareas.objects.filter(curso=curso, estado="terminada"):
-        if materia.usuario in notas:
-            notas_esperadas[materia.usuario]+=materia.valor
-            notas[materia.usuario]+=materia.calificacion
-        else:
-            notas_esperadas[materia.usuario]=materia.valor
-            notas[materia.usuario]=materia.calificacion
-        if materia.usuario == request.user.username and materia.calificado==True:
-            notas_calificadas+=materia.valor
-    promedios=0
-    for notass in notas:
-        promedios+=(notas[notass]*100)/notas_esperadas[notass]
-        
-    promedio=(promedios/len(notas.keys()))
-    personal_esperadas=notas_esperadas[request.user.username]
-    personal=notas[request.user.username]
-    promedioPersonal = (personal*100)/personal_esperadas
-    # calificacion = round((notas[request.user.username]*5)/notas_esperadas[request.user.username],1)
-    try:
-        calificacion = round((notas[request.user.username]*5)/notas_calificadas,1)
-    except:
-        calificacion = 0
-    error = 0
-    if notas_esperadas[request.user.username]>500:
+    error=0
+    todosUsuarios = CursosYTareas.objects.filter(curso=curso, estado='terminada', calificado=True)
+    notasTodos={}
+    for usuar in todosUsuarios.values_list('usuario', flat=True):
+        usuarMax=todosUsuarios.filter(usuario=usuar).values_list('valor', flat=True)
+        usuarProm=todosUsuarios.filter(usuario=usuar).values_list('calificacion', flat=True)
+        notasTodos[usuar]=(sum(usuarProm)*5)/sum(usuarMax)        
+    promedio=0
+    promedioPersonal = 0
+    calificacion=0
+    if len(notasTodos)>0:
+        promedio = (sum(notasTodos.values())/len(notasTodos.values()))
+    if request.user.username in notasTodos.keys():
+        promedioPersonal=(notasTodos[request.user.username]*100)/5
+        calificacion=round(notasTodos[request.user.username],1)
+    if sum(todosUsuarios.filter(usuario=request.user.username).values_list('valor', flat=True))>500:
         error=1
+
     data={
-        'promedioGlobal':int(promedio),
+        'promedioGlobal':int((promedio*100)/5),
         'promedioPersonal':int(promedioPersonal),
         'calificacion':calificacion,
         'error':error
     }
     return (data)
-
-@register.simple_tag
-def pruebaa(val=None):
-    data = {
-        1:"hola",
-        2:"adios"
-    }
-    return (data)
-
 
 @register.simple_tag
 def calcularFecha(fecha):

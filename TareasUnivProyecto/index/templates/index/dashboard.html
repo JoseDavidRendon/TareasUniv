@@ -3,26 +3,36 @@
 {% block content %}
 {% load templates %}
 {% block meta %}
-        <title>Dashboard</title>
-        <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">        
+<title>Dashboard</title>
+
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<script src="{% static 'js/dashboard.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
 {% endblock  %}
 
+
+
+
 <div class="contenedor-tareas">
+
+    
+    <script>console.log('{{cursosDisponibles}}')</script>
     {% if cursosDisponibles|length >= 1 %}
     {% for curso in cursosDisponibles %}
+    <!-- <script>console.log('{{curso}}')</script> -->
     <div class="contenedor-contenedores-graficas" >
-        <div class="titulo-graficas"><h2><strong>{{curso}}</strong></h2></div>        
+        <div class="titulo-graficas"><h2><strong>{{curso}}</strong></h2></div>
+        
         <div class="icon-warning" id="icon-warning-{{curso}}"><img src="{% static 'icons/icon-warning.png' %}" alt=""><p>Verifique que el valor de las tareas se haya digitado correctamente</p></div>
         <div class="contenedor-graficas" id="contenedor-graficas-{{curso}}">
             <div class="error-curso" id="error-curso-{{curso}}"></div>
             <div class="graficas-superiores">
-                <div class="contenedor-graficaLineal" id="contenedor-graficaLineal-{{curso}}">                    
+
+                <div class="contenedor-graficaLineal" id="contenedor-graficaLineal-{{curso}}">
+                    
                     <canvas id="grafica-{{curso}}" class="graficoLineal" ></canvas>
-                    <script>
-                        $(document).ready(function(){
-                            crearLinea('{{curso}}', '{% autoescape off %}{% obtenerValoresGraficaLineal request curso %} {% endautoescape %}') 
-                        });
-                    </script>
+                    <script> crearLinea('{{curso}}', '{% autoescape off %}{% obtenerValoresGraficaLineal request curso %} {% endautoescape %}') </script>
+        
                 </div>
                 <div class="conjunto-de-graficas" id="conjunto-de-graficas-{{curso}}">
                     <div class="grafico-circular">
@@ -38,24 +48,19 @@
                                 <div class="icon-leyenda amarillo"></div><p id="texto-circular-amarillo-{{curso}}"></p>
                             </div>
                         </div>
-                        <script>
-                            $(document).ready(function(){
-                                crearDonut('{{curso}}', '{% obtenerValoresDeCalificacion request curso %}')
-                            });
-                        </script>
+                        <script> crearDonut('{{curso}}', '{% obtenerValoresDeCalificacion request curso %}') </script>
                     </div> 
                     <div class="grafico-circular">
                         <canvas id="grafica-circular2-{{curso}}" max-width="80%" max-height="200px"></canvas>
                         <div class="subtitulo-circular"><p id="texto-circular-{{curso}}">20%</p></div>
-                        <script> 
-                        $(document).ready(function(){
-                            crearDonutProgreso('{{curso}}', '{% obtenerProgreso request curso %}')
-                        });
-                        </script>
-                    </div>                      
-                </div>                
+                        <script> crearDonutProgreso('{{curso}}', '{% obtenerProgreso request curso %}') </script>
+                    </div>  
+                    
+                </div>
+                
             </div>
             <div class="contenedor-barra-promedio-padre" id="contenedor-barra-padre-{{curso}}">
+
                 <div class="titulo-barras"><p>Promedio del curso</p></div>
                 <div class="contenedor-barra-promedio">
                     <div class="marcador marcador-promedio" id="marcador-{{curso}}">
@@ -67,14 +72,12 @@
                 </div>
                 <div class="calificacion">
                     <p>Tu calificación si el curso terminara ahora: <span id="calificacion-definitiva-{{curso}}"></span></p>
-                    <script>
-                        $(document).ready(function(){
-                            crearBarraPromedio('{{curso}}','{% obtenePromedioDelCurso request curso %}' )             
-                        });
-                    </script>
+                    <script> crearBarraPromedio('{{curso}}','{% obtenePromedioDelCurso request curso %}' ) </script>
                 </div>
             </div>
         </div>
+        
+        
     </div>
     {% endfor %}
     {% else %}
@@ -83,7 +86,11 @@
     <p class="segundo-p">Haga clic en el botón de opciones y seleccione los cursos que desea mostrar</p>
     </div>
     {% endif %}
+      
+
 </div>
+
+
 <div id="botones-secundario">
     <div class="boton-desplegar boton-configuracion">
             <div style="display: flex;">
@@ -101,32 +108,31 @@
                         <form action="/actualizarConfigDashboard/" method="post">
                             {% csrf_token %}
                             <div class="contenedor-checkboxes">
+                                <script>console.log('{{todosLosCursos }}')</script>
                                 {% for curso in todosLosCursos %}
                                     <div class="casilla-contenedor " id="{{curso}}"  onclick="clickCheckbox('{{curso}}')">
                                         <input  type="checkbox" name="{{curso}}" id="checkbox-{{curso}}" class="checkboxAll">
                                         <label for="{{curso}}" class="casilla-curso">{{curso}}</label>
                                         <div><img class="botones-img" src="{% static 'icons/icon-check.png' %}" alt=""></div>
-                                        <script>
-                                            $(document).ready(function(){
-                                                comprobarChecked('{{curso}}', '{%  comprobarCheckedDB request curso %}')
-                                            });
-                                        </script>
+                                        <script>comprobarChecked('{{curso}}', '{%  comprobarCheckedDB request curso %}')</script>
                                     </div>
                                 {% endfor %}
                             </div>
                             <div class="boton-submit-busqueda"><button type="submit" class="boton-sin-estilo">
                                 <img src="{% static 'icons/icon-ok.png' %} " class="botones-img" alt="">
                             </button></div>
+                            
+                    
                         </form>
+                        
                     </div>
                 </div>
             </div>
     </div>
+
 </div>
 </div>
+
 {% endblock %}
 {% block js %}
-<script src="{% static 'js/dashboard.js' %}"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>  
 {% endblock %}

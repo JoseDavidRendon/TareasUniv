@@ -275,6 +275,7 @@
                                                             var id = '{{tarea.id}}'
                                                             if (status=="True"){
                                                                 activarCalificado(id)
+                                                                document.getElementById('boton-edit-calif-{{tarea.id}}').style.display="block";
                                                             } else {
                                                                 desactivarCalificado(id)
                                                             }
