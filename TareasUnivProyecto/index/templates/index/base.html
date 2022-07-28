@@ -16,47 +16,47 @@
     </head>
     <body onload="ButtonsLoaded()">
     <header id="aber">
-        <div class="menu" style="position: fixed;">
+        <div class="menu">
             <input title="Abrir menú" type="checkbox" id="checkbox_toggle">
-            <label for="checkbox_toggle" class="button-menu" style="margin-left: 12px; margin-top: 40px; position: fixed; z-index: 100;">
+            <label for="checkbox_toggle" class="button-menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </label>
             <div id="barra-lateral" >
-                <a href="{% url 'inicio' %}" style="text-decoration: none;">
+                <a class="barra-lateral-a" href="{% url 'inicio' %}" >
                     <div class="contenedor-barra" title="Tareas">
                         <div class="item-imagen">
                             <img src="{% static 'icons/icon-nota.png' %}" alt="" >
                         </div>
                         <div class="elemento-oculto">
-                            <strong style="color: #353434;">Tareas</strong> 
+                            <strong>Tareas</strong> 
                          </div>
                     </div>
                 </a>
-                <a href="{% url 'dashboard' %}" style="text-decoration: none;">
+                <a href="{% url 'dashboard' %}" class="barra-lateral-a">
                     <div class="contenedor-barra" title="Dashboard">
                         <div class="item-imagen">
                             <img src="{% static 'icons/icon-dashboard.png' %}" alt="">
                         </div>
                         <div class="elemento-oculto">
-                            <strong style="color: #353434;">Dashboard</strong>
+                            <strong>Dashboard</strong>
                          </div>
                     </div>
                 </a>
-                <a href="https://campus0c.unad.edu.co/campus"target="_blank" style="text-decoration: none;">
+                <a href="https://campus0c.unad.edu.co/campus"target="_blank" class="barra-lateral-a">
                     <div class="contenedor-barra" title="Campus UNAD">
                         <div class="item-imagen">
                             <img alt="Logo UNAD" src="{% static 'icons/icon-unad.png' %}">
                         </div>
                         <div class="elemento-oculto">
-                            <strong style="color: #353434;">Campus universitario</strong>
+                            <strong>Campus universitario</strong>
                          </div>
                     </div>
                 </a>         
            </div>
         </div>
-        <div style="margin-left: 10px;">
+        <div class="contenedor-contenedor-usuario">
             <div class="contenedor-usuario">
                 <img class="img-usuario" src="{% static 'icons/icon-user.png' %}" alt="">
                 <div id="nombreUsuario" class="contenedor-nombre-usuario"><p>{{user}}</p></div>
@@ -107,8 +107,8 @@
             </div>
         </div>
     </header>
-    <div style="display:flex; justify-content: center; padding-top: 90px; min-height: 100vh;">
-        <div class="contenido container-sm" style=" margin-bottom: 40px;">
+    <div class="contenedor-containte-sm-contenido">
+        <div class="contenido container-sm">
             {% block content %}
             {% endblock %}
         </div>
@@ -116,9 +116,9 @@
     <div id="botones">
         <div class="boton-desplegar boton-desplegar-reporte">
             <a title="Reportar error" class="sin-decoracion" href="{% url 'reportarBug' %}">            
-                <div style="display: flex; width: 180px;">    
+                <div class="contenedor-error-img-text">    
                     <div class="img-bugs">    
-                        <img src="{% static 'icons/icon-bug.png' %}" style="width: 30px; height: 30px;" alt="">    
+                        <img src="{% static 'icons/icon-bug.png' %}">    
                     </div>    
                     <div class="agregar-texto">    
                         <div><p>Reportar un bug</p></div>    

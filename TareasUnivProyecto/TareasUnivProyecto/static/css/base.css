@@ -26,7 +26,19 @@ body{
     background-color: #ecebe6 !important;
     min-height: 100%;
 }
-
+.menu{
+    position: fixed;
+    top: 60px;
+}
+.barra-lateral-a{
+    text-decoration: none;
+}
+.contenedor-containte-sm-contenido{
+    display:flex; 
+    justify-content: center; 
+    padding-top: 90px; 
+    min-height: 100vh;
+}
 .dropdownMenu{
     display: flex;
     justify-content: center;
@@ -62,6 +74,11 @@ body{
     font-size: 20px;
     min-width: 240px;
     white-space: nowrap;
+    color: #353434;
+}
+.contenedor-contenedor-usuario{
+    margin-left: 10px;
+    display: flex;
 }
 
 #barra-lateral{
@@ -111,6 +128,7 @@ input[type=checkbox]:checked ~ #barra-lateral {
     margin-right: 80px !important;
     animation-name: iniciar;
     animation-duration: 0.5s;
+    margin-bottom: 40px;
 }
 @keyframes iniciar{
     from{
@@ -124,6 +142,10 @@ input[type=checkbox]:checked ~ #barra-lateral {
     background: #353434;
     display: inline-block;
     transition: all 0.5s cubic-bezier(.62,.43,.35,1.47);
+}
+.contenedor-error-img-text{
+    display: flex; 
+    width: 180px;
 }
 .menu label{
     width: 35px;
@@ -174,7 +196,12 @@ footer{
     align-items: center;
 }
 
-
+.button-menu{
+    margin-left: 12px; 
+    margin-top: 40px; 
+    position: fixed; 
+    z-index: 100;
+}
 
 
 @media screen and (max-width: 900px) {
@@ -210,6 +237,7 @@ footer{
     background-color: rgba(0, 0, 0, 0.247);
     border-radius: 30px;
 }
+
 .boton-desplegar-agregar:hover{
     width: 140px;
     
@@ -242,6 +270,7 @@ footer{
     gap: 8px;
     z-index: 2;
 }
+
 .img-bugs{
     width: 50px;
     height: 50px;
@@ -251,6 +280,10 @@ footer{
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
+}
+.img-bugs img{
+    width: 30px; 
+    height: 30px;
 }
 .agregar-texto{
     display: flex;
