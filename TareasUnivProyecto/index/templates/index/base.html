@@ -17,7 +17,7 @@
     <body onload="ButtonsLoaded()">
     <header id="aber">
         <div class="menu" style="position: fixed;">
-            <input type="checkbox" id="checkbox_toggle">
+            <input title="Abrir menú" type="checkbox" id="checkbox_toggle">
             <label for="checkbox_toggle" class="button-menu" style="margin-left: 12px; margin-top: 40px; position: fixed; z-index: 100;">
                 <span></span>
                 <span></span>
@@ -47,7 +47,7 @@
                 <a href="https://campus0c.unad.edu.co/campus"target="_blank" style="text-decoration: none;">
                     <div class="contenedor-barra" title="Campus UNAD">
                         <div class="item-imagen">
-                            <img src="{% static 'icons/icon-unad.png' %}">
+                            <img alt="Logo UNAD" src="{% static 'icons/icon-unad.png' %}">
                         </div>
                         <div class="elemento-oculto">
                             <strong style="color: #353434;">Campus universitario</strong>
@@ -73,7 +73,7 @@
                 <div class="contenedor-mensajes contenedor-cerrado" id="contenedor-mensajes">
                     {% if mensajes %}
                     {% for mensaje in mensajes %}
-                    <div class="mensaje-casilla cerrado" id="mensaje-{{mensaje.id}}" onclick="expandirMensaje('mensaje-{{mensaje.id}}', '{{mensaje.id}}')">
+                    <div class="mensaje-casilla cerrado" id="mensaje-notif-{{mensaje.id}}" onclick="expandirMensaje('mensaje-{{mensaje.id}}', '{{mensaje.id}}')">
                         <div class="mensaje-completo ">
                             <p><span class="estilo-mensaje">De: </span>{{mensaje.de}}</p>
                             <p><span class="estilo-mensaje">Asunto: </span>{{mensaje.asunto}}</p>
@@ -97,10 +97,12 @@
             <div class="dropdown noclic " id="menu-usuario"> <!-- Menu desplegable del usuario-->
                 <a href="#" class=" dropdownMenu " id="dropdownMenuLink" data-bs-toggle="dropdown" onclick="expandirMenuUsuario()"><img src="{% static 'icons/icon-dropdown.png' %}" alt=""></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="contenedor-usuario-menu"> <!-- boton para salir-->
-                    <li><a class="dropdown-item" href="{% url 'logout' %}">salir</a></li>
-                    {% if user.is_staff %}
-                    <li><a class="dropdown-item" href="/admin">Panel de administración</a></li>   
-                    {% endif %}         
+                    <ul class="contenedor-ul-items">
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">salir</a></li>
+                        {% if user.is_staff %}
+                        <li><a class="dropdown-item" href="/admin">Panel de administración</a></li>   
+                        {% endif %}         
+                    </ul>
                 </div>
             </div>
         </div>

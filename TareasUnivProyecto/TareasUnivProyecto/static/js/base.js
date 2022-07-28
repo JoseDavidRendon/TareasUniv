@@ -18,7 +18,7 @@ function expandirMensaje(id, idIcon){
         elemento.classList.add('mensaje-abierto')
         elemento.classList.remove('cerrado')
     }
-    var hijos = document.getElementById('mensaje-'+idIcon);
+    var hijos = document.getElementById('mensaje-notif-'+idIcon);
     if (hijos.contains(document.getElementById('mensaje-icon-'+idIcon))){
         document.getElementById('mensaje-icon-'+idIcon).remove()
         $.ajax({

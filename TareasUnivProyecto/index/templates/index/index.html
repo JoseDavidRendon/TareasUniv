@@ -82,10 +82,10 @@
                                     {% if tarea.anotacion == "" %}
                                         <p class="no-anotaciones">No hay anotaciones</p>
                                     {% else %}
-                                        <textarea class="si-anotaciones" disabled>{{tarea.anotacion}}</textarea>                                        
+                                        <textarea id="textarea-cargada-{{tarea.id}}" title="Anotación" class="si-anotaciones" disabled placeholder="{{tarea.anotacion}}"></textarea>                                                                               
                                     {% endif %}                                    
                                     <div class="contenedor-boton-editar">
-                                        <button class="boton-sin-estilo" onclick="AbrirEditor('{{tarea.id}}')">                                             
+                                        <button title="Editar" class="boton-sin-estilo" onclick="AbrirEditor('{{tarea.id}}')">                                             
                                             <img class="botones-img" src="{% static 'icons/icon-edit.png' %}" alt="">                                        
                                         </button>
                                     </div>
@@ -93,11 +93,12 @@
                                 <form id="id-form-anotacion-{{tarea.id}}" action="/actualizarAnotacion/" method="POST">
                                     {% csrf_token %}
                                     <div id="field-anotacion-{{tarea.id}}" >
-                                        <textarea name="anotacion" maxlength="10000" placeholder="{{tarea.anotacion}}" class="form-control textarea-anotacion" required id="id_anotacion">{{tarea.anotacion}}</textarea>
+                                        <label for="textarea-{{tarea.id}}">Escribe tu anotación</label>
+                                        <textarea id="textarea-{{tarea.id}}" name="anotacion" maxlength="10000" placeholder="{{tarea.anotacion}}" class="form-control textarea-anotacion" required >{{tarea.anotacion}}</textarea>
                                         <input type="hidden" value="{{tarea.id}}" name="id">
                                     </div>
                                     <div class="contenedor-botones-ok-cancel">
-                                        <button type="submit" class="boton-sin-estilo">                                            
+                                        <button title="Aceptar" type="submit" class="boton-sin-estilo">                                            
                                             <img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt="">                                        
                                         </button>
                                         <a onclick="noScriptBackground('{{tarea.id}}')"><img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>
@@ -192,7 +193,7 @@
                                     <textarea class="si-anotaciones" disabled>{{tarea.anotacion}}</textarea>                                    
                                     {% endif %}
                                     <div class="contenedor-boton-editar">
-                                        <button class="boton-sin-estilo" onclick="AbrirEditor('{{tarea.id}}')">                                             
+                                        <button title="Editar" class="boton-sin-estilo" onclick="AbrirEditor('{{tarea.id}}')">                                             
                                             <img class="botones-img" src="{% static 'icons/icon-edit.png' %}" alt="">                                        
                                         </button>
                                     </div>
@@ -200,11 +201,12 @@
                                 <form id="id-form-anotacion-{{tarea.id}}" action="/actualizarAnotacion/" method="POST">
                                     {% csrf_token %}
                                     <div id="field-anotacion-{{tarea.id}}" >
-                                        <textarea name="anotacion" maxlength="10000" placeholder="{{tarea.anotacion}}" class="form-control textarea-anotacion" required id="id_anotacion">{{tarea.anotacion}}</textarea>
+                                        <label for="textarea-{{tarea.id}}">Escribe tu anotación</label>
+                                        <textarea id="textarea-{{tarea.id}}" name="anotacion" maxlength="10000" placeholder="{{tarea.anotacion}}" class="form-control textarea-anotacion" required>{{tarea.anotacion}}</textarea>
                                         <input type="hidden" value="{{tarea.id}}" name="id">
                                     </div>
                                     <div class="contenedor-botones-ok-cancel">
-                                        <button type="submit" class="boton-sin-estilo">                                            
+                                        <button title="Aceptar" type="submit" class="boton-sin-estilo">                                            
                                             <img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt="">                                        
                                         </button>
                                         <a onclick="noScriptBackground('{{tarea.id}}')"><img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>
@@ -258,12 +260,11 @@
                                                             <input type="hidden" value="{{tarea.id}}" name="id">
                                                             <div class="contenedor-numero-ok">
                                                                 <div class="lineal" >
-                                                                    <input type="number" min="0" max="{{tarea.valor}}" id="insertar-nota-{{tarea.id}}" value="{{tarea.calificacion}}"  name="calif-tarea" disabled>
-                                                                    <div onclick="editarCalificacion('{{tarea.id}}')" style="display: none;" id="boton-edit-calif-{{tarea.id}}"><img src="{% static 'icons/icon-pencil.png' %}" alt="" class="botones-img clickable"></div>
+                                                                    <input type="number" min="0" max="{{tarea.valor}}" id="insertar-nota-{{tarea.id}}" value="{{tarea.calificacion}}"  name="calif-tarea" disabled>                                                                    <div onclick="editarCalificacion('{{tarea.id}}')" style="display: none;" id="boton-edit-calif-{{tarea.id}}"><img src="{% static 'icons/icon-pencil.png' %}" alt="" class="botones-img clickable"></div>
                                                                 </div>
                                                                 <div class="" id="check-ok-{{tarea.id}}" style="display: none;">
                                                                     <div>
-                                                                        <button class="boton-sin-estilo" type="submit"><img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt="" title="Actualizar"></button>
+                                                                        <button title="Aceptar" class="boton-sin-estilo" type="submit"><img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt="" title="Actualizar"></button>
                                                                     </div>  
                                                                 </div>
                                                             </div>
@@ -317,7 +318,7 @@
                                                             <textarea class="si-anotaciones" disabled>{{tarea.anotacion}}</textarea>                                                            
                                                         {% endif %}
                                                         <div class="contenedor-boton-editar">                    
-                                                            <button class="boton-sin-estilo" onclick="AbrirEditor('{{tarea.id}}')">                                                                 
+                                                            <button title="Editar" class="boton-sin-estilo" onclick="AbrirEditor('{{tarea.id}}')">                                                                 
                                                                 <img class="botones-img" src="{% static 'icons/icon-edit.png' %}" alt="">                                                            
                                                             </button>                    
                                                         </div>                    
@@ -325,11 +326,12 @@
                                                     <form id="id-form-anotacion-{{tarea.id}}" action="/actualizarAnotacion/" method="POST">                    
                                                         {% csrf_token %}                    
                                                         <div id="field-anotacion-{{tarea.id}}" >                    
-                                                            <textarea name="anotacion" maxlength="10000" placeholder="{{tarea.anotacion}}" class="form-control textarea-anotacion" required id="id_anotacion">{{tarea.anotacion}}</textarea>                    
+                                                            <label for="textarea-{{tarea.id}}">Escribe tu anotación</label>
+                                                            <textarea id="textarea-{{tarea.id}}" name="anotacion" maxlength="10000" placeholder="{{tarea.anotacion}}" class="form-control textarea-anotacion" required>{{tarea.anotacion}}</textarea>                    
                                                             <input type="hidden" value="{{tarea.id}}" name="id">                    
                                                         </div>                    
                                                         <div class="contenedor-botones-ok-cancel">                    
-                                                            <button type="submit" class="boton-sin-estilo">                                                                
+                                                            <button title="Aceptar" type="submit" class="boton-sin-estilo">                                                                
                                                                 <img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt="">                                                            
                                                             </button>                    
                                                             <a onclick="noScriptBackground('{{tarea.id}}')"><img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>                    

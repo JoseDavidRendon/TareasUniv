@@ -297,6 +297,12 @@ footer{
     width: 20px;
     height: 20px;
 }
+.contenedor-ul-items{
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+
+}
 .dropdown-menu{
     position: absolute !important;
     top: 47px !important;
