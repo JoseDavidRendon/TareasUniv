@@ -53,17 +53,17 @@
                         {% endif %}
                         <div class="botones">                            
                             <div class="boton-icon-mensaje" onclick="scriptBackground('{{tarea.id}}')">                                
-                                <a id="mensaje-{{tarea.id}}">                                    
+                                <a id="mensaje-{{tarea.id}}" title="Abrir anotaciones">                                    
                                     <img class="botones-img" src="{% static 'icons/icon-topic.png' %}" alt="">                                
                                 </a>                            
                             </div>
                             <div class="boton-icon-editar">                                
-                                <a href="{%  url 'editarTarea' tarea.id %}">                                    
+                                <a href="{%  url 'editarTarea' tarea.id %}" title="Editar">                                    
                                     <img class="botones-img" src="{% static 'icons/icon-edit.png' %}" alt="">                                
                                 </a>                            
                             </div><br> <br>                
                             <div>                                
-                                <a href="{%  url 'borrarCurso' tarea.id %}">                                    
+                                <a href="{%  url 'borrarCurso' tarea.id %}" title="Borrar tarea">                                    
                                     <img class="botones-img" src="{% static 'icons/icon-borrar.png' %}" alt="">                                
                                 </a>                            
                             </div><br> <br>                            
@@ -103,7 +103,7 @@
                                         <button title="Aceptar" type="submit" class="boton-sin-estilo">                                            
                                             <img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt="">                                        
                                         </button>
-                                        <a onclick="noScriptBackground('{{tarea.id}}')"><img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>
+                                        <a title="Cancelar" onclick="noScriptBackground('{{tarea.id}}')"><img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>
                                         <input type="reset" style="display: none;" id="reset-btn-{{tarea.id}}">
                                     </div>
                                 </form>
@@ -163,17 +163,17 @@
                             {% endif %}
                             <div class="botones">                            
                                 <div class="boton-icon-mensaje" onclick="scriptBackground('{{tarea.id}}')">                                    
-                                    <a id="mensaje-{{tarea.id}}">                                        
+                                    <a title="Abrir anotaciones" id="mensaje-{{tarea.id}}">                                        
                                         <img class="botones-img" src="{% static 'icons/icon-topic.png' %}" alt="">                                    
                                     </a>                                
                                 </div>    
                                 <div class="boton-icon-editar">                                    
-                                    <a href="{%  url 'editarTarea' tarea.id %}">                                        
+                                    <a title="Editar" href="{%  url 'editarTarea' tarea.id %}">                                        
                                         <img class="botones-img" src="{% static 'icons/icon-edit.png' %}" alt="">                                    
                                     </a>                                
                                 </div><br> <br>                    
                                 <div>                                    
-                                    <a href="{%  url 'borrarCurso' tarea.id %}">                                        
+                                    <a title="Borrar tarea" href="{%  url 'borrarCurso' tarea.id %}">                                        
                                         <img class="botones-img" src="{% static 'icons/icon-borrar.png' %}" alt="">                                    
                                     </a>                                
                                 </div><br> <br>                                
@@ -212,7 +212,7 @@
                                         <button title="Aceptar" type="submit" class="boton-sin-estilo">                                            
                                             <img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt="">                                        
                                         </button>
-                                        <a onclick="noScriptBackground('{{tarea.id}}')"><img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>
+                                        <a title="Cancelar" onclick="noScriptBackground('{{tarea.id}}')"><img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>
                                         <input type="reset" style="display: none;" id="reset-btn-{{tarea.id}}">
                                     </div>                                    
                                 </form>
@@ -290,17 +290,17 @@
                                             </div>               
                                             <div class="botones">                                                
                                                 <div class="boton-icon-mensaje" onclick="scriptBackground('{{tarea.id}}')">                                                    
-                                                    <a id="mensaje-{{tarea.id}}">                                                        
+                                                    <a title="Abrir anotaciones" id="mensaje-{{tarea.id}}">                                                        
                                                         <img class="botones-img" src="{% static 'icons/icon-topic.png' %}" alt="">                                                    
                                                     </a>                                                
                                                 </div>                    
                                                 <div class="boton-icon-editar">                                                    
-                                                    <a href="{%  url 'editarTarea' tarea.id %}">                                                        
+                                                    <a title="Editar" href="{%  url 'editarTarea' tarea.id %}">                                                        
                                                         <img class="botones-img" src="{% static 'icons/icon-edit.png' %}" alt="">                                                    
                                                     </a>                                                
                                                 </div><br> <br>                                    
                                                 <div>                                                    
-                                                    <a href="{%  url 'borrarCurso' tarea.id %}">                                                        
+                                                    <a title="Borrar tarea" href="{%  url 'borrarCurso' tarea.id %}">                                                        
                                                         <img class="botones-img" src="{% static 'icons/icon-borrar.png' %}" alt="">                                                    
                                                     </a>                                                
                                                 </div><br> <br>                                                
@@ -339,7 +339,7 @@
                                                             <button title="Aceptar" type="submit" class="boton-sin-estilo">                                                                
                                                                 <img class="botones-img" src="{% static 'icons/icon-ok.png' %}" alt="">                                                            
                                                             </button>                    
-                                                            <a onclick="noScriptBackground('{{tarea.id}}')"><img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>                    
+                                                            <a title="Cancelar" onclick="noScriptBackground('{{tarea.id}}')"><img class="botones-img" src="{% static 'icons/icon-cancel.png' %}" alt=""></a>                    
                                                             <input type="reset" style="display: none;" id="reset-btn-{{tarea.id}}">                    
                                                         </div>
                                                     </form>
@@ -357,7 +357,7 @@
        </div>   
 <div id="botones-secundario">    
     <div class="boton-desplegar boton-desplegar-agregar">    
-        <a class="sin-decoracion" href="{% url 'agregarTarea' %}" >    
+        <a title="Agregar tarea" class="sin-decoracion" href="{% url 'agregarTarea' %}" >    
             <div style="display: flex;">    
                 <div id="icon-agregar">    
                     <p> + </p>            

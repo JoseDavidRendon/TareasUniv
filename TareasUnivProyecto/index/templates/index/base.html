@@ -95,7 +95,7 @@
                 </div>
             </div>
             <div class="dropdown noclic " id="menu-usuario"> <!-- Menu desplegable del usuario-->
-                <a href="#" class=" dropdownMenu " id="dropdownMenuLink" data-bs-toggle="dropdown" onclick="expandirMenuUsuario()"><img src="{% static 'icons/icon-dropdown.png' %}" alt=""></a>
+                <a title="Expandir menú" href="#" class=" dropdownMenu " id="dropdownMenuLink" data-bs-toggle="dropdown" onclick="expandirMenuUsuario()"><img src="{% static 'icons/icon-dropdown.png' %}" alt=""></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="contenedor-usuario-menu"> <!-- boton para salir-->
                     <ul class="contenedor-ul-items">
                         <li><a class="dropdown-item" href="{% url 'logout' %}">salir</a></li>
@@ -115,7 +115,7 @@
     </div>
     <div id="botones">
         <div class="boton-desplegar boton-desplegar-reporte">
-            <a class="sin-decoracion" href="{% url 'reportarBug' %}">            
+            <a title="Reportar error" class="sin-decoracion" href="{% url 'reportarBug' %}">            
                 <div style="display: flex; width: 180px;">    
                     <div class="img-bugs">    
                         <img src="{% static 'icons/icon-bug.png' %}" style="width: 30px; height: 30px;" alt="">    
