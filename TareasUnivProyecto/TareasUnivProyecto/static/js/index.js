@@ -56,6 +56,8 @@ function scriptBackground(name_id) {
 
     document.getElementById('expandir-'+name_id).classList.remove('collapse');
 
+    document.getElementById('contenedor-tarea-'+name_id).style.zIndex="1"
+
 }
 
 function noScriptBackground(name_id) {
@@ -71,6 +73,8 @@ function noScriptBackground(name_id) {
     document.getElementById('expandir-'+name_id).classList.remove('show');
     
     document.getElementById('expandir-'+name_id).classList.add('collapse');
+
+    document.getElementById('contenedor-tarea-'+name_id).style.zIndex="auto"
 }
 
 function AbrirEditor(name_id) {
@@ -78,6 +82,7 @@ function AbrirEditor(name_id) {
     document.getElementById("anotacion-actual-"+name_id).style.display="none";
 
     document.getElementById("id-form-anotacion-"+name_id).style.display="block";
+    
 }
 
 function colapsarContenedorTarea(contenedor, titulo, icon){
