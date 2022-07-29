@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 
+from email.policy import strict
 import os
 from pathlib import Path
 import mimetypes
@@ -27,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&zzy-@ljf7gu$5^b(xyv=0et7-0o+0*)&zjmglyhs-n#1im2tq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
  
 ALLOWED_HOSTS = ["*"]
 
@@ -166,8 +167,11 @@ EMAIL_USE_TLS = True
 
 
 SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
 SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PEROLAD = True
 SECURE_SSL_REDIRECT=True
+SECURE_BROWSER_XSS_FILTER=True
+SECURE_HSTS_PRELOAD=True
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
