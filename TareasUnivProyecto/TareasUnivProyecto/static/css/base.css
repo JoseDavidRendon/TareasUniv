@@ -39,6 +39,12 @@ body{
     padding-top: 90px; 
     min-height: 100vh;
 }
+.nodisplay{
+    display: none;
+}
+.flexdisplay{
+    display: flex;
+}
 .dropdownMenu{
     display: flex;
     justify-content: center;
@@ -49,6 +55,9 @@ body{
     width: 40px;
     height: 40px;
     cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none; /* IE10+ */
     user-select: none;
 }
 
@@ -80,7 +89,9 @@ body{
     margin-left: 10px;
     display: flex;
 }
-
+.contenedor-contenedores{
+    margin-bottom: 30px;
+}
 #barra-lateral{
     top: 55px;
     position: fixed;
