@@ -169,8 +169,8 @@ EMAIL_HOST_PASSWORD = 'azytdnchdzfeotey'
 EMAIL_USE_TLS = True
 
 
-SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_HTTPONLY: True
+# SESSION_COOKIE_SECURE = True
+# SESSION_COOKIE_HTTPONLY: True
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE=True
 SECURE_HSTS_SECONDS = 31536000
@@ -179,9 +179,9 @@ SECURE_HSTS_PEROLAD = True
 SECURE_SSL_REDIRECT=True #desactivar para test
 SECURE_BROWSER_XSS_FILTER=True
 SECURE_HSTS_PRELOAD=True
-# CACHES={
-#     'default':{
-#         'BACKEND':'django.core.cache.backends.memcached.MemcachedCache',
-#         'LOCATION': '127.0.0.1:63894',
-#     }
-# } 
+CACHES={
+    'default':{
+        'BACKEND':'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'Cache_django_web',
+    }
+} 
