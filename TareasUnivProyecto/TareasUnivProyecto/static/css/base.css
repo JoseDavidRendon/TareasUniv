@@ -56,9 +56,9 @@ body{
     height: 40px;
     cursor: pointer;
     -ms-user-select: none; /* IE10+ */
+    -moz-user-select: none;
     user-select: none;
     -webkit-user-select: none;
-    -moz-user-select: none;
 }
 
 .dropdownMenu:hover{
