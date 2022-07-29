@@ -145,10 +145,10 @@
 }
 .titulo{
     cursor: pointer;
+    user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
-    user-select: none;
 }
 .titulo:hover{
     color: #79B4B7;
@@ -291,10 +291,10 @@
     align-items:center;
     justify-content: center;
     cursor: pointer;
+    user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
-    user-select: none;
     margin-bottom: 10px;
 }
 #titulo-icon-terminado{

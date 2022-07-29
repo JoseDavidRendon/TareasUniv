@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&zzy-@ljf7gu$5^b(xyv=0et7-0o+0*)&zjmglyhs-n#1im2tq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
  
 ALLOWED_HOSTS = ["*"]
 
@@ -165,3 +165,9 @@ EMAIL_HOST_PASSWORD = 'azytdnchdzfeotey'
 EMAIL_USE_TLS = True
 
 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PEROLAD = True
+SECURE_SSL_REDIRECT=True
