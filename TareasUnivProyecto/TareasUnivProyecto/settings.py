@@ -179,9 +179,3 @@ SECURE_HSTS_PEROLAD = True
 SECURE_SSL_REDIRECT=True #desactivar para test
 SECURE_BROWSER_XSS_FILTER=True
 SECURE_HSTS_PRELOAD=True
-CACHES={
-    'default':{
-        'BACKEND':'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'Cache_django_web',
-    }
-} 
