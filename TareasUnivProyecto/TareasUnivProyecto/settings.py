@@ -54,9 +54,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
-
+ 
 ROOT_URLCONF = 'TareasUnivProyecto.urls'
 
 TEMPLATES = [
@@ -167,6 +170,7 @@ EMAIL_USE_TLS = True
 
 
 SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY: True
 SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PEROLAD = True
@@ -175,3 +179,9 @@ SECURE_BROWSER_XSS_FILTER=True
 SECURE_HSTS_PRELOAD=True
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
+CACHES={
+    'default':{
+        'BACKEND':'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:63894',
+    }
+} 
