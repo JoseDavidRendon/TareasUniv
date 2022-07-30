@@ -147,8 +147,8 @@
     cursor: pointer;
     -ms-user-select: none; /* IE10+ */
     -moz-user-select: none; /* Firefox */
-    user-select: none;
     -webkit-user-select: none;
+    user-select: none;
 }
 .titulo:hover{
     color: #79B4B7;
@@ -293,8 +293,8 @@
     cursor: pointer;
     -ms-user-select: none; /* IE10+ */
     -moz-user-select: none; /* Firefox */
-    user-select: none;
     -webkit-user-select: none;
+    user-select: none;
     margin-bottom: 10px;
 }
 #titulo-icon-terminado{
