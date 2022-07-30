@@ -55,8 +55,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.middleware.cache.UpdateCacheMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    # 'django.middleware.cache.UpdateCacheMiddleware',
+    # 'django.middleware.common.CommonMiddleware',
     # 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
  
@@ -169,11 +169,11 @@ EMAIL_HOST_PASSWORD = 'azytdnchdzfeotey'
 EMAIL_USE_TLS = True
 
 
-SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_HTTPONLY: True
-CSRF_COOKIE_HTTPONLY = True
-CSRF_COOKIE_SECURE=True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_SSL_REDIRECT=True #desactivar para test
-SECURE_BROWSER_XSS_FILTER=True
-SECURE_HSTS_PRELOAD=True
+# SESSION_COOKIE_SECURE = True
+# SESSION_COOKIE_HTTPONLY: True
+# CSRF_COOKIE_HTTPONLY = True
+# CSRF_COOKIE_SECURE=True
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_SSL_REDIRECT=True #desactivar para test
+# SECURE_BROWSER_XSS_FILTER=True
+# SECURE_HSTS_PRELOAD=True
