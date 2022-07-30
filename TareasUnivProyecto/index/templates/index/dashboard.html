@@ -84,7 +84,7 @@
                 </div>
                 <div class="contenedor-busqueda">
                     <div class="configuracion">
-                        <p class="titulo-contenedor-busqueda"><strong>Cursos visibles</strong></p>
+                        <label class="titulo-contenedor-busqueda" for="busqueda-de-cursos"><strong>Cursos visibles</strong></label>
                         <input type="text" id="busqueda-de-cursos" onkeyup="buscadorDeCursos()" placeholder="Busqueda">
                         <div class="botones-select">
                             <div id="boton-select-all" onclick="selectAll(true)">Todo</div>
@@ -96,7 +96,7 @@
                                 {% for curso in todosLosCursos %}
                                     <div class="casilla-contenedor " id="{{curso}}"  onclick="clickCheckbox('{{curso}}')">
                                         <input  type="checkbox" name="{{curso}}" id="checkbox-{{curso}}" class="checkboxAll">
-                                        <label for="{{curso}}" class="casilla-curso">{{curso}}</label>
+                                        <label for="checkbox-{{curso}}" class="casilla-curso">{{curso}}</label>
                                         <div><img class="botones-img" src="{% static 'icons/icon-check.png' %}" alt="Actualizar"></div>
                                         <script>comprobarChecked('{{curso}}', '{%  comprobarCheckedDB request curso %}')</script>
                                     </div>

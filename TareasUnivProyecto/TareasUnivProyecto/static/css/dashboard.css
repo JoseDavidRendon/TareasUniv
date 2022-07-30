@@ -187,6 +187,7 @@
 .titulo-contenedor-busqueda{
     margin-bottom: 5px;
     text-align: center;
+    width: 100%;
 }
 #busqueda-de-cursos{
     margin-bottom: 10px;
