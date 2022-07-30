@@ -18,7 +18,7 @@
     {% for curso in cursosDisponibles %}
     <div class="contenedor-contenedores-graficas" >
         <div class="titulo-graficas"><h2><strong>{{curso}}</strong></h2></div>        
-        <div class="icon-warning" id="icon-warning-{{curso}}"><img src="{% static 'icons/icon-warning.png' %}" alt=""><p>Verifique que el valor de las tareas se haya digitado correctamente</p></div>
+        <div class="icon-warning" id="icon-warning-{{curso}}"><img src="{% static 'icons/icon-warning.png' %}" alt="Error"><p>Verifique que el valor de las tareas se haya digitado correctamente</p></div>
         <div class="contenedor-graficas" id="contenedor-graficas-{{curso}}">
             <div class="error-curso" id="error-curso-{{curso}}"></div>
             <div class="graficas-superiores">
@@ -68,7 +68,7 @@
     </div>
     {% endfor %}
     {% else %}
-    <div class="contenedor-vacío"><img class="icon-vacio" src="{% static 'icons/icon-empty.png' %}" alt="">
+    <div class="contenedor-vacío"><img class="icon-vacio" src="{% static 'icons/icon-empty.png' %}" alt="Vacío">
     <p class="primer-p">No hay cursos seleccionados</p>
     <p class="segundo-p">Haga clic en el botón de opciones y seleccione los cursos que desea mostrar</p>
     </div>
@@ -76,9 +76,9 @@
 </div>
 <div id="botones-secundario">
     <div class="boton-desplegar boton-configuracion">
-            <div style="display: flex;">
+            <div class="contenedor-interior-boton-desplegar">
                 <div class="img-bugs">
-                    <img src="{% static 'icons/icon-config.png' %}" style="width: 30px; height: 30px;" alt="">
+                    <img src="{% static 'icons/icon-config.png' %}" alt="configuracion">
                 </div>
                 <div class="contenedor-busqueda">
                     <div class="configuracion">
@@ -95,13 +95,13 @@
                                     <div class="casilla-contenedor " id="{{curso}}"  onclick="clickCheckbox('{{curso}}')">
                                         <input  type="checkbox" name="{{curso}}" id="checkbox-{{curso}}" class="checkboxAll">
                                         <label for="{{curso}}" class="casilla-curso">{{curso}}</label>
-                                        <div><img class="botones-img" src="{% static 'icons/icon-check.png' %}" alt=""></div>
+                                        <div><img class="botones-img" src="{% static 'icons/icon-check.png' %}" alt="Actualizar"></div>
                                         <script>comprobarChecked('{{curso}}', '{%  comprobarCheckedDB request curso %}')</script>
                                     </div>
                                 {% endfor %}
                             </div>
                             <div class="boton-submit-busqueda"><button type="submit" class="boton-sin-estilo">
-                                <img src="{% static 'icons/icon-ok.png' %} " class="botones-img" alt="">
+                                <img src="{% static 'icons/icon-ok.png' %} " class="botones-img" alt="Aceptar">
                             </button></div>
                         </form>
                     </div>

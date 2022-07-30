@@ -172,6 +172,10 @@
 .boton-configuracion:hover .img-bugs{
     display: none !important;
 }
+.img-bugs img{
+    width: 30px; 
+    height: 30px;
+}
 .configuracion{
     padding: 18px;
 }
@@ -312,4 +316,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+}
+.contenedor-interior-boton-desplegar{
+    display: flex;
 }

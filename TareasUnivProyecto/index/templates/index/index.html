@@ -248,7 +248,9 @@
                                        <p  class="separacion"><strong>{{ tarea.curso }} - {{ tarea.tarea }}</strong></p>                   
                                    </div>                   
                                    <div>                                                           
-                                       <p >Valor: {{tarea.valor}} puntos</p>                           
+                                       <p >Valor: {{tarea.valor}} puntos</p>      
+                                       <script>console.log('{{tarea.valor}}')</script>     
+                                                       
                                        <p class="separacion">Fecha de entrega: {{tarea.entrega}}</p>                    
                                        <div class="contenedor-dias-botones contenedor-dias-botones-termionada">               
                                             <div class="boton-agregar-calificacion" >                                                    

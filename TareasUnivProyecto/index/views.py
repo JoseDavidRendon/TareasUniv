@@ -124,6 +124,9 @@ def nuevoCurso(request):
 def editarTarea(request, id):
     usuario = request.user.username
     formInfo = CursosYTareas.objects.get(pk = id)
+    # for prim in formInfo:
+    #     print(prim)
+    print(formInfo.valor)
     if usuario == formInfo.usuario:
         data={
             'form':formAgregarCurso(instance=formInfo),
