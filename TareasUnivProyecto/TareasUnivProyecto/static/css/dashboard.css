@@ -128,7 +128,12 @@
 .amarillo{
     background-color: rgb(232, 241, 94);
 }
-
+.mensaje-error-dashboard{
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    
+}
 @media screen and (max-width: 550px) {
     .grafico-circular{
         margin-top: 50px;
