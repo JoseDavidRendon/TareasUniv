@@ -8,7 +8,7 @@ function ButtonsLoaded(){
     
 }
 function expandirMensaje(id, idIcon){
-    var elemento =document.getElementById(id);
+    var elemento =document.getElementById('mensaje-notif-'+idIcon);
     if (elemento.classList.contains('mensaje-abierto')){
         elemento.classList.remove('mensaje-abierto')    
         elemento.style.height='55px';
@@ -34,9 +34,7 @@ function expandirMensaje(id, idIcon){
             document.getElementById('indicador-mensajes').remove();
         }
         
-    } else {
-        console.log('Obvio no existe')
-    }
+    } else {}
     
 }
 function expandirContenedorMensajes(){
